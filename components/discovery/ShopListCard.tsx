@@ -1,8 +1,10 @@
 'use client'
 
+import Link from 'next/link'
+import Image from 'next/image'
 import { Shop } from '@/types'
 import { Badge } from '@/components/ui/badge'
-import { MapPin, Star } from 'lucide-react'
+import { MapPin, Star, Leaf } from 'lucide-react'
 
 interface ShopListCardProps {
   shop: Shop
@@ -13,7 +15,7 @@ interface ShopListCardProps {
 
 function PriceLabel({ n }: { n?: 1 | 2 | 3 }) {
   const label = n === 1 ? '฿' : n === 2 ? '฿฿' : n === 3 ? '฿฿฿' : '—'
-  const dim = n === 1 ? '฿฿฿' : n === 2 ? '฿' : ''
+  const dim = n === 1 ? '฿฿' : n === 2 ? '฿' : ''
   return (
     <span className="text-sm font-medium">
       <span className="text-green-700">{label}</span>
@@ -46,20 +48,39 @@ function distanceLabel(km?: number) {
   return km < 1 ? `${Math.round(km * 1000)}m` : `${km.toFixed(1)}km`
 }
 
+function ShopPhoto({ shop }: { shop: Shop }) {
+  const primary = shop.shop_images?.find((i) => i.is_primary) ?? shop.shop_images?.[0]
+  if (primary?.url) {
+    return (
+      <div className="shrink-0 w-20 h-20 rounded-lg overflow-hidden relative">
+        <Image
+          src={primary.url}
+          alt={shop.name}
+          fill
+          className="object-cover"
+          unoptimized
+        />
+      </div>
+    )
+  }
+  return (
+    <div className="shrink-0 w-20 h-20 rounded-lg bg-gray-100 flex items-center justify-center">
+      <Leaf className="w-6 h-6 text-gray-300" />
+    </div>
+  )
+}
+
 export default function ShopListCard({ shop, distance, isSelected, onClick }: ShopListCardProps) {
   return (
-    <div
+    <Link
+      href={`/shops/${shop.id}`}
       onClick={onClick}
       className={`flex gap-3 p-4 cursor-pointer transition-colors border-b border-gray-100 hover:bg-orange-50 ${
         isSelected ? 'bg-orange-50 border-l-4 border-l-orange-400' : ''
       }`}
     >
-      {/* Photo */}
-      <div className={`shrink-0 w-24 h-24 rounded-lg overflow-hidden flex items-center justify-center text-2xl font-bold text-white shadow-sm ${shop.is_premium ? 'bg-gradient-to-br from-amber-400 to-orange-500' : 'bg-gradient-to-br from-green-500 to-green-700'}`}>
-        {shop.name.charAt(0)}
-      </div>
+      <ShopPhoto shop={shop} />
 
-      {/* Info */}
       <div className="flex-1 min-w-0 space-y-1">
         <div className="flex items-start gap-1.5 flex-wrap">
           <h3 className="font-bold text-gray-900 text-sm leading-tight">{shop.name}</h3>
@@ -104,6 +125,6 @@ export default function ShopListCard({ shop, distance, isSelected, onClick }: Sh
           </p>
         )}
       </div>
-    </div>
+    </Link>
   )
 }

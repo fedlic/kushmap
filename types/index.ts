@@ -15,6 +15,7 @@ export interface Shop {
   is_verified: boolean
   is_premium: boolean
   created_at: string
+  shop_images?: { url: string; is_primary: boolean }[]
 }
 
 export interface ShopImage {
