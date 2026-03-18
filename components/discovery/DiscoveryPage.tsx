@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { Search, MapPin, List, Map, LocateFixed, X, SlidersHorizontal } from 'lucide-react'
+import { Search, MapPin, List, Map, LocateFixed, X, SlidersHorizontal, Clock, BadgeCheck } from 'lucide-react'
 import { fetchNearbyShops, searchShops } from '@/lib/supabase/queries'
 import type { Shop } from '@/types'
 import ShopListCard from './ShopListCard'
@@ -16,6 +16,10 @@ const MapPanel = dynamic(() => import('./MapPanel'), {
 
 const BANGKOK = { lat: 13.7563, lng: 100.5018 }
 
+const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+
+type SortMode = 'distance' | 'newest'
+
 function calcKm(lat1: number, lng1: number, lat2: number, lng2: number) {
   const R = 6371
   const dLat = ((lat2 - lat1) * Math.PI) / 180
@@ -28,6 +32,21 @@ function calcKm(lat1: number, lng1: number, lat2: number, lng2: number) {
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
 }
 
+function isOpenNow(hours?: Record<string, string>): boolean {
+  if (!hours) return false
+  const todayKey = DAY_KEYS[new Date().getDay()]
+  const val = hours[todayKey]
+  if (!val) return false
+  const [open, close] = val.split('-').map(t => {
+    const [h, m] = t.trim().split(':').map(Number)
+    return h * 60 + (m || 0)
+  })
+  if (open === undefined || close === undefined) return false
+  const now = new Date()
+  const cur = now.getHours() * 60 + now.getMinutes()
+  return close > open ? cur >= open && cur < close : cur >= open || cur < close
+}
+
 export default function DiscoveryPage() {
   const [shops, setShops] = useState<Shop[]>([])
   const [loading, setLoading] = useState(true)
@@ -37,6 +56,10 @@ export default function DiscoveryPage() {
   const [area, setArea] = useState<Area>('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [mobileView, setMobileView] = useState<'list' | 'map'>('list')
+  const [sort, setSort] = useState<SortMode>('distance')
+  const [filterOpen, setFilterOpen] = useState(false)
+  const [onlyOpen, setOnlyOpen] = useState(false)
+  const [onlyVerified, setOnlyVerified] = useState(false)
   const debounceRef = useRef<ReturnType<typeof setTimeout>>()
   const listRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<Record<string, HTMLDivElement>>({})
@@ -90,7 +113,6 @@ export default function DiscoveryPage() {
   const handleSelectShop = (shop: Shop) => {
     setSelected(shop)
     setMapCenter({ lat: shop.lat, lng: shop.lng })
-    // Scroll card into view
     setTimeout(() => {
       const el = cardRefs.current[shop.id]
       el?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
@@ -98,6 +120,22 @@ export default function DiscoveryPage() {
   }
 
   const refCenter = userLoc ?? mapCenter
+
+  // Apply filters + sort client-side
+  const displayShops = shops
+    .filter(s => !onlyOpen || isOpenNow(s.opening_hours))
+    .filter(s => !onlyVerified || s.is_verified)
+    .sort((a, b) => {
+      if (sort === 'newest') {
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      }
+      // distance (default)
+      const da = calcKm(refCenter.lat, refCenter.lng, a.lat, a.lng)
+      const db = calcKm(refCenter.lat, refCenter.lng, b.lat, b.lng)
+      return da - db
+    })
+
+  const activeFilterCount = (onlyOpen ? 1 : 0) + (onlyVerified ? 1 : 0)
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">
@@ -138,11 +176,55 @@ export default function DiscoveryPage() {
               <span className="hidden sm:inline">現在地</span>
             </button>
 
-            <button className="shrink-0 flex items-center gap-1.5 text-xs text-gray-600 border border-gray-300 rounded-lg px-2.5 h-9 hover:bg-gray-50 transition-colors">
+            <button
+              onClick={() => setFilterOpen(f => !f)}
+              className={`shrink-0 flex items-center gap-1.5 text-xs rounded-lg px-2.5 h-9 transition-colors border relative ${
+                activeFilterCount > 0
+                  ? 'bg-green-600 text-white border-green-600'
+                  : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+              }`}
+            >
               <SlidersHorizontal className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">絞り込み</span>
+              {activeFilterCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 text-white text-[10px] rounded-full flex items-center justify-center font-bold">
+                  {activeFilterCount}
+                </span>
+              )}
             </button>
           </div>
+
+          {/* Filter panel */}
+          {filterOpen && (
+            <div className="flex flex-wrap items-center gap-2 py-1 border-t border-gray-100 pt-2.5">
+              <button
+                onClick={() => setOnlyOpen(v => !v)}
+                className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                  onlyOpen ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                <Clock className="w-3.5 h-3.5" />
+                今日営業中
+              </button>
+              <button
+                onClick={() => setOnlyVerified(v => !v)}
+                className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                  onlyVerified ? 'bg-blue-600 text-white border-blue-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                <BadgeCheck className="w-3.5 h-3.5" />
+                認証済みのみ
+              </button>
+              {activeFilterCount > 0 && (
+                <button
+                  onClick={() => { setOnlyOpen(false); setOnlyVerified(false) }}
+                  className="text-xs text-gray-400 hover:text-gray-600 underline ml-1"
+                >
+                  クリア
+                </button>
+              )}
+            </div>
+          )}
 
           {/* Area filter */}
           <AreaFilter active={area} onChange={handleArea} />
@@ -181,15 +263,21 @@ export default function DiscoveryPage() {
             mobileView === 'map' ? 'hidden' : 'flex'
           } md:flex flex-col w-full md:w-[58%] bg-white border-r border-gray-200 overflow-y-auto`}
         >
-          {/* Result count */}
+          {/* Result count + sort */}
           <div className="px-4 py-2.5 border-b border-gray-100 bg-gray-50 flex items-center justify-between shrink-0">
             <span className="text-xs text-gray-500 font-medium">
-              {loading ? '読み込み中...' : `${shops.length}件のショップ`}
+              {loading ? '読み込み中...' : `${displayShops.length}件のショップ`}
+              {activeFilterCount > 0 && !loading && (
+                <span className="text-green-600 ml-1">（絞り込み中）</span>
+              )}
             </span>
-            <select className="text-xs border border-gray-200 rounded px-2 py-1 bg-white text-gray-600">
-              <option>距離順</option>
-              <option>評価順</option>
-              <option>新着順</option>
+            <select
+              value={sort}
+              onChange={e => setSort(e.target.value as SortMode)}
+              className="text-xs border border-gray-200 rounded px-2 py-1 bg-white text-gray-600 cursor-pointer"
+            >
+              <option value="distance">距離順</option>
+              <option value="newest">新着順</option>
             </select>
           </div>
 
@@ -200,13 +288,13 @@ export default function DiscoveryPage() {
                 <p className="text-sm text-gray-400">ショップを検索中...</p>
               </div>
             </div>
-          ) : shops.length === 0 ? (
+          ) : displayShops.length === 0 ? (
             <div className="flex-1 flex items-center justify-center text-gray-400 text-sm">
-              このエリアにショップはありません
+              {activeFilterCount > 0 ? '条件に合うショップがありません' : 'このエリアにショップはありません'}
             </div>
           ) : (
             <div className="divide-y divide-gray-50">
-              {shops.map((shop) => (
+              {displayShops.map((shop) => (
                 <div
                   key={shop.id}
                   ref={(el) => {
@@ -233,7 +321,7 @@ export default function DiscoveryPage() {
         >
           <MapErrorBoundary>
             <MapPanel
-              shops={shops}
+              shops={displayShops}
               center={mapCenter}
               selectedId={selected?.id}
               onMarkerClick={handleSelectShop}

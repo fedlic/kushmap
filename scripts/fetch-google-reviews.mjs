@@ -51,6 +51,7 @@ async function searchPlaceWithReviews(shop, languageCode) {
       'Content-Type': 'application/json',
       'X-Goog-Api-Key': MAPS_KEY,
       'X-Goog-FieldMask': 'places.id,places.reviews',
+      'Referer': 'https://kushmap.vercel.app/',
     },
     body: JSON.stringify(body),
   })

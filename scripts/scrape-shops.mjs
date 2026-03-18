@@ -118,6 +118,7 @@ async function searchPlaces(query, lat, lng) {
         'Content-Type': 'application/json',
         'X-Goog-Api-Key': MAPS_KEY,
         'X-Goog-FieldMask': 'places.id,places.displayName,places.formattedAddress,places.location,places.nationalPhoneNumber,places.websiteUri,nextPageToken',
+        'Referer': 'https://kushmap.vercel.app/',
       },
       body: JSON.stringify(body),
     })
