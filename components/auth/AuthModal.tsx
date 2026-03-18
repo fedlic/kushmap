@@ -37,7 +37,7 @@ export default function AuthModal({ open, onClose, onSuccess }: AuthModalProps) 
       const { error } = await supabase.auth.signUp({
         email,
         password,
-        options: { emailRedirectTo: `${location.origin}/auth/callback` },
+        options: { emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? location.origin}/auth/callback` },
       })
       if (error) {
         setError(error.message)
@@ -51,7 +51,7 @@ export default function AuthModal({ open, onClose, onSuccess }: AuthModalProps) 
   const handleGoogle = async () => {
     await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${location.origin}/auth/callback` },
+      options: { redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? location.origin}/auth/callback` },
     })
   }
 
