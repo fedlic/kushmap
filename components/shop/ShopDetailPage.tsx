@@ -194,7 +194,7 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
           {photos.length > 0 ? (
             <>
               <Image
-                src={photos[photoIdx]}
+                src={`/api/photo?url=${encodeURIComponent(photos[photoIdx])}`}
                 alt={shop.name}
                 fill
                 className="object-cover"

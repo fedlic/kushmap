@@ -48,13 +48,17 @@ function distanceLabel(km?: number) {
   return km < 1 ? `${Math.round(km * 1000)}m` : `${km.toFixed(1)}km`
 }
 
+function proxyUrl(url: string) {
+  return `/api/photo?url=${encodeURIComponent(url)}`
+}
+
 function ShopPhoto({ shop }: { shop: Shop }) {
   const primary = shop.shop_images?.find((i) => i.is_primary) ?? shop.shop_images?.[0]
   if (primary?.url) {
     return (
       <div className="shrink-0 w-20 h-20 rounded-lg overflow-hidden relative">
         <Image
-          src={primary.url}
+          src={proxyUrl(primary.url)}
           alt={shop.name}
           fill
           className="object-cover"
