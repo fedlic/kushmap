@@ -1,12 +1,16 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { Search, MapPin, List, Map, LocateFixed, X, SlidersHorizontal, Clock, BadgeCheck } from 'lucide-react'
-import { fetchNearbyShops, searchShops } from '@/lib/supabase/queries'
+import { Search, MapPin, List, Map, LocateFixed, X, SlidersHorizontal, Clock, BadgeCheck, User } from 'lucide-react'
+import { fetchNearbyShops, searchShops, fetchBookmarkedShopIds, toggleBookmark } from '@/lib/supabase/queries'
 import type { Shop } from '@/types'
+import type { User as SupabaseUser } from '@supabase/supabase-js'
+import { createClient } from '@/lib/supabase/client'
 import ShopListCard from './ShopListCard'
 import AreaFilter, { type Area } from './AreaFilter'
 import MapErrorBoundary from './MapErrorBoundary'
+import AuthModal from '@/components/auth/AuthModal'
+import Link from 'next/link'
 import dynamic from 'next/dynamic'
 
 const MapPanel = dynamic(() => import('./MapPanel'), {
@@ -60,9 +64,13 @@ export default function DiscoveryPage() {
   const [filterOpen, setFilterOpen] = useState(false)
   const [onlyOpen, setOnlyOpen] = useState(false)
   const [onlyVerified, setOnlyVerified] = useState(false)
+  const [user, setUser] = useState<SupabaseUser | null>(null)
+  const [showAuth, setShowAuth] = useState(false)
+  const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set())
   const debounceRef = useRef<ReturnType<typeof setTimeout>>()
   const listRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<Record<string, HTMLDivElement>>({})
+  const supabase = createClient()
 
   const load = useCallback(async (lat: number, lng: number) => {
     setLoading(true)
@@ -73,7 +81,24 @@ export default function DiscoveryPage() {
 
   useEffect(() => {
     load(BANGKOK.lat, BANGKOK.lng)
-  }, [load])
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user)
+      if (data.user) fetchBookmarkedShopIds(data.user.id).then(ids => setBookmarkedIds(new Set(ids)))
+    })
+  }, [load]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleBookmarkToggle = async (e: React.MouseEvent, shop: Shop) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (!user) { setShowAuth(true); return }
+    const isNowBookmarked = await toggleBookmark(shop.id, user.id)
+    setBookmarkedIds(prev => {
+      const next = new Set(prev)
+      if (isNowBookmarked) next.add(shop.id)
+      else next.delete(shop.id)
+      return next
+    })
+  }
 
   const handleSearch = useCallback(async (q: string) => {
     setSearchQuery(q)
@@ -140,6 +165,14 @@ export default function DiscoveryPage() {
   return (
     <div className="h-screen flex flex-col bg-gray-50">
       {/* ===== HEADER ===== */}
+      <AuthModal open={showAuth} onClose={() => setShowAuth(false)} onSuccess={() => {
+        supabase.auth.getUser().then(({ data }) => {
+          setUser(data.user)
+          if (data.user) fetchBookmarkedShopIds(data.user.id).then(ids => setBookmarkedIds(new Set(ids)))
+        })
+        setShowAuth(false)
+      }} />
+
       <header className="bg-white border-b border-gray-200 shadow-sm z-20 shrink-0">
         <div className="max-w-screen-2xl mx-auto px-4 py-3 space-y-2.5">
           {/* Logo + Search row */}
@@ -192,6 +225,24 @@ export default function DiscoveryPage() {
                 </span>
               )}
             </button>
+
+            {user ? (
+              <Link
+                href="/profile"
+                className="shrink-0 w-9 h-9 rounded-full bg-green-600 flex items-center justify-center text-white text-sm font-bold hover:bg-green-700 transition-colors"
+                title={user.email ?? 'プロフィール'}
+              >
+                {user.email?.charAt(0).toUpperCase() ?? <User className="w-4 h-4" />}
+              </Link>
+            ) : (
+              <button
+                onClick={() => setShowAuth(true)}
+                className="shrink-0 flex items-center gap-1.5 text-xs text-gray-600 border border-gray-300 rounded-lg px-2.5 h-9 hover:bg-gray-50 transition-colors"
+              >
+                <User className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">ログイン</span>
+              </button>
+            )}
           </div>
 
           {/* Filter panel */}
@@ -306,6 +357,8 @@ export default function DiscoveryPage() {
                     distance={calcKm(refCenter.lat, refCenter.lng, shop.lat, shop.lng)}
                     isSelected={selected?.id === shop.id}
                     onClick={() => handleSelectShop(shop)}
+                    isBookmarked={bookmarkedIds.has(shop.id)}
+                    onBookmarkToggle={(e) => handleBookmarkToggle(e, shop)}
                   />
                 </div>
               ))}

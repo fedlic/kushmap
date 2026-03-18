@@ -1,6 +1,51 @@
 import { createClient } from './client'
 import type { Shop, Product, Review, GoogleReview } from '@/types'
 
+export async function fetchBookmarkedShopIds(userId: string): Promise<string[]> {
+  const supabase = createClient()
+  const { data } = await supabase
+    .from('bookmarks')
+    .select('shop_id')
+    .eq('user_id', userId)
+  return (data ?? []).map(b => b.shop_id)
+}
+
+export async function toggleBookmark(shopId: string, userId: string): Promise<boolean> {
+  const supabase = createClient()
+  const { data: existing } = await supabase
+    .from('bookmarks')
+    .select('shop_id')
+    .eq('shop_id', shopId)
+    .eq('user_id', userId)
+    .maybeSingle()
+  if (existing) {
+    await supabase.from('bookmarks').delete().eq('shop_id', shopId).eq('user_id', userId)
+    return false
+  }
+  await supabase.from('bookmarks').insert({ shop_id: shopId, user_id: userId })
+  return true
+}
+
+export async function fetchMyBookmarkedShops(userId: string): Promise<Shop[]> {
+  const supabase = createClient()
+  const { data } = await supabase
+    .from('bookmarks')
+    .select('shops(*, shop_images(url, is_primary))')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
+  return ((data ?? []).map((b: { shops: unknown }) => b.shops).filter(Boolean)) as Shop[]
+}
+
+export async function fetchMyReviews(userId: string): Promise<(Review & { shops: { id: string; name: string; city: string } | null })[]> {
+  const supabase = createClient()
+  const { data } = await supabase
+    .from('reviews')
+    .select('*, shops(id, name, city)')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
+  return (data ?? []) as (Review & { shops: { id: string; name: string; city: string } | null })[]
+}
+
 const SHOP_SELECT = '*, shop_images(url, is_primary)'
 
 export async function fetchNearbyShops(

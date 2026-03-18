@@ -4,13 +4,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Shop } from '@/types'
 import { Badge } from '@/components/ui/badge'
-import { MapPin, Star, Leaf } from 'lucide-react'
+import { MapPin, Star, Leaf, Heart } from 'lucide-react'
 
 interface ShopListCardProps {
   shop: Shop
   distance?: number
   isSelected?: boolean
   onClick?: () => void
+  isBookmarked?: boolean
+  onBookmarkToggle?: (e: React.MouseEvent) => void
 }
 
 function PriceLabel({ n }: { n?: 1 | 2 | 3 }) {
@@ -74,19 +76,19 @@ function ShopPhoto({ shop }: { shop: Shop }) {
   )
 }
 
-export default function ShopListCard({ shop, distance, isSelected, onClick }: ShopListCardProps) {
+export default function ShopListCard({ shop, distance, isSelected, onClick, isBookmarked, onBookmarkToggle }: ShopListCardProps) {
   return (
     <Link
       href={`/shops/${shop.id}`}
       onClick={onClick}
-      className={`flex gap-3 p-4 cursor-pointer transition-colors border-b border-gray-100 hover:bg-orange-50 ${
+      className={`flex gap-3 p-4 cursor-pointer transition-colors border-b border-gray-100 hover:bg-orange-50 relative ${
         isSelected ? 'bg-orange-50 border-l-4 border-l-orange-400' : ''
       }`}
     >
       <ShopPhoto shop={shop} />
 
       <div className="flex-1 min-w-0 space-y-1">
-        <div className="flex items-start gap-1.5 flex-wrap">
+        <div className="flex items-start gap-1.5 flex-wrap pr-8">
           <h3 className="font-bold text-gray-900 text-sm leading-tight">{shop.name}</h3>
           {shop.is_verified && (
             <Badge className="bg-blue-50 text-blue-700 border-blue-200 text-[10px] px-1.5 py-0 h-4 shrink-0">
@@ -129,6 +131,18 @@ export default function ShopListCard({ shop, distance, isSelected, onClick }: Sh
           </p>
         )}
       </div>
+
+      {onBookmarkToggle && (
+        <button
+          onClick={onBookmarkToggle}
+          className="absolute top-3 right-3 p-1.5 rounded-full hover:bg-gray-100 transition-colors"
+          aria-label={isBookmarked ? 'ブックマーク解除' : 'ブックマーク'}
+        >
+          <Heart
+            className={`w-4 h-4 transition-colors ${isBookmarked ? 'fill-red-500 text-red-500' : 'text-gray-300'}`}
+          />
+        </button>
+      )}
     </Link>
   )
 }

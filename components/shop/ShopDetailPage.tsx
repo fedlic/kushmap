@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowLeft, Phone, Globe, Instagram, MapPin, Star, Clock } from 'lucide-react'
+import { ArrowLeft, Phone, Globe, Instagram, MapPin, Star, Clock, Heart } from 'lucide-react'
 import type { Shop, Product, Review, GoogleReview, ReviewLang } from '@/types'
-import { fetchShopProducts, fetchShopReviews, submitReview, fetchGoogleReviews } from '@/lib/supabase/queries'
+import { fetchShopProducts, fetchShopReviews, submitReview, fetchGoogleReviews, toggleBookmark } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/client'
 import { Badge } from '@/components/ui/badge'
 import AuthModal from '@/components/auth/AuthModal'
@@ -131,6 +131,7 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
   const [googleReviews, setGoogleReviews] = useState<GoogleReview[]>([])
   const [reviewLang, setReviewLang] = useState<ReviewLang>('en')
   const [user, setUser] = useState<User | null>(null)
+  const [isBookmarked, setIsBookmarked] = useState(false)
   const [showAuth, setShowAuth] = useState(false)
   const [reviewRating, setReviewRating] = useState(0)
   const [reviewBody, setReviewBody] = useState('')
@@ -146,7 +147,13 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
     fetchShopProducts(shop.id).then(setProducts)
     fetchShopReviews(shop.id).then(setReviews)
     fetchGoogleReviews(shop.id).then(setGoogleReviews)
-    supabase.auth.getUser().then(({ data }) => setUser(data.user))
+    supabase.auth.getUser().then(async ({ data }) => {
+      setUser(data.user)
+      if (data.user) {
+        const { data: bm } = await supabase.from('bookmarks').select('shop_id').eq('shop_id', shop.id).eq('user_id', data.user.id).maybeSingle()
+        setIsBookmarked(!!bm)
+      }
+    })
   }, [shop.id]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleReviewSubmit = async (e: React.FormEvent) => {
@@ -275,6 +282,19 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
 
           {/* Links */}
           <div className="flex flex-wrap gap-2 pt-1">
+            <button
+              onClick={async () => {
+                if (!user) { setShowAuth(true); return }
+                const next = await toggleBookmark(shop.id, user.id)
+                setIsBookmarked(next)
+              }}
+              className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                isBookmarked ? 'bg-red-50 text-red-500 border-red-200' : 'border-gray-300 text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <Heart className={`w-3.5 h-3.5 ${isBookmarked ? 'fill-red-500' : ''}`} />
+              {isBookmarked ? 'ブックマーク済み' : 'ブックマーク'}
+            </button>
             <a
               href={mapsUrl}
               target="_blank"
