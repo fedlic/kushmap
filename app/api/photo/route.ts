@@ -6,7 +6,10 @@ export async function GET(req: NextRequest) {
 
   try {
     const res = await fetch(url, {
-      headers: { 'User-Agent': 'Mozilla/5.0' },
+      headers: {
+        'User-Agent': 'Mozilla/5.0',
+        'Referer': 'https://kushmap.vercel.app/',
+      },
       redirect: 'follow',
     })
     if (!res.ok) return NextResponse.json({ error: 'upstream error' }, { status: res.status })
