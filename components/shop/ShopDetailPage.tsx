@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowLeft, Phone, Globe, Instagram, MapPin, Star, Clock } from 'lucide-react'
-import type { Shop, Product, Review } from '@/types'
-import { fetchShopProducts, fetchShopReviews, submitReview } from '@/lib/supabase/queries'
+import type { Shop, Product, Review, GoogleReview, ReviewLang } from '@/types'
+import { fetchShopProducts, fetchShopReviews, submitReview, fetchGoogleReviews } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/client'
 import { Badge } from '@/components/ui/badge'
 import AuthModal from '@/components/auth/AuthModal'
@@ -128,6 +128,8 @@ function StrainBadge({ type }: { type?: string }) {
 export default function ShopDetailPage({ shop }: { shop: Shop }) {
   const [products, setProducts] = useState<Product[]>([])
   const [reviews, setReviews] = useState<Review[]>([])
+  const [googleReviews, setGoogleReviews] = useState<GoogleReview[]>([])
+  const [reviewLang, setReviewLang] = useState<ReviewLang>('en')
   const [user, setUser] = useState<User | null>(null)
   const [showAuth, setShowAuth] = useState(false)
   const [reviewRating, setReviewRating] = useState(0)
@@ -143,6 +145,7 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
   useEffect(() => {
     fetchShopProducts(shop.id).then(setProducts)
     fetchShopReviews(shop.id).then(setReviews)
+    fetchGoogleReviews(shop.id).then(setGoogleReviews)
     supabase.auth.getUser().then(({ data }) => setUser(data.user))
   }, [shop.id]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -353,6 +356,52 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
                   )}
                 </div>
               ))}
+            </div>
+          </div>
+        )}
+
+        {/* Google Reviews section */}
+        {googleReviews.length > 0 && (
+          <div className="bg-white rounded-2xl p-5 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-bold text-gray-900 flex items-center gap-2">
+                <span className="text-base">G</span>
+                Google レビュー
+                <span className="text-xs text-gray-400 font-normal">({googleReviews.length}件)</span>
+              </h2>
+              <div className="flex rounded-lg border border-gray-200 overflow-hidden text-xs">
+                {(['en', 'ja', 'th'] as ReviewLang[]).map(lang => (
+                  <button
+                    key={lang}
+                    onClick={() => setReviewLang(lang)}
+                    className={`px-2.5 py-1 transition-colors ${reviewLang === lang ? 'bg-green-600 text-white' : 'text-gray-500 hover:bg-gray-50'}`}
+                  >
+                    {lang === 'en' ? 'EN' : lang === 'ja' ? 'JA' : 'TH'}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="space-y-4">
+              {googleReviews.map((r) => {
+                const text = reviewLang === 'ja' ? (r.text_ja ?? r.text_en) : reviewLang === 'th' ? (r.text_th ?? r.text_en) : r.text_en
+                return (
+                  <div key={r.id} className="space-y-1.5">
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-600">
+                        {r.author_name?.charAt(0)?.toUpperCase() ?? 'G'}
+                      </div>
+                      <span className="text-xs font-medium text-gray-700">{r.author_name}</span>
+                      {r.rating && <StarDisplay rating={r.rating} />}
+                      {r.published_at && (
+                        <span className="text-xs text-gray-400 ml-auto">
+                          {new Date(r.published_at).toLocaleDateString('ja-JP')}
+                        </span>
+                      )}
+                    </div>
+                    {text && <p className="text-sm text-gray-600 pl-9 leading-relaxed">{text}</p>}
+                  </div>
+                )
+              })}
             </div>
           </div>
         )}

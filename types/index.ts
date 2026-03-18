@@ -60,4 +60,20 @@ export interface ShopOwner {
   plan_expires_at?: string
 }
 
+export interface GoogleReview {
+  id: string
+  shop_id: string
+  google_place_id: string
+  author_name: string | null
+  rating: number | null
+  text_en: string | null
+  text_ja: string | null
+  text_th: string | null
+  original_language: string | null
+  published_at: string | null
+  created_at: string
+}
+
+export type ReviewLang = 'en' | 'ja' | 'th'
+
 export type FilterType = 'all' | 'sativa' | 'indica' | 'hybrid' | 'open' | 'top_rated'

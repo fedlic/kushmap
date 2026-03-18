@@ -1,5 +1,5 @@
 import { createClient } from './client'
-import type { Shop, Product, Review } from '@/types'
+import type { Shop, Product, Review, GoogleReview } from '@/types'
 
 const SHOP_SELECT = '*, shop_images(url, is_primary)'
 
@@ -87,6 +87,20 @@ export async function fetchShopReviews(shopId: string): Promise<Review[]> {
     return []
   }
   return (data ?? []) as Review[]
+}
+
+export async function fetchGoogleReviews(shopId: string): Promise<GoogleReview[]> {
+  const supabase = createClient()
+  const { data, error } = await supabase
+    .from('google_reviews')
+    .select('*')
+    .eq('shop_id', shopId)
+    .order('published_at', { ascending: false })
+  if (error) {
+    console.error('fetchGoogleReviews error:', error.message)
+    return []
+  }
+  return (data ?? []) as GoogleReview[]
 }
 
 export async function submitReview(
