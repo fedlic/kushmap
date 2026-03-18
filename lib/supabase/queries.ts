@@ -62,6 +62,7 @@ export async function fetchNearbyShops(
     .lte('lat', lat + delta)
     .gte('lng', lng - delta)
     .lte('lng', lng + delta)
+    .limit(300)
 
   if (error) {
     console.error('fetchNearbyShops error:', error.message)

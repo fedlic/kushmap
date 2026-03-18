@@ -378,10 +378,9 @@ export default function DiscoveryPage() {
               center={mapCenter}
               selectedId={selected?.id}
               onMarkerClick={handleSelectShop}
-              onCenterChange={(lat, lng) => {
+              onSearchArea={(lat, lng) => {
                 setMapCenter({ lat, lng })
-                clearTimeout(debounceRef.current)
-                debounceRef.current = setTimeout(() => load(lat, lng), 800)
+                load(lat, lng)
               }}
             />
           </MapErrorBoundary>

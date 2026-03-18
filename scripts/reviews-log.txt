@@ -2435,3 +2435,795 @@ Total shops: 2938, Already have reviews: 0, To process: 2938
   - [2297/2938] "Master Ganja Pattaya": no reviews
   ✓ [2298/2938] "Villaverde Jomtien Beach": 5 review(s) [ChIJ_SaBWACXAjERBuytC1s0CTs]
   ✓ [2299/2938] "Tropical Thunder | Weed Cannabis Dispensary 大麻": 5 review(s) [ChIJX53k3H6VAjER0A7gWA_eUqo]
+  ✓ [2300/2938] "Nirvana Cannabis Dispensary - Jomtien 5": 5 review(s) [ChIJAdN977-XAjERBwBU7_tXMHI]
+
+--- Progress: 2300/2938 (2233 with reviews, 67 none/failed) ---
+
+  ✓ [2301/2938] "Space GenetiX Jomtien Cannabis/Weed Shop & Organic Farm": 5 review(s) [ChIJnTHXZWuXAjERMp8O6RgEq0E]
+  ✓ [2302/2938] "The Gas House Jomtien": 5 review(s) [ChIJg1M3veiXAjERtftganhMKb4]
+  ✓ [2303/2938] "Thai Cannabis Club - Jomtien": 5 review(s) [ChIJk4bpCcyXAjERf2RnTKxNyTE]
+  ✓ [2304/2938] "Cannabis Club": 5 review(s) [ChIJsQPiLqmXAjERwTVtdmxsZBY]
+  ✓ [2305/2938] "Weed Shop One Jomtien Pattaya": 5 review(s) [ChIJTe4vWpqWAjERBvZYVf7BQJI]
+  ✓ [2306/2938] "LA CHOZA Jomtien Soi9": 5 review(s) [ChIJbZHnTWmXAjERgzaTvfu1Pbo]
+  ✓ [2307/2938] "Sanzao Farmz Cannabis": 5 review(s) [ChIJvbkJBROXAjERd9OdA3rQ19E]
+  ✓ [2308/2938] "HollyWeed Pattaya": 5 review(s) [ChIJPy0sGnSXAjERYL2xAMsE4WE]
+  ✓ [2309/2938] "The Funny Box 2 Cannabis cafe’ Jomtien beach": 5 review(s) [ChIJJxHyPzuXAjERI4YV667439I]
+  ✓ [2310/2938] "Cannabalize Baba - Cannabis Shop Pattaya": 5 review(s) [ChIJ5dDu8kGXAjERB41wmBZqwJo]
+  ✓ [2311/2938] "Blow Jomtien Beach | Coffeeshop | Cannabis | Weed": 5 review(s) [ChIJ6S0KeUqXAjERcDGvLO_ywRs]
+  ✓ [2312/2938] "BUDS HOUSE CAFÉ PATTAYA": 5 review(s) [ChIJ3Y-ioBmXAjERQn_oPLoH0pw]
+  ✓ [2313/2938] "Smok animal - Pattaya Cannabis Delivery 24 hours": 3 review(s) [ChIJa5JXR7uVAjER-mdAXvLQjhE]
+  ✓ [2314/2938] "Greenhead Pattaya Jomtien": 5 review(s) [ChIJa8Jmzx6XAjERJFPM-XXqE7k]
+  ✓ [2315/2938] "Ganjahub Pattaya": 5 review(s) [ChIJ-0y6wRyXAjER3Tazg9v3w4Q]
+  ✓ [2316/2938] "HighFive Cannabis & Social Bar": 5 review(s) [ChIJWxhxORmXAjER0_mp40k34ro]
+  ✓ [2317/2938] "Neighborhood Pharmacy": 5 review(s) [ChIJezsCNQCXAjERDl5AC41fDwM]
+  ✓ [2318/2938] "Maxyield Farm Dispensary": 5 review(s) [ChIJMdEIqcqVAjER5e0atpSLjPQ]
+  ✓ [2319/2938] "Holy High - Deliver High Quality Canabis dispensary": 2 review(s) [ChIJS7Q9JT6XAjERJO3SxOW-U1I]
+  ✓ [2320/2938] "Purple Light & Weed Shop & Jomtien Weed": 5 review(s) [ChIJ8_8dkqSVAjERzrgQk_5oGQA]
+  ✓ [2321/2938] "AAA cannabis shop & Tattoo Pattaya": 5 review(s) [ChIJrRbOxK-XAjERdPx8M9XCSh0]
+  ✓ [2322/2938] "GO4WEED": 1 review(s) [ChIJWwYW9JOXAjERLIxGDXvdabA]
+  - [2323/2938] "Welcome Lounge Dispensary": no reviews
+  ✓ [2324/2938] "High Space Dispensary Pattaya 3": 2 review(s) [ChIJey64W2iXAjERAuUoWk3BD8I]
+  ✓ [2325/2938] "DUCKSIDE Cannabis store": 5 review(s) [ChIJK-s6cKWXAjERihYaLLLeIKs]
+  ✓ [2326/2938] "The Liber Farm - Cannabis": 5 review(s) [ChIJ9YrLw76XAjERxJZqmGgr_Gs]
+  ✓ [2327/2938] "BAR X Cannabis Cafe": 5 review(s) [ChIJj44ZFoqXAjERYZUTf5mWo0s]
+  ✓ [2328/2938] "BAKED Pattaya": 1 review(s) [ChIJyWWDPv2VAjERbYumMgFg4qw]
+  ✓ [2329/2938] "Spacebar Cannabis Royalhill Thappraya Road": 5 review(s) [ChIJO3jhlaOXAjERDZr1-TRDAg8]
+  ✓ [2330/2938] "WeedLab": 5 review(s) [ChIJvfq0R3OXAjERv-DGFcZ2Pd8]
+  ✓ [2331/2938] "Kingdom Kannabis": 5 review(s) [ChIJQyyJepSXAjERLdtviubcbTI]
+  ✓ [2332/2938] "Mary Jane World Pattaya": 5 review(s) [ChIJ3eJz1CeXAjERAz7r4RK1AzA]
+  ✓ [2333/2938] "Weed Father Cannabis Lounge Bar / Medical Marijuana Dispensary": 5 review(s) [ChIJLQQCPw2XAjERHyIQkTjULdo]
+  ✓ [2334/2938] "BMC shop Pattaya จอมเทียน": 5 review(s) [ChIJKzarXCuVAjERQiDhw4Ccw3A]
+  ✓ [2335/2938] "Testog&malee pattaya": 5 review(s) [ChIJW9l2YQCXAjERy4eq81M52eQ]
+  ✓ [2336/2938] "Irollblow": 5 review(s) [ChIJI51NFgCXAjER0vL2vqXbd70]
+  ✓ [2337/2938] "Kalashnikov weeds Gallery Jomtien": 2 review(s) [ChIJbz9gJiiXAjEROL1vj3VLFA0]
+  ✓ [2338/2938] "E.t.CaliWeed (Cannabis)": 4 review(s) [ChIJHw3YNoSVAjERtRG58Mlly10]
+  ✓ [2339/2938] "Greasy eyes cannabis": 5 review(s) [ChIJlyC8FS2XAjERdkqppUyLdqk]
+  ✓ [2340/2938] "Green Korner": 5 review(s) [ChIJMzylOQCXAjERhxrf4w4MNL4]
+  ✓ [2341/2938] "Stellar Herbs (ร้าน สเตียเลอร์ เฮิร์บ)": 5 review(s) [ChIJNXwTfCSXAjERlz6yL3qBQOI]
+  ✓ [2342/2938] "GUN CANNABEE SHOP #1| กัญชา | 大麻": 5 review(s) [ChIJbWj-lReXAjEROfCM7jD117U]
+  ✓ [2343/2938] "Dope dispensary cafe": 5 review(s) [ChIJr7MjWB2XAjERDX39rqtIphI]
+  ✓ [2344/2938] "MeetWeed": 5 review(s) [ChIJg5CYpeeVAjERo09pTYYbVqw]
+  ✓ [2345/2938] "SHISHKI PLANET": 5 review(s) [ChIJT28HgtGXAjERev__l2McNa8]
+  ✓ [2346/2938] "HLC Heavenland Cannabis Jomtian Branch": 5 review(s) [ChIJhTdFiE6TAjERmgatJu2_LAM]
+  ✓ [2347/2938] "ร้านกัญชาราคาถูก สาขา2(King of green herbs) Cannabis 大麻 กัญชาดี ไม่จำเป็นต้องแพง สาขา2": 4 review(s) [ChIJJxIdWhKVAjERyQA5t7cWdR4]
+  ✓ [2348/2938] "FunFact Cannabis Najomtien -Weed/Ganja Dispensary": 5 review(s) [ChIJi_pOK4WVAjERLv303W0V-aQ]
+  ✓ [2349/2938] "ROMANTIC GARDEN SMOKE SHOP": 1 review(s) [ChIJbUILOACXAjER8CD2wL_b_tA]
+  - [2350/2938] "Best Deal Cannabis Soi Welcome Jomtien": no reviews
+  ✓ [2351/2938] "Pineapple Express Cannabis Jomtein Beach": 5 review(s) [ChIJO5IjOQCXAjERahDAgzzrDxY]
+  ✓ [2352/2938] "MR BUDZ GARDENS": 2 review(s) [ChIJD07oXACXAjERGHlHPcMy43c]
+  ✓ [2353/2938] "Pirate Island PATTAYA": 5 review(s) [ChIJK5OYWMKXAjERIT-d1dqS12M]
+  ✓ [2354/2938] "Cannabis Connection Asia": 1 review(s) [ChIJTQbfxUqXAjERLi-DahMa2ZA]
+  ✓ [2355/2938] "Hydra 420": 2 review(s) [ChIJT2xKllGXAjERuZYd0xo_aNY]
+  ✓ [2356/2938] "Smok animal - Jomtian beach": 3 review(s) [ChIJ8fBISdiXAjERdPXvYUoVshY]
+  ✓ [2357/2938] "Stardust café": 5 review(s) [ChIJ1dshHTGVAjERJQZoOHXzCnc]
+  ✓ [2358/2938] "Nicohub Jomtien - Snus & Nicotine Pouches": 5 review(s) [ChIJ_SaBWACXAjERBuytC1s0CTs]
+  ✓ [2359/2938] "Hemp Labs": 4 review(s) [ChIJPcNlxbaXAjER2viEW34KHR4]
+  ✓ [2360/2938] "Medlab Dispensary @Na Jomtien Weed/cannabis/Ganja/大麻店/ Магазин каннабиса": 5 review(s) [ChIJ374XnWaVAjER5cj5nXzX0Wg]
+  ✓ [2361/2938] "Finding Rainbow Pattaya Dispensary": 1 review(s) [ChIJXekfc2qXAjERLdRcv_SJ--Q]
+  ✓ [2362/2938] "MeetWeed (พบกัญ) Central Cannabis /Weed": 5 review(s) [ChIJ_Qo9ZvOXAjERmcFyiDu2xIU]
+  ✓ [2363/2938] "Green Aladdin": 5 review(s) [ChIJSTf0QACXAjERDFzdeeTdbps]
+  ✓ [2364/2938] "Bulldog cannabis & bar": 5 review(s) [ChIJQ6lv_3eXAjERDnAXN_obicI]
+  ✓ [2365/2938] "DANQ PATTAYA Cannabis Dispensary": 5 review(s) [ChIJ58Qsleu9AjERs1DJTbXe9Mg]
+  ✓ [2366/2938] "one puff weed": 5 review(s) [ChIJsSKh82qXAjERXJ62i_ceOPg]
+  ✓ [2367/2938] "Green Stop": 5 review(s) [ChIJ00A55k6VAjERlidqD8ygIAM]
+  ✓ [2368/2938] "ร้านกัญชาราคาถูกในพัทยา ถูกและดีมีอยู่จริง": 5 review(s) [ChIJ54mdrPmVAjER0FJ7Z2Ctv_U]
+  ✓ [2369/2938] "Cannabis Lounge Crypto Station Blow Thailand": 5 review(s) [ChIJh5uuDSuVAjERXZpnWwIWO74]
+  ✓ [2370/2938] "CANNABEACH SHOP": 5 review(s) [ChIJ4R-nRyuVAjER1F90iqzpkCY]
+  ✓ [2371/2938] "SANESTOCK": 1 review(s) [ChIJwfJtiE6VAjERsJxqdXUKxk0]
+  ✓ [2372/2938] "Café AZA'S": 5 review(s) [ChIJNz810p2VAjERiBXnppPW1IY]
+  ✓ [2373/2938] "กัญชาใกล้ฉัน นัดกัญ@พัทยา": 2 review(s) [ChIJKfrAtIS_AjERjSQrVcUZ5Zc]
+  ✓ [2374/2938] "Community Cannabis ชุมชนกัญชา": 5 review(s) [ChIJXdUpH8CVAjERq3LkXFpY8_0]
+  ✓ [2375/2938] "Kowloon Dispensary Cannabis Weed 九龍大藥房 (Call for Delivery)": 5 review(s) [ChIJwxReo_qVAjERNwpu291nlnY]
+  ✓ [2376/2938] "Lollipop Cannabis Central": 5 review(s) [ChIJK1nYcwCXAjERSJeRs60BjJE]
+  ✓ [2377/2938] "Dopeye COFFE SHOP": 5 review(s) [ChIJr7MjWB2XAjERDX39rqtIphI]
+  ✓ [2378/2938] "High Space Dispensary Pattaya 2": 5 review(s) [ChIJGYmu2XaXAjERoau6vV_WOkQ]
+  ✓ [2379/2938] "Central Color Lab and Print Service": 5 review(s) [ChIJ_Qo9ZvOXAjERmcFyiDu2xIU]
+  ✓ [2380/2938] "psyhigh cannabis": 3 review(s) [ChIJk5cJgN2VAjERDzmAfqNdUwA]
+  ✓ [2381/2938] "High weed society terminal21": 5 review(s) [ChIJZUq3HfG_AjERINKG-44RTMs]
+  ✓ [2382/2938] "Peace Cannabis": 5 review(s) [ChIJiwnMUACVAjERfmGTHzNZabc]
+  ✓ [2383/2938] "New Cannabis Shop Pattaya": 5 review(s) [ChIJ6U7X2iKVAjERpM0SHH9FtFc]
+  - [2384/2938] "RED EYE Cannabis shop Pattaya": no reviews
+  ✓ [2385/2938] "SNOW PATTAYA DISPENSARY": 3 review(s) [ChIJbRceKxS9AjERAsBb0yJiFwY]
+  ✓ [2386/2938] "Highsiam cannabis dispensary": 5 review(s) [ChIJIeDJBCaVAjERoxtFyx95WTU]
+  ✓ [2387/2938] "Sweed Leaf Pattaya": 5 review(s) [ChIJ0Vzjv_e9AjERdEQ5nPvgOJ4]
+  ✓ [2388/2938] "Supweez Cannabis Dispensary": 5 review(s) [ChIJyWgcagC9AjERCY23euWp79s]
+  ✓ [2389/2938] "Landmark Cannabis Wholesale": 5 review(s) [ChIJC2rx6jW_AjERPCbIATAhFwo]
+  ✓ [2390/2938] "SPOT cannabis shop": 5 review(s) [ChIJ8zDx3Hq_AjERJdCorM7fdak]
+  ✓ [2391/2938] "Yoclub Shop": 5 review(s) [ChIJAyERDmm_AjER2o2mNnbSQhk]
+  ✓ [2392/2938] "Green Cow Cannabis": 5 review(s) [ChIJi0QNphW_AjERvNwE7PrQW0U]
+  ✓ [2393/2938] "Budseeker Boutique Cannabis": 5 review(s) [ChIJIzdDR2a_AjERq0KBksVpLgs]
+  ✓ [2394/2938] "Velvet Weed": 5 review(s) [ChIJi065JgCXAjERkB6M50a0twc]
+  ✓ [2395/2938] "One puff weed 2": 5 review(s) [ChIJF9yVSCOXAjERDCjVBqmizL4]
+  - [2396/2938] "Smyrna Weed Shop": no reviews
+  ✓ [2397/2938] "Bongsai Shop: Medical Cannabis Dispensary (Weed)": 5 review(s) [ChIJsd6TLFSVAjERVyTewdnv1QM]
+  ✓ [2398/2938] "MR J WEED": 5 review(s) [ChIJ4xpxscmVAjERWYvZIzhTGnE]
+  ✓ [2399/2938] "Larnkan": 2 review(s) [ChIJvfnhXgC9AjER-IKsppI77hU]
+  - [2400/2938] "Pack Pattaya": no reviews
+  ✓ [2401/2938] "ร้านกัญชาใกล้ฉัน - หนูยิ้ม สาขานาเกลือ": 5 review(s) [ChIJ1bVBRjC_AjEREKN75zFIMx4]
+  ✓ [2402/2938] "TAIMATON 大麻堂 ร้านกัญชาต่ายมาตัน": 5 review(s) [ChIJYXnuT8i9AjERWCOfR4PKiIs]
+  ✓ [2403/2938] "ร้านกัญชา": 5 review(s) [ChIJ5eLgJp-VAjERyFOGRcqJt-4]
+  ✓ [2404/2938] "ร้านกัญชาใกล้ฉัน BudzzBunny (สาขา2)": 5 review(s) [ChIJqUKDCgCVAjERKIvwZwb3Mog]
+  ✓ [2405/2938] "ร้านกัญชาใกล้ฉัน BudzzBunny (สาขา3)": 4 review(s) [ChIJFVEZ3dy_AjERW7bUJztYcIY]
+  - [2406/2938] "Medee23 Fishing Pattaya มีดี23 ฟิชชิ่ง อุปกรณ์ตกหมึกตกปลา มือหนึ่งและมือสอง จากญี่ปุ่น พัทยาเหนือ": not found
+  ✓ [2407/2938] "ร้านกัญชาใกล้ฉัน": 5 review(s) [ChIJazAOZqm_AjERIid96NJogaU]
+  ✓ [2408/2938] "OG PHENOTYPE": 5 review(s) [ChIJV6y2Qr2VAjERl1flkrvJhjM]
+  ✓ [2409/2938] "ร้านกัญชาราคาถูก(King of green herbs) Cannabis 大麻 กัญชาดี ไม่จำเป็นต้องแพง": 5 review(s) [ChIJNXDxCiOVAjERJWeESDIhM5g]
+  ✓ [2410/2938] "Higher Standards": 5 review(s) [ChIJff_BWQC9AjERH2z-60vkVDU]
+  - [2411/2938] "420Farm Thailand": no reviews
+  ✓ [2412/2938] "LOL 420 SHOP": 3 review(s) [ChIJzzO0YwCVAjERIVqoVHSOq58]
+  ✓ [2413/2938] "ร้านกัญชา420Larn (Cannabis)": 5 review(s) [ChIJh88yYwCZAjERXP5XYpTwR4c]
+  ✓ [2414/2938] "OG TWENTY CANNABIS PATTAYA": 5 review(s) [ChIJHTqHE3KVAjERW_mcy0oN5GA]
+  ✓ [2415/2938] "HIPPIE STORE 420SHOP": 5 review(s) [ChIJycweCgC5AjERVBmVYCFM1K4]
+  ✓ [2416/2938] "Hydro cannabis": 5 review(s) [ChIJ21sEohWVAjERPV-QKKr8VqY]
+  ✓ [2417/2938] "Munchies - Cannabis in Koh Samui": 5 review(s) [ChIJr94-fQDxVDARKNOXfnksXl8]
+  ✓ [2418/2938] "KUSHLAND": 5 review(s) [ChIJx5tZAcfxVDARGZz_Qyvh6b8]
+  ✓ [2419/2938] "Weeden": 5 review(s) [ChIJXdue7hvxVDARkdJILbyuyS0]
+  ✓ [2420/2938] "To The Moon": 5 review(s) [ChIJnyi--AzxVDARkHZ758UlN5I]
+  ✓ [2421/2938] "Cannabis Kingdom": 5 review(s) [ChIJp1WMtW7vVDARnAEOMnNgdBg]
+  ✓ [2422/2938] "CannaMed OG - Medical Cannabis Dispensary": 5 review(s) [ChIJBUHvBf3zVDAR5j2K-b96v2s]
+  ✓ [2423/2938] "Weeden": 5 review(s) [ChIJA6gg2_nzVDAR1_fbyq0nkR0]
+  ✓ [2424/2938] "How High - Fisherman's Village": 5 review(s) [ChIJOeWog4PxVDARNUDvk2weysg]
+  ✓ [2425/2938] "Weeden": 5 review(s) [ChIJT-D9XQbxVDARwEqIDxixZOU]
+  ✓ [2426/2938] "HighLife Cannabis Dispensary": 5 review(s) [ChIJx5dMPpHxVDARAS4bBb6sZbU]
+  ✓ [2427/2938] "The Khoi Samui Cannabis": 5 review(s) [ChIJMWWzXe3zVDARzjDw6rnwszw]
+  ✓ [2428/2938] "Orodchakan Samui cannabis": 5 review(s) [ChIJtX-vWRr3VDARjfCLqtC6PgI]
+  ✓ [2429/2938] "Cannabis Hub Samui Fisherman's Village": 5 review(s) [ChIJd7Jr8lbxVDAR-eOXGNurCQo]
+  ✓ [2430/2938] "Green Karma Medical Cannabis Dispensary , Glass & Bong shop,": 5 review(s) [ChIJF5sDiATzVDARqr1PbXMee2g]
+  ✓ [2431/2938] "Weweed 420": 5 review(s) [ChIJIzCXORHxVDARsZaVRohKsRw]
+  ✓ [2432/2938] "Cannabis Delivery Koh Samui": 5 review(s) [ChIJnfFpGhDxVDARcJrY_oEhro8]
+  ✓ [2433/2938] "High Berry Shop&Grower": 5 review(s) [ChIJgc_EZ8XzVDARpvbuv2OfIE8]
+  ✓ [2434/2938] "Fraction Theory": 5 review(s) [ChIJacZ-c5fxVDARqRU7WARaEms]
+  ✓ [2435/2938] "Grower islander shop": 5 review(s) [ChIJsxi5e1_xVDAR0lPwTYyjmV0]
+  ✓ [2436/2938] "Tropical 420": 5 review(s) [ChIJT30THdHxVDARvKISAw7hcPk]
+  ✓ [2437/2938] "Samui Green Village 420": 5 review(s) [ChIJd7Jr8lbxVDAR-eOXGNurCQo]
+  ✓ [2438/2938] "420 Cannabis Space": 5 review(s) [ChIJof_pviPxVDARBCYj9L9VX2A]
+  ✓ [2439/2938] "Godfather": 5 review(s) [ChIJKYE71U7wVDARTIF9kwFDGRY]
+  ✓ [2440/2938] "420 Cafe": 5 review(s) [ChIJmWNARazxVDARM5NW0IWvm6Y]
+  ✓ [2441/2938] "Sweed Samui Cafe&Shop": 5 review(s) [ChIJwwr49HTxVDARJkhZpZO3QGo]
+  ✓ [2442/2938] "Buddha's Kush Street Samui": 5 review(s) [ChIJMaO8tErxVDARRPFL0_Cqe2s]
+  ✓ [2443/2938] "Copper Pipe @ Bondi Chaweng": 5 review(s) [ChIJfWEYt87xVDARVw_vK_Ac0K4]
+  ✓ [2444/2938] "Hight Town": 1 review(s) [ChIJXffYAnv3VDARgZVOOpJFsyw]
+  ✓ [2445/2938] "Munchies Cannabis Store & Delivery Bophut": 5 review(s) [ChIJY-GxjrbzVDAR8O38FwK6yKc]
+  ✓ [2446/2938] "snoopy samui": 5 review(s) [ChIJHUiv9nDxVDARQWSBLtkiLic]
+  ✓ [2447/2938] "RasTaBoi420": 5 review(s) [ChIJrTUcC8fxVDARDT9d_Eu8bIk]
+  ✓ [2448/2938] "Fisherman’s Cannabis Organic Farm Koh Samui": 5 review(s) [ChIJF_oWPRH3VDARu0P6pfO2kLw]
+  ✓ [2449/2938] "Mary Jane 420 Samui": 5 review(s) [ChIJj6SHl27xVDARYiQrQAwfg_E]
+  - [2450/2938] "Rastaboi420.Paradise samui tour.Laundry": no reviews
+  ✓ [2451/2938] "Howdy’420.cannacis.shop": 5 review(s) [ChIJezixberxVDAR7qVdAxxKXyA]
+  ✓ [2452/2938] "Kush&Haze cannabis shop": 5 review(s) [ChIJuU-JkgzvVDAR92fWYnijZ9I]
+  ✓ [2453/2938] "OGDIARIES": 5 review(s) [ChIJR8SPGczxVDARPReVfO-OWgA]
+  ✓ [2454/2938] "Big Roll14": 5 review(s) [ChIJzaCdLh_zVDARFkIAsW2wjv0]
+  ✓ [2455/2938] "The Hangout Co.": 5 review(s) [ChIJnW-QN-PzVDAR2SpwWQ6sbDc]
+  ✓ [2456/2938] "CannaConcept Dispensary": 5 review(s) [ChIJNUxTsEfxVDAR0V0-CWPD7sQ]
+  ✓ [2457/2938] "Ganja Girl": 5 review(s) [ChIJKcZl0aP3VDARXLbNULfYRGE]
+  ✓ [2458/2938] "Ganja Nostra": 5 review(s) [ChIJA1St3-nzVDARcbv1l1hQO8M]
+  ✓ [2459/2938] "OG-Station SAMUI": 5 review(s) [ChIJlx4CndPxVDAR6avOrydOwOs]
+  ✓ [2460/2938] "Only Plants": 5 review(s) [ChIJ44K7wYTxVDAR8QhJB8ybrgI]
+  ✓ [2461/2938] "Relax Cannabis Samui": 5 review(s) [ChIJoRcy4ffxVDARKNoTgVtRhhs]
+  ✓ [2462/2938] "Hempire Gardens Shop & Café": 5 review(s) [ChIJsQVrtCLxVDARaOn9oLLIbIY]
+  ✓ [2463/2938] "Spaceman": 5 review(s) [ChIJ3ZZEIIPxVDARQgfayMt1GdY]
+  ✓ [2464/2938] "WeedDonald's": 5 review(s) [ChIJabl7bQDxVDARwJv_80nFr3g]
+  ✓ [2465/2938] "ร้านกัญชา": 5 review(s) [ChIJu2ulxkTxVDARnsBfrzSU-I8]
+  - [2466/2938] "Nanchapornกัญ": no reviews
+  ✓ [2467/2938] "3ALEE Shop - Samui Cannabis": 2 review(s) [ChIJ-82CwgbxVDARV5QLl4TiLws]
+  ✓ [2468/2938] "Nirvana Space": 5 review(s) [ChIJxzi9k1PxVDARuP8id2nS8vQ]
+  ✓ [2469/2938] "Prix d'Ami": 5 review(s) [ChIJKRF4g-PxVDARMi6PfpbWYzk]
+  ✓ [2470/2938] "Grower Islander Shop 1": 5 review(s) [ChIJOVWnYUXxVDAROQmpTQM18nE]
+  ✓ [2471/2938] "RastaBoi420 Chaweng Beach": 5 review(s) [ChIJfWEYt87xVDARVw_vK_Ac0K4]
+  ✓ [2472/2938] "samui seed bank": 5 review(s) [ChIJ_75BnGTxVDAR6aJGSCck0w4]
+  ✓ [2473/2938] "Black Spiky Farm": 5 review(s) [ChIJq0lZicrxVDARQ5deWU1iEQs]
+  ✓ [2474/2938] "THC - Thai Herb Collective": 5 review(s) [ChIJq5cotSbxVDARcBeX9RqBu38]
+  ✓ [2475/2938] "Eden Farm": 5 review(s) [ChIJnZ_NvoTxVDARcNsG6RS0uK8]
+  ✓ [2476/2938] "BobbyBiz": 1 review(s) [ChIJ29ywgIDzVDARcxbl1Wkpmlw]
+  ✓ [2477/2938] "Organic Cannabis": 5 review(s) [ChIJQeYRRwDzVDARJV9wtOSiVEQ]
+  ✓ [2478/2938] "Weeden": 5 review(s) [ChIJA6gg2_nzVDAR1_fbyq0nkR0]
+  ✓ [2479/2938] "Freedom Lamai": 5 review(s) [ChIJLZxNYYjzVDARRqHTEavJ-ps]
+  ✓ [2480/2938] "Greenout Lamai": 5 review(s) [ChIJGSqrFADzVDARfd1aLW_xeq4]
+  ✓ [2481/2938] "NABA - NatureBased Cannabis": 5 review(s) [ChIJH0x24YfzVDARFBgvrQ9SUTk]
+  ✓ [2482/2938] "Sweed Samui Cafe&Shop Lamai Gamer&Therter": 4 review(s) [ChIJY4vXrpvzVDARHhMbUq-DTW4]
+  ✓ [2483/2938] "Swedish Delight Cannabis Shop": 5 review(s) [ChIJpWwGAgDzVDARWQo9KFGh9cw]
+  ✓ [2484/2938] "Green Area Koh Samui": 5 review(s) [ChIJr4fOfjXzVDARVXXx22iTPtc]
+  ✓ [2485/2938] "Copper Pipe @ Bondi Lamai": 5 review(s) [ChIJQdH-FknyVDAR9Vp34jLuf_M]
+  ✓ [2486/2938] "NeatWeed Samui": 5 review(s) [ChIJLQ9NRW7zVDARRg591_b-cKI]
+  ✓ [2487/2938] "Cannabis Cove": 1 review(s) [ChIJawqtoofzVDARu9GgEi1sBe0]
+  ✓ [2488/2938] "Munchies Cannabis Store & Lamai Beach Delivery": 5 review(s) [ChIJ6UcF_JXzVDAR6HV7yDsSwPI]
+  ✓ [2489/2938] "Bobby Fighter Cannabis Farm": 1 review(s) [ChIJl2OcTSrzVDARcaSOvKWa3DQ]
+  ✓ [2490/2938] "Oasis Chill": 4 review(s) [ChIJ6cwapBjzVDAReDBcLAxj5Ws]
+  ✓ [2491/2938] "Salus Samui Lamai": 5 review(s) [ChIJwaLP3J3zVDARRxcPvu1TswU]
+  ✓ [2492/2938] "Premium Cannabis Store": 5 review(s) [ChIJ7zFCganzVDARTZYJxoOASqg]
+  ✓ [2493/2938] "AK Greenland Clinic": 5 review(s) [ChIJl-YZldTzVDAREpUtSr9DEsc]
+  ✓ [2494/2938] "Organic Cannabis Farm": 5 review(s) [ChIJi_LNT1nzVDARVgyySstPCvM]
+  ✓ [2495/2938] "Shugar Leaf Dispensary": 1 review(s) [ChIJZS4ytY7zVDARPbSH-AVOHOA]
+  ✓ [2496/2938] "Teddy Weed Beach": 5 review(s) [ChIJR8QUl5PzVDARd06e1Oc3fQU]
+  ✓ [2497/2938] "Green Kahuna Dispensary (Weed, CBD, oil, indica, sativa, hybrid, cannabis, coffee shop)#2": 5 review(s) [ChIJ5TS8ODrxVDAR25h078GoxQM]
+  ✓ [2498/2938] "Organic Cannabis": 5 review(s) [ChIJQeYRRwDzVDARJV9wtOSiVEQ]
+  ✓ [2499/2938] "Copper Pipe @ Coconut Lounge": 2 review(s) [ChIJWVvVCPHzVDARWWDlTx08DjE]
+  ✓ [2500/2938] "Sweed Eyes Koh Samui": 5 review(s) [ChIJPdeRbwDzVDARGNHeEQ_mxuM]
+
+--- Progress: 2500/2938 (2424 with reviews, 76 none/failed) ---
+
+  ✓ [2501/2938] "Hazy Daze Samui": 5 review(s) [ChIJU8fGW5D1VDARjh0JNv5nXSg]
+  ✓ [2502/2938] "Fillgood Cannabis Shop": 5 review(s) [ChIJ2QJeJIP3VDARUs2Ez1aNMlw]
+  ✓ [2503/2938] "Supermao Weedshop": 5 review(s) [ChIJF5sDiATzVDARqr1PbXMee2g]
+  ✓ [2504/2938] "Samui happy cannabis 2": 5 review(s) [ChIJa70mZwDxVDARj8AWRH0HA_M]
+  ✓ [2505/2938] "WAVE CANNABIS SHOP": 5 review(s) [ChIJMxcvdxYBVTARTmxZcXZKixQ]
+  ✓ [2506/2938] "Pub cannabis shop": 5 review(s) [ChIJ5w__yWL_VDARC61PirUT-Zo]
+  ✓ [2507/2938] "HEADQUARTERS KPG": 5 review(s) [ChIJi28wjAD_VDARilXUxVQGUbU]
+  ✓ [2508/2938] "Phangan Cannabis Club": 3 review(s) [ChIJy6gH1079VDARTkmShU1lIqQ]
+  - [2509/2938] "Can zeedd cannabis": no reviews
+  ✓ [2510/2938] "JJ cannabis": 5 review(s) [ChIJjx-nH83_VDAR176HOeOlA4U]
+  ✓ [2511/2938] "Smiling coffee & Herbs": 5 review(s) [ChIJGe-e-AkBVTARHOE54ICMMYQ]
+  ✓ [2512/2938] "SKY WALKER SHOP": 5 review(s) [ChIJnxqMZxP9VDARqD8sDC41Pwk]
+  ✓ [2513/2938] "Cannabiz Club Koh Tao": 5 review(s) [ChIJlYtt4oKhVTARWQfYOLeexgs]
+  ✓ [2514/2938] "Isla Brew": 5 review(s) [ChIJd_q6WNyhVTARfIhX38A43dA]
+  ✓ [2515/2938] "Satu99 Green island (sairee branch)": 5 review(s) [ChIJdybCxXWhVTARckc6ElW6odo]
+  ✓ [2516/2938] "Snus Station Koh Tao - Nicotine Pouches": 5 review(s) [ChIJ_8JIdLT_VDARRNc-EB-qxZU]
+  ✓ [2517/2938] "Himmapan Selection Kohtao": 5 review(s) [ChIJGd3e70GhVTARoQseCXMlHek]
+  ✓ [2518/2938] "Youngmao koh tao": 5 review(s) [ChIJRZG47XWhVTARHF4Evs3bxN8]
+  ✓ [2519/2938] "MaryJanecannabis store": 5 review(s) [ChIJGd3e70GhVTARoQseCXMlHek]
+  ✓ [2520/2938] "Siamese Shop. Fashion Koh Chang": 5 review(s) [ChIJg85kyl4RBDERewhyc20HBJo]
+  ✗ [2521/2938] "High Season Koh Lanta": insert error - <!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en-US"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en-US"> <!--<![endif]-->
+<head>
+
+<title> | 502: Bad gateway</title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" id="cf_styles-css" href="/cdn-cgi/styles/main.css" />
+</head>
+<body>
+<div id="cf-wrapper">
+    <div id="cf-error-details" class="p-0">
+        <header class="mx-auto pt-10 lg:pt-6 lg:px-8 w-240 lg:w-full mb-8">
+            <h1 class="inline-block sm:block sm:mb-2 font-light text-60 lg:text-4xl text-black-dark leading-tight mr-2">
+                <span class="inline-block">Bad gateway</span>
+                <span class="code-label">Error code 502</span>
+            </h1>
+            <div>
+                Visit <a href="https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&utm_campaign=rslfdzotloaupwohqmop.supabase.co" target="_blank" rel="noopener noreferrer">cloudflare.com</a> for more information.
+            </div>
+            <div class="mt-3">2026-03-18 08:32:14 UTC</div>
+        </header>
+        <div class="my-8 bg-gradient-gray">
+            <div class="w-240 lg:w-full mx-auto">
+                <div class="clearfix md:px-8">
+                    <div id="cf-browser-status" class=" relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center">
+  <div class="relative mb-10 md:m-0">
+    
+    <span class="cf-icon-browser block md:hidden h-20 bg-center bg-no-repeat"></span>
+    <span class="cf-icon-ok w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4"></span>
+    
+  </div>
+  <span class="md:block w-full truncate">You</span>
+  <h3 class="md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3">
+  
+    Browser
+  
+  </h3>
+  
+  <span class="leading-1.3 text-2xl text-green-success">Working</span>
+  
+</div>
+                    <div id="cf-cloudflare-status" class=" relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center">
+  <div class="relative mb-10 md:m-0">
+    <a href="https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&#38;utm_campaign=rslfdzotloaupwohqmop.supabase.co" target="_blank" rel="noopener noreferrer">
+    <span class="cf-icon-cloud block md:hidden h-20 bg-center bg-no-repeat"></span>
+    <span class="cf-icon-ok w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4"></span>
+    </a>
+  </div>
+  <span class="md:block w-full truncate">Tokyo</span>
+  <h3 class="md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3">
+  <a href="https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&utm_campaign=rslfdzotloaupwohqmop.supabase.co" target="_blank" rel="noopener noreferrer">
+    Cloudflare
+  </a>
+  </h3>
+  
+  <span class="leading-1.3 text-2xl text-green-success">Working</span>
+  
+</div>
+                    <div id="cf-host-status" class="cf-error-source relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center">
+  <div class="relative mb-10 md:m-0">
+    
+    <span class="cf-icon-server block md:hidden h-20 bg-center bg-no-repeat"></span>
+    <span class="cf-icon-error w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4"></span>
+    
+  </div>
+  <span class="md:block w-full truncate">rslfdzotloaupwohqmop.supabase.co</span>
+  <h3 class="md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3">
+  
+    Host
+  
+  </h3>
+  
+  <span class="leading-1.3 text-2xl text-red-error">Error</span>
+  
+</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-240 lg:w-full mx-auto mb-8 lg:px-8">
+            <div class="clearfix">
+                <div class="w-1/2 md:w-full float-left pr-6 md:pb-10 md:pr-0 leading-relaxed">
+                    <h2 class="text-3xl font-normal leading-1.3 mb-4">What happened?</h2>
+                    <p>The web server reported a bad gateway error.</p>
+                </div>
+                <div class="w-1/2 md:w-full float-left leading-relaxed">
+                    <h2 class="text-3xl font-normal leading-1.3 mb-4">What can I do?</h2>
+                    <p class="mb-6">Please try again in a few minutes.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cf-error-footer cf-wrapper w-240 lg:w-full py-10 sm:py-4 sm:px-8 mx-auto text-center sm:text-left border-solid border-0 border-t border-gray-300">
+    <p class="text-13">
+      <span class="cf-footer-item sm:block sm:mb-1">Cloudflare Ray ID: <strong class="font-semibold">9de2e2b84940fcbe</strong></span>
+      <span class="cf-footer-separator sm:hidden">&bull;</span>
+      <span id="cf-footer-item-ip" class="cf-footer-item hidden sm:block sm:mb-1">
+        Your IP:
+        <button type="button" id="cf-footer-ip-reveal" class="cf-footer-ip-reveal-btn">Click to reveal</button>
+        <span class="hidden" id="cf-footer-ip">115.65.38.83</span>
+        <span class="cf-footer-separator sm:hidden">&bull;</span>
+      </span>
+      <span class="cf-footer-item sm:block sm:mb-1"><span>Performance &amp; security by</span> <a rel="noopener noreferrer" href="https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&#38;utm_campaign=rslfdzotloaupwohqmop.supabase.co" id="brand_link" target="_blank">Cloudflare</a></span>
+      
+    </p>
+    <script>(function(){function d(){var b=a.getElementById("cf-footer-item-ip"),c=a.getElementById("cf-footer-ip-reveal");b&&"classList"in b&&(b.classList.remove("hidden"),c.addEventListener("click",function(){c.classList.add("hidden");a.getElementById("cf-footer-ip").classList.remove("hidden")}))}var a=document;document.addEventListener&&a.addEventListener("DOMContentLoaded",d)})();</script>
+  </div><!-- /.error-footer -->
+
+    </div>
+</div>
+</body>
+</html>
+  ✓ [2522/2938] "Highseason Cannabis Dispensary Long Beach Koh Lanta": 5 review(s) [ChIJT-ZsvF4FTjAR4P_9VYVrCcU]
+  ✓ [2523/2938] "Ganja House Koh Lanta": 5 review(s) [ChIJpYiDBZkDTjARWnheV0OsVgI]
+  ✓ [2524/2938] "Forget Me Not. Cannabis and Fabric Repair Shop (Koh Lanta weed shop)": 5 review(s) [ChIJx9SAagAFTjARb0yn-11EyYo]
+  ✓ [2525/2938] "Weedology Cannabis Culture Lanta": 5 review(s) [ChIJHWfQmK0FTjARTYUAEp_HCEc]
+  ✓ [2526/2938] "SayHigh Cannabis shop koh lanta": 1 review(s) [ChIJvaokbugDTjARGUp-3e2UZ34]
+  ✓ [2527/2938] "OG cafe Kohlanta​ at Klong Dao": 5 review(s) [ChIJxaNs4kADTjAR1X2FeYi7S28]
+  ✓ [2528/2938] "StarWeed Dispensary Cannabis Store": 5 review(s) [ChIJf24oU5wDTjAROzHyS0cRoF4]
+  ✓ [2529/2938] "The Happy Corner": 5 review(s) [ChIJeaLY1XwDTjAR9-OVPI7xwsM]
+  ✓ [2530/2938] "Cannabis Baan Chainarong OG shop": 5 review(s) [ChIJ09TWBoIDTjAR4voG2dvWl3U]
+  ✓ [2531/2938] "GURU 420 Dispensary": 5 review(s) [ChIJbw6sGVUFTjARtq_plFMzftY]
+  ✓ [2532/2938] "I'am Grower​ Cannabis ( local Grower )": 5 review(s) [ChIJxUs6vMkDTjARLBsajMXAx3I]
+  ✓ [2533/2938] "Cannabeach Café Koh Lanta": 5 review(s) [ChIJ0dU4gBQDTjARUWuTWW7jJ8w]
+  ✓ [2534/2938] "Lanta Kush": 5 review(s) [ChIJq67x_9UPTjARXqV5SE3RmsI]
+  ✓ [2535/2938] "Cannabis bar and Restaurant": 5 review(s) [ChIJI_luBdADTjAR8n6-QLtnozI]
+  ✓ [2536/2938] "Green leaf cafe Longbeach Kohlanta": 5 review(s) [ChIJo5JjQtQDTjAR0dpqpmqg0pU]
+  ✓ [2537/2938] "Weedology Cannabis Culture Lanta 2": 5 review(s) [ChIJ4zbbQsIFTjARCb4FbwySkYs]
+  ✓ [2538/2938] "Hemp Zone Thailand (Cannabis Farm & Shop)": 5 review(s) [ChIJD_imFF0FTjAR_ejUBbwHtR4]
+  ✓ [2539/2938] "Happy Island OG by.Klong Nin": 5 review(s) [ChIJG-eHEHEFTjARuX5m8ckkotI]
+  ✓ [2540/2938] "MyWay Cannabis Shop Kon Lanta": 5 review(s) [ChIJLX64HkQFTjARZAjTF277yvY]
+  ✓ [2541/2938] "Cloud 420 – Medical Cannabis Clinic Koh Lanta": 5 review(s) [ChIJJYgDmhMFTjAROIM3fr5Xzn4]
+  ✓ [2542/2938] "420 Highlife Old Town Lanta": 5 review(s) [ChIJNxoSkiIFTjARz84K1Dl2q28]
+  ✓ [2543/2938] "Hi Wave": 5 review(s) [ChIJI1uVSz0DTjARbbqS3KvoS4w]
+  ✓ [2544/2938] "Cannabis for life Lanta": 5 review(s) [ChIJQXRDCgAFTjAR-Kf-QK3L1FY]
+  ✓ [2545/2938] "Happy Island Og. By Long beach(Delivery)": 5 review(s) [ChIJF1taoE0DTjARx0Bn0QjGqOQ]
+  ✓ [2546/2938] "High Siam Long Beach": 5 review(s) [ChIJvzPBP3IFTjARtZp4qKWss1M]
+  ✓ [2547/2938] "YanKanCha99(ยันกัญช์จ้ะ99)": 3 review(s) [ChIJfRsviTgFTjAR8gNFllgGc_g]
+  ✓ [2548/2938] "Happy Island OG x Baan Chainarong OG by.Plaza": 1 review(s) [ChIJvWvwBfwDTjARu3-B8jyQRF4]
+  ✓ [2549/2938] "Yan-Kan-Cha": 5 review(s) [ChIJTSZNZnYFTjARRSqcGh_GVe8]
+  ✓ [2550/2938] "HighSkool": 1 review(s) [ChIJvaokbugDTjARGUp-3e2UZ34]
+
+--- Progress: 2550/2938 (2472 with reviews, 78 none/failed) ---
+
+  ✓ [2551/2938] "Hello High Trees Cannabis Home Grown": 5 review(s) [ChIJRSHqhzgFTjARVZ39AWHKFUQ]
+  ✓ [2552/2938] "Green Zee Lanta": 5 review(s) [ChIJ8SlZfAAFTjARa-Tjbb1e_Zw]
+  ✓ [2553/2938] "Happyisland x Baan Chainarong OG by.Phra Ae": 3 review(s) [ChIJoTV1QZwFTjARwrO_XHXDgUs]
+  ✓ [2554/2938] "High season Bakantiang and Speak easy cafe ,Koh Lanta": 5 review(s) [ChIJv7eDtscPTjARZBDLoN5TPcQ]
+  ✓ [2555/2938] "Drunk With Me": 5 review(s) [ChIJsd0hIN8FTjARA2ICCysOPAY]
+  ✓ [2556/2938] "BABYLON INK & CANNABIS SHOP @klong nin": 3 review(s) [ChIJA3q3degFTjARuPTTKitS_S8]
+  ✓ [2557/2938] "Mini's café bar & cannabis shop": 5 review(s) [ChIJtf4vuNUFTjARxC4wZ_Ijwy8]
+  ✓ [2558/2938] "Happy Island OG by.Klong Nin2": 5 review(s) [ChIJt9cllnIFTjAR-kfXkioHMi8]
+  ✓ [2559/2938] "BABYLON INK & CANNABIS SHOP @phar ae beach": 5 review(s) [ChIJj9_OeJ4FTjARDh4pRUsBsEk]
+  ✓ [2560/2938] "Happy Island OG by Ba Kantiang": 5 review(s) [ChIJl1siLLcPTjARG9QxfMIWGqY]
+  ✓ [2561/2938] "LANTA EVACANNABIS SHOP": 5 review(s) [ChIJZcSLE_kFTjAR6DE7Z6fERRQ]
+  ✓ [2562/2938] "Enjoy Cannabis Shop(เอ็นจอย แคนนาบิส ช็อป)": 5 review(s) [ChIJaTmaeQAFTjAReY1xrq54q5o]
+  ✓ [2563/2938] "Drunk With Me, Again!": 4 review(s) [ChIJ7zPRdvMFTjAR3MUYTd8uNME]
+  - [2564/2938] "Mr. N-joy weed shop": no reviews
+  ✓ [2565/2938] "PHIROMGUN CAFE(ภิรมย์กัญ)": 5 review(s) [ChIJf64LfwAFTjARjAgvTUe4tHk]
+  ✓ [2566/2938] "OG cafe": 5 review(s) [ChIJO-xA-hsFTjAR050n0yOPNcE]
+  ✓ [2567/2938] "Ticket To The Moon": 3 review(s) [ChIJA5_u3FsFTjARJSjZJ1LnIWE]
+  ✓ [2568/2938] "Tiger prawn cannabis bar": 4 review(s) [ChIJC8_RmmoPTjAR8UDvERVonyI]
+  ✓ [2569/2938] "ยอดมนุษย์กัญชา คาเฟ่บาร์": 5 review(s) [ChIJv7eDtscPTjARZBDLoN5TPcQ]
+  ✓ [2570/2938] "The Pot Hole Lanta Cannabis Shop &​ Mc Mobile Phone Repair": 5 review(s) [ChIJC2sG8iMDTjARUP_60F43C6k]
+  ✓ [2571/2938] "Happyisland x Baan Chainarong by.Klong Khong": 5 review(s) [ChIJyZ09G_YFTjARPzYl02QKVpI]
+  ✓ [2572/2938] "Max bar & Cannabis shop": 5 review(s) [ChIJQTQcnqQFTjARTp2V5IQFHKY]
+  ✓ [2573/2938] "Freeway 420 Bar Koh Lanta": 5 review(s) [ChIJn22Y_0IFTjARSwXRqUEnDRw]
+  ✓ [2574/2938] "Lanta Snus - Nicotine Pouches in Koh Lanta": 5 review(s) [ChIJf24oU5wDTjAROzHyS0cRoF4]
+  ✓ [2575/2938] "THC": 5 review(s) [ChIJkeAiHNy_UTARGzLvVSooTbI]
+  ✓ [2576/2938] "The Glass House": 5 review(s) [ChIJpYiDBZkDTjARWnheV0OsVgI]
+  ✓ [2577/2938] "Phiphi cannabis3": 5 review(s) [ChIJG2GKDwDfUTARPtdOQ7chU38]
+  ✓ [2578/2938] "Pod Has Everything？Phi Phi Island": 4 review(s) [ChIJFSq8C5nfUTARe_Vlj891zLo]
+  ✓ [2579/2938] "25 Canmabis": 5 review(s) [ChIJLbX2MpnfUTAR43nA6i-tz1U]
+  ✓ [2580/2938] "Weedology Cannabis Culture Phi Phi 1": 5 review(s) [ChIJTbU3O4GVUTARRG8EXn6ifeg]
+  ✓ [2581/2938] "Secret cannabis": 5 review(s) [ChIJybPfJADfUTARfFfwSml8kX0]
+  ✓ [2582/2938] "Weedology Cannabis Culture Phi Phi 2": 5 review(s) [ChIJRxrj-U3fUTARQ-bgUco42YU]
+  ✓ [2583/2938] "Brother Bar": 5 review(s) [ChIJLbX2MpnfUTAR43nA6i-tz1U]
+  ✓ [2584/2938] "DUDEWEED": 5 review(s) [ChIJMUDtN1DrUTAR-LZ_Nu5KPxc]
+  ✓ [2585/2938] "Weedology Cannabis Culture Railay": 5 review(s) [ChIJucqoYh3rUTARjuIdlJymmF0]
+  ✓ [2586/2938] "Dugong cannabis cafe & restaurant": 5 review(s) [ChIJne9XFwCVUTARw4UCtX-uloM]
+  ✓ [2587/2938] "The Syndicate Bud - Railay Beach": 5 review(s) [ChIJrXzd863rUTARvk-5nVE972I]
+  ✓ [2588/2938] "High Walk": 4 review(s) [ChIJ6WQhXezfUTARZCHDDHqRvBQ]
+  ✓ [2589/2938] "Rastafari Station": 4 review(s) [ChIJ6WQhXezfUTARZCHDDHqRvBQ]
+  ✓ [2590/2938] "PP Pharmacy": 5 review(s) [ChIJLbX2MpnfUTAR43nA6i-tz1U]
+  ✓ [2591/2938] "Shop": 5 review(s) [ChIJLbX2MpnfUTAR43nA6i-tz1U]
+  ✓ [2592/2938] "Cannabis P.P.Kansmile": 5 review(s) [ChIJz4u7R5PfUTARcGUcXWa7_xs]
+  ✓ [2593/2938] "Phi Phi View Point Cafe": 5 review(s) [ChIJKeOPaM_fUTARRL9BE1Xxz8M]
+  ✓ [2594/2938] "420shop": 5 review(s) [ChIJLbX2MpnfUTAR43nA6i-tz1U]
+  ✓ [2595/2938] "Ryan's Cannabis shop 420": 5 review(s) [ChIJlfBrtMG3UTAR0o6VFAUpFhg]
+  ✓ [2596/2938] "High Times - The 420 Store": 5 review(s) [ChIJz4u7R5PfUTARcGUcXWa7_xs]
+  ✓ [2597/2938] "Kwam Suk Cafe Huahin88": 5 review(s) [ChIJ4XwaAl2r_TARSk_GGvqkyoA]
+  ✓ [2598/2938] "ภูษ์ปภาเบเกอรี่ หัวหิน": 1 review(s) [ChIJgdjK0lWq_TAR3pYXUv1hOPQ]
+  ✓ [2599/2938] "บ้านกอบาย": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2600/2938] "WINE CANNABIS SHOP": 5 review(s) [ChIJT7PC0gmr_TAR1gkAreMKDBg]
+
+--- Progress: 2600/2938 (2521 with reviews, 79 none/failed) ---
+
+  ✓ [2601/2938] "Snus Hub": 5 review(s) [ChIJMdMnHQCr_TARTcqDuRTA8z0]
+  ✓ [2602/2938] "BLACK SHEEP": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2603/2938] "HQLY- THC.LAB.420 @Huahin": 5 review(s) [ChIJC2esgrir_TARufAS88ktHjU]
+  ✓ [2604/2938] "Maxmarket": 5 review(s) [ChIJ6REbzmir_TARiy-k0j0IBo4]
+  ✓ [2605/2938] "Relaxzone บ่อนไก่ หัวหิน": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2606/2938] "Hip Hop Legacy": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2607/2938] "Smell Lemongrass Hua Hin Night Market": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2608/2938] "Copadeli Hua Hin (Boucherie Jean-Pierre)": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2609/2938] "Feel Flow": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2610/2938] "Chi An Tueng (Kosit) G Supermarket": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2611/2938] "Ache Barbershop Hua Hin": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2612/2938] "Baan Nangsue used book shop": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2613/2938] "Climax Massage Hua Hin": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2614/2938] "B R I E F coffee & more": 5 review(s) [ChIJ6REbzmir_TARiy-k0j0IBo4]
+  ✓ [2615/2938] "PTW - The Premium Medical Cannabis Dispensary": 5 review(s) [ChIJrRnbH_6t_TARLG2xMLsp8L8]
+  ✓ [2616/2938] "The Juice Café": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2617/2938] "Whisgars Hua Hin": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2618/2938] "Market Village Huahin": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2619/2938] "Head Rock Skate Shop": 5 review(s) [ChIJl7ZyBACr_TARmpMeLwL17j8]
+  ✓ [2620/2938] "Arts Head HuaHin Tattoo Studio อาร์ตเฮด แทททู": 5 review(s) [ChIJMdh3O3-r_TARAe8T5ryrCb8]
+  ✓ [2621/2938] "Ganja Giant 2, Pranburi - (Cannabis, Tobacco, Beer and Games!)": 5 review(s) [ChIJn3tC4V-z_TARwq92wWnNWO0]
+  ✓ [2622/2938] "The Grasshopper Coffeeshop": 5 review(s) [ChIJd74hOz-_UTAR8_kvct9jAKs]
+  ✓ [2623/2938] "Siam Cannabis": 5 review(s) [ChIJWewTyUnfUTARwd83Y7Vl0YI]
+  ✓ [2624/2938] "เพื่อนกัญ cannabis shop": 4 review(s) [ChIJjYMdE22TUTARoeh1gyjn-8g]
+  ✓ [2625/2938] "Stoner heaven coffee shop 2 by Maryjane": 1 review(s) [ChIJqedpGRrBUTARi8rbloymFuk]
+  ✓ [2626/2938] "Rabbit cannabis shop2": 5 review(s) [ChIJnek0JWi_UTARIhfS3Q7wbnQ]
+  ✓ [2627/2938] "Station cannabis สถานีกัญชา (ลุงแอ๊ด)": 5 review(s) [ChIJEbncW_-VUTARUg06GTzs2Rg]
+  ✓ [2628/2938] "Rabbits cannabis": 4 review(s) [ChIJL464SgC_UTARfhGH_KE5_R8]
+  ✓ [2629/2938] "Escobar@อ่าวนาง": 5 review(s) [ChIJv9SfeXG_UTARMTH89WtCke8]
+  ✓ [2630/2938] "Bud A Boom": 5 review(s) [ChIJ_UnyqajBUTARm4TCGLzMM2g]
+  ✓ [2631/2938] "Term Krabi Snus": 5 review(s) [ChIJv23KaIC_UTARJfabL5Aj_jc]
+  ✓ [2632/2938] "Bobby cannabis shop and reggae bar": 5 review(s) [ChIJwaWxkii_UTARlOvyRITyvLA]
+  - [2633/2938] "The One Cannabis": no reviews
+  ✓ [2634/2938] "Highrise Railay krabi": 5 review(s) [ChIJdwjKt-PrUTARl5KVb2YPXNo]
+  - [2635/2938] "Sum Ganja": not found
+  ✓ [2636/2938] "Canna Haze Ao Nang": 4 review(s) [ChIJYQeJPAXBUTARlJ6yFv5ySj4]
+  ✓ [2637/2938] "Jack Cannabis": 5 review(s) [ChIJEQ93kVyVUTARiTWSqq1NeTw]
+  ✓ [2638/2938] "Yiks Cannabis": 3 review(s) [ChIJPcP8Y_C_UTARg-jMNkyDeeU]
+  ✓ [2639/2938] "Drip&Bloom Café": 5 review(s) [ChIJ7Z9gQCm_UTARp_tKnGDUcEs]
+  ✓ [2640/2938] "Smile cannabis shop & cafe": 4 review(s) [ChIJm9lJb7e_UTARSBq8MJ4Qsxo]
+  ✓ [2641/2938] "Land Of Smile Cannabis Shop": 5 review(s) [ChIJP8F7Jd6VUTARJUG8flYMemk]
+  ✓ [2642/2938] "ร้านน้ำกัญชา": 5 review(s) [ChIJM5dF_MoH1zAREJpiweTeqUs]
+  ✓ [2643/2938] "CannDeeBiz แคนน์-ดี-บิซ": 5 review(s) [ChIJ1wyF3bD_1jARc_tCkliJflM]
+  ✓ [2644/2938] "109 Herbs Chiangrai": 5 review(s) [ChIJTeo8JIgR1zARQnKVlbnCX6Q]
+  ✓ [2645/2938] "Green Flower Weed Shop": 5 review(s) [ChIJNY8GsLP51jAR6OhXi9SrLhY]
+  ✓ [2646/2938] "Nrai Cannabis farm นาราย CBD ฟาร์ม": 1 review(s) [ChIJZ6lkvlkT1zAR1tZJkv5iSME]
+  ✓ [2647/2938] "หลังเขา Coffee": 5 review(s) [ChIJGwjAcgAF1zAR3aMR1NZ4f2k]
+  ✓ [2648/2938] "Samnesia Cannabis farm": 5 review(s) [ChIJS1BfMM0H1zARC1XgD_RAa9o]
+  ✓ [2649/2938] "คลินิกกัญชาเวช น.พ.เกรียงศักดิ์ (Medical Cannabis Clinic Dr.Kriengsak)": 5 review(s) [ChIJDYgip20B1zARLyLE7ZdWHDA]
+  ✓ [2650/2938] "อันตัน แคคตัส": 5 review(s) [ChIJS1BfMM0H1zARC1XgD_RAa9o]
+
+--- Progress: 2650/2938 (2569 with reviews, 81 none/failed) ---
+
+  ✓ [2651/2938] "ร้านกัญชา JoyBoy Chiang Rai": 5 review(s) [ChIJ-3FEagDn2TARgtStFLDlfbM]
+  ✓ [2652/2938] "Phorn Store": 5 review(s) [ChIJGQx4WtAH1zARsMzo2F3ingY]
+  ✓ [2653/2938] "Tobacco shop Chiang Rai ร้านยิ่งถาวร": 5 review(s) [ChIJH9BHKl8H1zARWaCgwnG4wSI]
+  ✓ [2654/2938] "SAHASOUND - ร้านสหอีเล็คโทรนิคส์ (สำนักงานใหญ่)": 5 review(s) [ChIJAaUsnWEH1zARf-KE0gp2xBQ]
+  ✓ [2655/2938] "Booster Chiang Rai": 5 review(s) [ChIJH9BHKl8H1zARWaCgwnG4wSI]
+  ✓ [2656/2938] "162 cbd cafe สาขาเชียงราย": 5 review(s) [ChIJH9BHKl8H1zARWaCgwnG4wSI]
+  ✓ [2657/2938] "HERBAL Garden Home: Cannabis and Kratom": 5 review(s) [ChIJdcyCl1X_1jARuTKcYfp-_io]
+  ✓ [2658/2938] "PAIHIGH": 5 review(s) [ChIJs1f_V76B2jARtqgquLI3zJg]
+  ✓ [2659/2938] "Behigh Cannabis Cafe": 5 review(s) [ChIJj176EACB2jARchLE6vpVoVA]
+  ✓ [2660/2938] "Pai Republic": 5 review(s) [ChIJbWvFO76B2jARktM-R_bB4pY]
+  ✓ [2661/2938] "ART TA MA cafe": 5 review(s) [ChIJyTzmk6iB2jARBe0PC21C6GE]
+  ✓ [2662/2938] "G&B cannabis": 4 review(s) [ChIJtc_cdwCB2jARiPSZhI3QMlY]
+  ✓ [2663/2938] "Organic Health Store PAI, SYMBIOSIS": 5 review(s) [ChIJYwSDjIGB2jARVbK57Nq6xYw]
+  ✓ [2664/2938] "SMOKE in Pai": 5 review(s) [ChIJm6kON36B2jARO3YX3B6I4n4]
+  ✓ [2665/2938] "Nirun Ganja นิรันดร์กัญชา": 3 review(s) [ChIJH4XP5yVx0DARQO8f7tgfsyg]
+  - [2666/2938] "Happy place": no reviews
+  ✓ [2667/2938] "Green way Shop": 5 review(s) [ChIJI0JWEfF34zARv_LwfH_aMtE]
+  - [2668/2938] "จิงโจ้บาร์": no reviews
+  - [2669/2938] "แบงค์ใบเบา": no reviews
+  ✓ [2670/2938] "Green day": 3 review(s) [ChIJbUaLIAAP4zAR6x_1R3HRdzE]
+  ✓ [2671/2938] "Tropical Cannabis cafe": 5 review(s) [ChIJ3zJgRW5_5DAR5GYTKRj0_PE]
+  ✓ [2672/2938] "Kanchanaburi Night Market": 5 review(s) [ChIJw1V2MD514zARiGHvGcqWF24]
+  ✓ [2673/2938] "PALM": 5 review(s) [ChIJw1V2MD514zARiGHvGcqWF24]
+  ✓ [2674/2938] "หัวสะพานค้าเหล็ก": 5 review(s) [ChIJ9dd2o_F14zARgEyfY26AOpY]
+  ✓ [2675/2938] "43barber": 5 review(s) [ChIJw1V2MD514zARiGHvGcqWF24]
+  ✓ [2676/2938] "JJ Night Market Kanchanaburi": 5 review(s) [ChIJ9YN99Fp14zAR9Le8LJbny4M]
+  ✓ [2677/2938] "เก็บทรงบาร์เบอร์ Kanchanaburi": 5 review(s) [ChIJHYpUBOx14zARdO6yfZpueP4]
+  - [2678/2938] "UNCLE BOB'S 420": no reviews
+  - [2679/2938] "ไร่.. มีกาญและกัญ Cannabis Store & Farm": no reviews
+  ✓ [2680/2938] "CHAN nature cafe’": 5 review(s) [ChIJ9dd2o_F14zARgEyfY26AOpY]
+  ✓ [2681/2938] "WOODYVINTAGE": 5 review(s) [ChIJw1V2MD514zARiGHvGcqWF24]
+  ✓ [2682/2938] "ร้านยุรีย์มินิมาร์ท": 5 review(s) [ChIJw1V2MD514zARiGHvGcqWF24]
+  ✓ [2683/2938] "หมอกควันบุหรี่ไฟฟ้า": 5 review(s) [ChIJ9dd2o_F14zARgEyfY26AOpY]
+  ✓ [2684/2938] "Crepe HideOut": 5 review(s) [ChIJw1V2MD514zARiGHvGcqWF24]
+  ✓ [2685/2938] "Theo5star cannabis": 5 review(s) [ChIJFR3tJroN4zAR8T2KIP-V7Ts]
+  ✓ [2686/2938] "ทรัพย์เกษตร": 5 review(s) [ChIJ9dd2o_F14zARgEyfY26AOpY]
+  ✓ [2687/2938] "THE STONER": 5 review(s) [ChIJYVVFGOqx4zARr5zaUSLX_iQ]
+  - [2688/2938] "บาร์ กัญเอง (Kan Eang)": no reviews
+  ✓ [2689/2938] "Kanchanaburi Coconut": 5 review(s) [ChIJw1V2MD514zARiGHvGcqWF24]
+  - [2690/2938] "บาร์กัญเอง สาขายางเกาะ": no reviews
+  - [2691/2938] "Dang Mai Hom 4M.a": no reviews
+  ✓ [2692/2938] "Ganja Thai Uthong": 5 review(s) [ChIJa2qCR-Ap4zARAUv2sAZzjHQ]
+  ✓ [2693/2938] "แคนนาบิสเฮมพ์อโยธยา คาเฟ่": 5 review(s) [ChIJTRIp5BR14jARPvSJNe9x0uE]
+  ✓ [2694/2938] "ZEEZUAR Cannabis Shop (ร้านกัญชาซี้ซั้ว)": 5 review(s) [ChIJQWFrxNt74jARQro92_xhbwg]
+  ✓ [2695/2938] "ร้านนกเอี้ยง20สินค้าราคาถูก": 5 review(s) [ChIJYbfes1l14jARpe7K9M_PGKA]
+  ✓ [2696/2938] "Woo.man cannabis": 4 review(s) [ChIJhTToLQB54jAR33yDmDV3lc0]
+  ✓ [2697/2938] "S.CANNABIS": 5 review(s) [ChIJfTGARwCHHTERGrHSr5UXYMM]
+  ✓ [2698/2938] "Dr.420": 1 review(s) [ChIJh6pWv7N54jAR42H6C-LO9zI]
+  ✓ [2699/2938] "GanJa Klang Klung samko": 5 review(s) [ChIJ-wsdc_M94jARUtFrGIJmPTA]
+  ✓ [2700/2938] "Thai Guy Ganja Company Limited": 5 review(s) [ChIJgWQtFQaf4jARVL-30GUMfh0]
+
+--- Progress: 2700/2938 (2611 with reviews, 89 none/failed) ---
+
+  - [2701/2938] "Pathumland ganja shop": not found
+  ✓ [2702/2938] "Dong Muang Ganja Shop & Cafe ดอนเมืองกัญชา": 3 review(s) [ChIJ5yftL5qD4jARkPHwpv8CyCU]
+  ✓ [2703/2938] "Thai Weed Shop กัญชาไทย Weed&Snus": 5 review(s) [ChIJIUitecANAzERVZMeFAz7wzI]
+  ✓ [2704/2938] "SUWAN FRAM CANNABIS": 5 review(s) [ChIJC4Le7uLpAjER_dhNFmPzJ-Q]
+  ✓ [2705/2938] "เปี๋ยง กัญชาห้วยโป่ง Cannabis Rayong": 3 review(s) [ChIJf_HvduzxAjERr95YCigExx4]
+  ✓ [2706/2938] "3HC Cannabis Shop (ทรีเฮชซีสาขา1)": 2 review(s) [ChIJA6R_IpzjAjERBJqAHINq7a8]
+  ✓ [2707/2938] "GET LOY 420": 5 review(s) [ChIJ2Y6FEU39AjER1qhvRAnnT-s]
+  ✓ [2708/2938] "P&P โอจี 420": 3 review(s) [ChIJ6YTkFTjDAjER7zykcVuko2U]
+  - [2709/2938] "W&M420": no reviews
+  - [2710/2938] "M&A 420": no reviews
+  ✓ [2711/2938] "Stoner weed shop": 5 review(s) [ChIJ20PsUP_zAjERDaP88nff4mg]
+  ✓ [2712/2938] "High Samet weed shop": 5 review(s) [ChIJ25eISzMHAzERWmCGGuDNq64]
+  ✓ [2713/2938] "Tidbae Banchang cannabis": 3 review(s) [ChIJdyxXIADzAjERrdaAq91n1Uc]
+  ✓ [2714/2938] "คลัง CANNABIS ไอ้จ่า 789": 3 review(s) [ChIJoQgdXwDlAjERqVDfxoyMdU8]
+  ✓ [2715/2938] "TG Cannabis 420": 5 review(s) [ChIJXaPVAQCdIzERmdk25fEpoAk]
+  ✓ [2716/2938] "Candy41 (Cannabis Shop)": 5 review(s) [ChIJoZz4viydIzER52otMKbx14w]
+  ✓ [2717/2938] "TermGun": 5 review(s) [ChIJk5JqHS2dIzERSXYjxcUtzNY]
+  ✓ [2718/2938] "UDF - WEED SHOP UDON": 5 review(s) [ChIJ35ELf-OdIzERVrqDQpU7cA4]
+  ✓ [2719/2938] "JaFord Cannabis SHOP/ จำหน่ายกัญชา (อุดร) ข้างๆเซเว่น ซ.พรหมประกาย": 5 review(s) [ChIJL_PHLQWdIzERm1lryvBgAx0]
+  ✓ [2720/2938] "High Harvest พรหมประกาย": 5 review(s) [ChIJMcApTgCdIzERloKHpMv0yTY]
+  ✓ [2721/2938] "Weed Station Udon Thani": 5 review(s) [ChIJE4Dk40edIzERJuyyphgSR_Q]
+  ✓ [2722/2938] "SuaiShop Cannabis Store": 5 review(s) [ChIJf9aDL_ydIzERLJ_X2t99R0Y]
+  ✓ [2723/2938] "Herb Blood | Cannabis - Snus nicotine pouch In Udonthani": 5 review(s) [ChIJQXx8AfudIzER6NVjy-bPGg4]
+  ✓ [2724/2938] "AJB CANNABIS SHOP 5": 1 review(s) [ChIJwbjOJOZ3IzERLaLVOrhvPZA]
+  ✓ [2725/2938] "iweed": 5 review(s) [ChIJr1skEad3IzER3lBbvC3L9Nw]
+  ✓ [2726/2938] "Greenlab cannabis ud": 5 review(s) [ChIJKUc_plSdIzERIZJ8CfouCrg]
+  ✓ [2727/2938] "WeedDay Cannabis Udonthani": 3 review(s) [ChIJjf6VN2mdIzER_-yn-1l7yVM]
+  ✓ [2728/2938] "FordRasta Cannabis SHOP / จำหน่าย กัญชาอุดร ซ.ยูคอร์น ก่อนถึงทางรถไฟ": 4 review(s) [ChIJQU1luuSdIzERNaCDc3K3Ddo]
+  ✓ [2729/2938] "Faed-Nrk Cannabis Farmer (กัญชาคุณภาพ)🪴🥦🧑‍🌾💚": 5 review(s) [ChIJjy7a6ol3IzER9MjBvlVQI3g]
+  ✓ [2730/2938] "God Cannabis": 5 review(s) [ChIJ6x2Jhu9JYEERxFEDuWsyGyI]
+  ✓ [2731/2938] "BOOMTREEHC": 5 review(s) [ChIJJSPCPgCdIzERohbB8bG2CGU]
+  ✓ [2732/2938] "LoeiTreeHc5 @UDON": 4 review(s) [ChIJT78cyw-dIzER6k_2vB8Y47o]
+  ✓ [2733/2938] "Doze of cannabis 420 กัญชาอุดรธานี": 5 review(s) [ChIJvRtDHQCdIzERL8d7CryQ7WA]
+  ✓ [2734/2938] "BKG Cannabis 420": 3 review(s) [ChIJz30pKIV3IzERdVNSHOtc9NQ]
+  ✓ [2735/2938] "Ran Cannabis Run": 5 review(s) [ChIJx6hqgo-dIzEROIBI1CjrJ0w]
+  ✓ [2736/2938] "THcUD420 organic": 1 review(s) [ChIJIVKOWpudIzERrzD8cPi8Ulc]
+  ✓ [2737/2938] "Space Travel 420": 3 review(s) [ChIJI9A0QxR3IzER179BY7NjP-c]
+  ✓ [2738/2938] "Cannabis": 5 review(s) [ChIJ35ELf-OdIzERVrqDQpU7cA4]
+  ✓ [2739/2938] "BANNOK SHOP": 3 review(s) [ChIJz30pKIV3IzERdVNSHOtc9NQ]
+  - [2740/2938] "ร้านเนื้ออุดร420 อุดรเหมืองแบ่ง": no reviews
+  - [2741/2938] "Shiba cannabis-ชิบา แคนนาบิส": no reviews
+  ✓ [2742/2938] "MA MAO": 5 review(s) [ChIJ8WoeNgB5IzERl7bli_tE7Dc]
+  ✓ [2743/2938] "JaFord Weed (กัญชา อุดร)": 1 review(s) [ChIJm7vIYQWdIzER48pfcEZv2I0]
+  ✓ [2744/2938] "Galaxy cannabis ร้านกัญชาอุดร": 5 review(s) [ChIJqZKrozmdIzER20MeXMZGFcA]
+  ✓ [2745/2938] "WeedVeew Udon(สถานีกัญชา)": 5 review(s) [ChIJvRtDHQCdIzERL8d7CryQ7WA]
+  ✓ [2746/2938] "Highlights": 5 review(s) [ChIJoZz4viydIzER52otMKbx14w]
+  ✓ [2747/2938] "Greenhouses อุดรธานี (กัญชา)": 5 review(s) [ChIJjy7a6ol3IzER9MjBvlVQI3g]
+  ✓ [2748/2938] "บ้านหนองหัวหมู": 5 review(s) [ChIJoZz4viydIzER52otMKbx14w]
+  ✓ [2749/2938] "ของดี แคมโขง สาขาอุดร": 5 review(s) [ChIJD5GBN_edIzER9nwCxs75vls]
+  ✓ [2750/2938] "T.O.P GUN 420": 1 review(s) [ChIJXV2jKjydIzERWnosLyBY6_E]
+
+--- Progress: 2750/2938 (2656 with reviews, 94 none/failed) ---
+
+  ✓ [2751/2938] "Dong keng cannabis shop": 1 review(s) [ChIJpeGIUNd3IzER5QdPQW14uWA]
+  ✓ [2752/2938] "420PrachasantiUdon (สันติสุข)": 5 review(s) [ChIJXaPVAQCdIzERmdk25fEpoAk]
+  ✓ [2753/2938] "บ้านเขียวกัญชา": 1 review(s) [ChIJOw12-xV3IzERbFdWC1VSKrk]
+  ✓ [2754/2938] "Ganjaland": 5 review(s) [ChIJoZz4viydIzER52otMKbx14w]
+  ✓ [2755/2938] "! 420KHOT!HIGH SHOP สวนหน้าบ้านฟาร์ม": 1 review(s) [ChIJacMl24V3IzERERYS0p3aOMo]
+  ✓ [2756/2938] "MS Dynolab by คาวดาก": 5 review(s) [ChIJQXx8AfudIzER6NVjy-bPGg4]
+  ✓ [2757/2938] "เคลิ้มกัญ คาเฟ่ สาขาเมืองอุดรธานี": 5 review(s) [ChIJk5JqHS2dIzERSXYjxcUtzNY]
+  ✓ [2758/2938] "guruWEED": 1 review(s) [ChIJbVG0h5V3IzERt7bdB8g6bW8]
+  ✓ [2759/2938] "ฟาร์มกัญชา CANNABIS WARP FARM": 2 review(s) [ChIJAet6jhKdIzEROsQk4Sg0MmY]
+  ✓ [2760/2938] "ชาชีส ปังปิ้ง": 1 review(s) [ChIJ9U6SrJedIzERPfEtf8_3W7E]
+  ✓ [2761/2938] "แวะยำ มีรอยยิ้ม 420": 2 review(s) [ChIJzTD2TQCdIzERmWX_tsMX_IM]
+  ✓ [2762/2938] "KIT อะไหล่แต่ง สี่แยกไฟแดงหนองใส41000": 5 review(s) [ChIJf9aDL_ydIzERLJ_X2t99R0Y]
+  ✓ [2763/2938] "เตี๋ยว กัญชา BP FOOD": 5 review(s) [ChIJr1skEad3IzER3lBbvC3L9Nw]
+  ✓ [2764/2938] "Shop KPUDสหายกันช์": 1 review(s) [ChIJb87tHxGdIzERIxI4gdaonaM]
+  ✓ [2765/2938] "กัญชาห้วยหลวง cannabis": 5 review(s) [ChIJkd9PUACZIzERczQaHELaRqw]
+  ✓ [2766/2938] "บ้านยาตาเต้": 3 review(s) [ChIJjf6VN2mdIzER_-yn-1l7yVM]
+  ✓ [2767/2938] "Cafe de Penya": 5 review(s) [ChIJL_PHLQWdIzERm1lryvBgAx0]
+  ✓ [2768/2938] "เติมกัญ420cannabisสามพร้าว": 5 review(s) [ChIJEQJiFAB5IzERUapxaalAEUo]
+  ✓ [2769/2938] "บังเนื้อหอม 420": 5 review(s) [ChIJKTjI3R6dIzERKAN7-c8WBHE]
+  ✓ [2770/2938] "ตาต้าร์ ฟาร์มาซี": 4 review(s) [ChIJQU1luuSdIzERNaCDc3K3Ddo]
+  ✓ [2771/2938] "ตระกูลใจกล้าคลินิกการแพทย์": 5 review(s) [ChIJQXx8AfudIzER6NVjy-bPGg4]
+  ✓ [2772/2938] "เล่าต่อ ยันเช้า(พาณิชย์)": 5 review(s) [ChIJx6hqgo-dIzEROIBI1CjrJ0w]
+  ✓ [2773/2938] "MR.SADMAN FARM": 5 review(s) [ChIJZb2sXXENIzERYQx8mmKctdQ]
+  ✓ [2774/2938] "ร้านเติมกัญ420 Cannabis เพ็ญ": 5 review(s) [ChIJIwc3dgSBJDER0fyeuGW0dK4]
+  ✓ [2775/2938] "กัญ&กัญ": 5 review(s) [ChIJ94j5vA91JDERQ2Qim1j4c6s]
+  ✓ [2776/2938] "Smart Cannabis by AOG": 5 review(s) [ChIJZ5EgCwB3IzERt_oRH38dhnk]
+  - [2777/2938] "89 House": no reviews
+  - [2778/2938] "TGCNB3": no reviews
+  ✓ [2779/2938] "MR.SADMAN Pt.2": 5 review(s) [ChIJh8ooYgN1IzERtPlwUrjy9CQ]
+  - [2780/2938] "The Blusir Cannabis Shop": no reviews
+  ✓ [2781/2938] "ต้าหลู่ ปิ้งย่าง หม่าล่า ( Dalu saokao)": 2 review(s) [ChIJWSB8t3qdIzERErBzf3RmGag]
+  ✓ [2782/2938] "Cannabis First shop": 5 review(s) [ChIJwzRfCHeBIzERhIcNhGblsUI]
+  ✓ [2783/2938] "เติมกัญ 420 cannabis @หนองแสง": 5 review(s) [ChIJfxr6kA-hIzERlNVKSya_2Wg]
+  ✓ [2784/2938] "Termkan4:20.Cannabis Farm.": 2 review(s) [ChIJcZnwJYd5IzER6512byDc-GE]
+  ✓ [2785/2938] "Zone A Shop": 4 review(s) [ChIJpbFZvdChIzERVJ171TQtLxY]
+  ✓ [2786/2938] "ร้านกัญชาUD Smlie": 4 review(s) [ChIJz3ZldC9_JDER1ij494eDpAc]
+  ✓ [2787/2938] "Fulltank Cannabisshop ร้านกัญชา": 5 review(s) [ChIJ4dzolb0RIzER0ws-Xd1r_iI]
+  ✓ [2788/2938] "จีออโต้ซี๊ด(G.Autoseeds)": 5 review(s) [ChIJSzbMF6gFIzERMJPQUHT46Yw]
+  ✓ [2789/2938] "PTK 420 Cannabis": 1 review(s) [ChIJrQKhawCFIzERiqAXyutRPMY]
+  ✓ [2790/2938] "ร้านกัญบ้านผือ Cannabis Shop": 5 review(s) [ChIJ_-xXomt1JDERMF6bN7Q_EkQ]
+  ✓ [2791/2938] "FULLTANK2": 3 review(s) [ChIJoT-ZaMEPIzER7kDPio1CULw]
+  ✓ [2792/2938] "JOShop420 Udon": 5 review(s) [ChIJ35ELf-OdIzERVrqDQpU7cA4]
+  ✓ [2793/2938] "Udon High (Weed shop)": 5 review(s) [ChIJ35ELf-OdIzERVrqDQpU7cA4]
+  ✓ [2794/2938] "Udon Snus - Nicotine Pouches in Udon Thani": 5 review(s) [ChIJ35ELf-OdIzERVrqDQpU7cA4]
+  ✓ [2795/2938] "WeedStation khonkaen ( วีดสเตชั่น )": 5 review(s) [ChIJPU6FqW-LIjERHviki0ZYgTE]
+  ✓ [2796/2938] "Cannabis Store Khon Kaen (สาขาหน้าเมือง)": 5 review(s) [ChIJDeobKgCLIjER7QzHbRrG8cs]
+  ✓ [2797/2938] "Monster Plant Dispensary": 5 review(s) [ChIJs4V2ON6LIjERQb2wew4yv7w]
+  ✓ [2798/2938] "Boa Cafe Cannabis": 3 review(s) [ChIJwwtXBwCLIjER93x5AljkOiQ]
+  ✓ [2799/2938] "Craft Weed 420": 5 review(s) [ChIJHxuwHemLIjERfWee87hRMPc]
+  ✓ [2800/2938] "Cannabis Store Khonkaen": 2 review(s) [ChIJwdQobICJIjERkExZBzNwUQM]
+
+--- Progress: 2800/2938 (2703 with reviews, 97 none/failed) ---
+
+  ✓ [2801/2938] "khonkaen weed": 5 review(s) [ChIJbRZ8WDthIjER-Rr794T6g98]
+  ✓ [2802/2938] "Kcannabis": 5 review(s) [ChIJDeobKgCLIjER7QzHbRrG8cs]
+  ✓ [2803/2938] "Bubbaweed": 5 review(s) [ChIJa-ZaCyqLIjER4M7oZZkGT0M]
+  ✓ [2804/2938] "Enrich Dispensary กัญชาขอนแก่น": 5 review(s) [ChIJS3wZMVKLIjERxXmuqy5Srng]
+  ✓ [2805/2938] "Cannabuzz ร้านกัญชาขอนแก่น": 5 review(s) [ChIJIxIKg3KLIjERAb5ViiiUQ8k]
+  ✓ [2806/2938] "Cannabis house (บ้านกัญชา,บึงแก่นนคร,เมืองเก่า)": 5 review(s) [ChIJLzwrK5mJIjERm-SrLecPZE8]
+  ✓ [2807/2938] "Cannabis Corner Khonkaen & Moterbike for Rent": 5 review(s) [ChIJJx0LUQCLIjEREkh8ZtQIDd0]
+  ✓ [2808/2938] "Slow High Cannabis Store Khonkaen": 5 review(s) [ChIJWTThWACJIjERqdYASDZVu3U]
+  ✓ [2809/2938] "ACT WEED AND CAFE'": 5 review(s) [ChIJTaxcH1OLIjERqHY-U1RdLXo]
+  ✓ [2810/2938] "EsTeeM club YABAi cannabis&collector": 5 review(s) [ChIJGcyeR4iLIjERAoDR8cT-D3A]
+  ✓ [2811/2938] "Natural high สาขา มข. KKU": 4 review(s) [ChIJz7NNYACLIjERjQ09ftiObEw]
+  ✓ [2812/2938] "Baharabong": 5 review(s) [ChIJ6wiVHQCLIjERFINx9qoNOdY]
+  ✓ [2813/2938] "High Flower @หลัง มข.": 5 review(s) [ChIJfXmCdK2LIjERMjbQ7AlR80w]
+  - [2814/2938] "Canabis Corner@L.s.agro.,Ltd": no reviews
+  ✓ [2815/2938] "KLONGSAY CANNABIS SHOP": 5 review(s) [ChIJM3ailoKJIjERL45-uzLTvtg]
+  ✓ [2816/2938] "AA cannabis": 5 review(s) [ChIJOzrhvpiLIjERXDCX4rxn-e4]
+  ✓ [2817/2938] "Spedduck ร้านกัญชาใกล้ฉัน": 5 review(s) [ChIJPZr2to2LIjER0-Zp8-TfCp8]
+  ✓ [2818/2938] "Hybrid Store สาขาขอนแก่น ในเมือง มอภาคบ้านเป็ด": 5 review(s) [ChIJ2WvwbwCJIjERjc_KIwaK9fg]
+  ✓ [2819/2938] "ร้านกัญชาเมรี่เจน - ขอนแก่น (Cannabis Shop)": 5 review(s) [ChIJnXZdc1WLIjERhGoPJbQOpkM]
+  ✓ [2820/2938] "Say High (ร้านกัญชาขอนแก่น)": 5 review(s) [ChIJz7p0T1SLIjERsoFhvLD2AEY]
+  - [2821/2938] "cannabis bar": no reviews
+  ✓ [2822/2938] "Weed Center-ร้านกัญชาใกล้ฉัน": 5 review(s) [ChIJH-VUIgCLIjERIiRSc-vefWc]
+  ✓ [2823/2938] "สโม้คกี้ คอฟฟี่": 3 review(s) [ChIJPeksgxmLIjERse3EcDeM-kY]
+  ✓ [2824/2938] "Golden T": 1 review(s) [ChIJp69uMACLIjERzjo40VV6RH8]
+  ✓ [2825/2938] "โรงซาขอนแก่นแห่งที่ 1 By Aslan": 5 review(s) [ChIJB62cyYKLIjER6IhXwoIAAvY]
+  ✓ [2826/2938] "ร้านกัญชาขอนแก่น BestBudz.th": 5 review(s) [ChIJDeobKgCLIjER7QzHbRrG8cs]
+  ✓ [2827/2938] "Green House สาขาขอนแก่น (กัญชา)": 5 review(s) [ChIJLzwrK5mJIjERm-SrLecPZE8]
+  ✓ [2828/2938] "ร้านกัญชาขอนแก่นKings Og": 5 review(s) [ChIJDeobKgCLIjER7QzHbRrG8cs]
+  ✓ [2829/2938] "เพื่อนกัญ ร้านกัญชาใกล้ฉัน": 5 review(s) [ChIJ6z4kTQCLIjERMVID0XwwqkU]
+  ✓ [2830/2938] "โอชิกัญ&กัญชาสายยิ้ม": 3 review(s) [ChIJQ-faaCyLIjERJ7KzwKy1xmc]
+  ✓ [2831/2938] "ทศกัญ420 จำหน่ายกัญชา ปลีก-ส่ง": 5 review(s) [ChIJ-c0lXNmLIjERgkKTAzPfqHE]
+  ✓ [2832/2938] "Nop’s Store จำหน่ายกัญชา🥦 เครื่องดื่ม🔰": 1 review(s) [ChIJ_0xqwBiLIjER1kAe6opWAtU]
+  ✓ [2833/2938] "ร้านกัญชาใกล้ฉัน": 5 review(s) [ChIJJyf_axthIjERniFoL204GIo]
+  ✓ [2834/2938] "Mikes Dream cafe V2": 5 review(s) [ChIJKZMmOACLIjERZW-Ndk45n4k]
+  ✓ [2835/2938] "ร้านกระท่อมใบโต ​By มดใบโต": 5 review(s) [ChIJs4V2ON6LIjERQb2wew4yv7w]
+  ✓ [2836/2938] "PowerFlowers shop": 5 review(s) [ChIJz_PIfwCLIjERRGhvNPvl1bE]
+  ✓ [2837/2938] "ร้านกัญชาไกล้ฉัน Dueng Dude (ร้านดึงดูด)": 5 review(s) [ChIJJyf_axthIjERniFoL204GIo]
+  ✓ [2838/2938] "Ya.Zackcannabis": 2 review(s) [ChIJ__fzzkWLIjERw_zPLqu2urQ]
+  ✓ [2839/2938] "ร้านกัญชาใกล้ฉัน cannaweedkkc": 5 review(s) [ChIJTaxcH1OLIjERqHY-U1RdLXo]
+  ✓ [2840/2938] "Green Goddess OG Shop": 1 review(s) [ChIJ03A8ZCCLIjERuirLYxqn8jA]
+  ✓ [2841/2938] "Hojū ほじゅう": 3 review(s) [ChIJ9T0afSeLIjERG2KTpcKme3U]
+  ✓ [2842/2938] "ร้านกัญชาใกล้ฉัน (กุดกว้าง)": 5 review(s) [ChIJLzwrK5mJIjERm-SrLecPZE8]
+  ✓ [2843/2938] "ยิ้มกัญ Kkc Shop": 5 review(s) [ChIJAfesdx2LIjERUTZ5Cwl7jWA]
+  - [2844/2938] "Cannabis Flower 20": no reviews
+  ✓ [2845/2938] "Mamao Guncha": 2 review(s) [ChIJK1sMnwaLIjERq4QyqIqrpZU]
+  ✓ [2846/2938] "ร้านกับชาบังเเงาะ (THAI-กัญ)": 1 review(s) [ChIJK6b1JwBhIjERjU0mSEryFzI]
+  - [2847/2938] "นั่งเหม่อ Beer&Cannabiz": no reviews
+  ✓ [2848/2938] "เนื้อไร่ฟาร์ม": 5 review(s) [ChIJyYvZx7WJIjERfOjwlJsuqcY]
+  - [2849/2938] "ร้านกัญชา Boss&Pan Smokker weed": no reviews
+  ✓ [2850/2938] "ร้านบักเคา-THAI-กัญ": 5 review(s) [ChIJyZrZFgD1IjER57MGzzLNWK0]
+
+--- Progress: 2850/2938 (2748 with reviews, 102 none/failed) ---
+
+  ✓ [2851/2938] "เยิ้มกัญขอนแก่น": 5 review(s) [ChIJAfesdx2LIjERUTZ5Cwl7jWA]
+  ✓ [2852/2938] "One love 420 store": 5 review(s) [ChIJbRZ8WDthIjER-Rr794T6g98]
+  - [2853/2938] "ร้านกัญชา": no reviews
+  ✓ [2854/2938] "Indy Indy Tattoo ขอนแก่น": 5 review(s) [ChIJDeobKgCLIjER7QzHbRrG8cs]
+  ✓ [2855/2938] "Lyla Salon": 5 review(s) [ChIJS3wZMVKLIjERxXmuqy5Srng]
+  ✓ [2856/2938] "Japan Pet market ขอนแก่น": 5 review(s) [ChIJDeobKgCLIjER7QzHbRrG8cs]
+  ✓ [2857/2938] "แมวเมากัญ KKC (สาขาหลังมอminimall) cannabis shop": 2 review(s) [ChIJG6r3BFaLIjERvKL1ZRanmsI]
+  ✓ [2858/2938] "แมวเมากัญ KKC (สาขาหลังมอ ตรงข้าม #) cannabis shop": 1 review(s) [ChIJa8XjMjCLIjER7ZvC_IyjcwU]
+  ✓ [2859/2938] "ร้านกัญชา The Heart Weed by. แทน": 3 review(s) [ChIJxc532vNnIjERueKjV-9Ke7s]
+  ✓ [2860/2938] "Hydro420 Cannabis Dispensary": 5 review(s) [ChIJHW49Fx6JIjERTUt6vPz6qkk]
+  ✓ [2861/2938] "BUDDY 420 สาขา 2": 5 review(s) [ChIJPU6FqW-LIjERHviki0ZYgTE]
+  ✓ [2862/2938] "เจ้าป่า420": 5 review(s) [ChIJHxuwHemLIjERfWee87hRMPc]
+  ✓ [2863/2938] "กาแฟลุงเฉื่อย": 5 review(s) [ChIJS3wZMVKLIjERxXmuqy5Srng]
+  ✓ [2864/2938] "VR Delivery KKU": 5 review(s) [ChIJbRZ8WDthIjER-Rr794T6g98]
+  ✓ [2865/2938] "Mr.X420": 5 review(s) [ChIJHW49Fx6JIjERTUt6vPz6qkk]
+  ✓ [2866/2938] "Panther THC Cannabis Shop": 1 review(s) [ChIJp2RYVQBhIjERAO2Rt25lWrs]
+  - [2867/2938] "Ganja Man Weed Shop": not found
+  - [2868/2938] "Ganja man ganja shop 2": not found
+  ✓ [2869/2938] "SNAP BUD": 5 review(s) [ChIJRU2qCloFszERYYE6ApnBvXs]
+  ✓ [2870/2938] "The Gunjagan": 5 review(s) [ChIJC4zfeMYBszERttZU9CVh524]
+  ✓ [2871/2938] "Golden Crow Shop": 4 review(s) [ChIJrz8Gn7sBszERy9g5GRSH2jc]
+  ✓ [2872/2938] "S.R.N.Kingweeder": 4 review(s) [ChIJ-chbdQEHszERB4qfNnebRL4]
+  - [2873/2938] "OishifarmCanabis": no reviews
+  ✓ [2874/2938] "Ruso-Weed": 3 review(s) [ChIJI17PQAV1szER-qBvndSee5k]
+  ✓ [2875/2938] "ร้านเพื่อนกัญชาช้อป": 5 review(s) [ChIJC4zfeMYBszERttZU9CVh524]
+  - [2876/2938] "เติมกัญไหม": no reviews
+  ✓ [2877/2938] "Freedom": 4 review(s) [ChIJ-chbdQEHszERB4qfNnebRL4]
+  ✓ [2878/2938] "ชาดำ 10 บาท (ซะห์จัง)": 5 review(s) [ChIJRU2qCloFszERYYE6ApnBvXs]
+  ✓ [2879/2938] "ยอดมนุษย์กัญชาคาเฟ่ สาขา ร้าน เร็กเก้ริมทาง ปัตตานี": 4 review(s) [ChIJ-chbdQEHszERB4qfNnebRL4]
+  ✓ [2880/2938] "Weed Dragon Hatyai Cannabis Shop": 5 review(s) [ChIJAbj0rL8pTTARbSuv0zULHyc]
+  ✓ [2881/2938] "GreenRush Hatyai (Cannabis Dispensary / Weed Store)": 5 review(s) [ChIJsTTPX9wpTTARUfX-EcwKp38]
+  ✓ [2882/2938] "S WEED UPPER": 5 review(s) [ChIJrwLQmSopTTAR6KqfAJAz600]
+  ✓ [2883/2938] "Weed Connection Hatyai By Craft420 (Cannabis Shop)": 5 review(s) [ChIJA7sGTWopTTARx3ydRkKwm3g]
+  ✓ [2884/2938] "Roll with it Cannabis Shop": 5 review(s) [ChIJvyOqmGkpTTAR7jZV5kPnK5o]
+  ✓ [2885/2938] "Hamila": 5 review(s) [ChIJW0KvZRspTTARQdvKOrPy2Qk]
+  ✓ [2886/2938] "Green Planet Cannabis Store": 5 review(s) [ChIJ2wt_YHkpTTARenSQyBCNUaw]
+  ✓ [2887/2938] "Stoner420 Hatyai": 5 review(s) [ChIJZTKg6lApTTAR54otz30WUIg]
+  ✓ [2888/2938] "Weed Hatyai Cannabis Hop Bis Coffee Shop": 5 review(s) [ChIJLxBBmfYpTTARTOstnKX-f6c]
+  ✓ [2889/2938] "Royyim in Cannabis Hatyai": 5 review(s) [ChIJE3NiCAYpTTARCk8X_UF23Mc]
+  ✓ [2890/2938] "Craftzman hatyai": 5 review(s) [ChIJ7SjXWwApTTARYFp7IqzdlDw]
+  ✓ [2891/2938] "High and Stoned Cannabis Dispensary Hatyai (Weed Shop)": 5 review(s) [ChIJT_pdopIpTTAR4cOrfwXNlbk]
+  ✓ [2892/2938] "STYLE 420 Cannabis Shop": 2 review(s) [ChIJ6Vu79U8oTTARhfkALV_46Ho]
+  ✓ [2893/2938] "Weed Hatyai Hop Bis Cannabis Shop": 5 review(s) [ChIJC5drIIwpTTARv0T-EmZRWXI]
+  ✓ [2894/2938] "Buddyparty Cannabis Dispensary เพื่อนปาร์ตี้ Weed Shop": 5 review(s) [ChIJXehmIy0pTTARjmqu6pFuIAM]
+  - [2895/2938] "GreenWeedzard Cannabis Dispensary": no reviews
+  ✓ [2896/2938] "UGE CLINIC ยูจีอี คลินิกการแพทย์แผนไทย": 5 review(s) [ChIJ1RwsVaUpTTAR9WySE4O1QsA]
+  ✓ [2897/2938] "Syrup Cannabis Hatyai": 5 review(s) [ChIJLRElHhgpTTARYtUA80WT4X0]
+  ✓ [2898/2938] "Love And Flowers Cannabis shop": 5 review(s) [ChIJ7TweLRUpTTARX5izoEZjsI0]
+  ✓ [2899/2938] "Alan420 (สาขา4)เปิด24ชม.": 5 review(s) [ChIJjSIx4DMpTTAR7-0jAlPhFQI]
+  ✓ [2900/2938] "Deep and Roll Cannabis Shop": 5 review(s) [ChIJzUn0SjQpTTARO9NYgFQYX-w]
+
+--- Progress: 2900/2938 (2792 with reviews, 108 none/failed) ---
+
+  ✓ [2901/2938] "Exotic Cannabis & Bar Hatyai": 5 review(s) [ChIJ_S9IKQApTTARQH6QIOXUQ_M]
+  ✓ [2902/2938] "Hotbox Hatyai": 5 review(s) [ChIJizPeLZ0pTTARcfNu_vZJ_gI]
+  ✓ [2903/2938] "STONED MASTER": 5 review(s) [ChIJkfpCgrIpTTARIjuaI21iR3I]
+  ✓ [2904/2938] "CycloneLab Hatyai cannabis Wholesale": 5 review(s) [ChIJxRU6TwApTTARYQsLvpz6jHk]
+  ✓ [2905/2938] "ฮิปปี้กัญ สาขา3": 4 review(s) [ChIJgTx1mG4pTTAR5_mjQ5M2gl8]
+  ✓ [2906/2938] "SGAW Cosmic Flowers": 5 review(s) [ChIJRe5IgrwpTTARKqheoXZga6w]
+  ✓ [2907/2938] "Cannabest weed shop hatyai": 5 review(s) [ChIJL4HWqqEpTTARNxsKTFWUPu0]
+  ✓ [2908/2938] "Bottoms Up by weed 420": 5 review(s) [ChIJZaDiISApTTARSumDOPOAVVM]
+  ✓ [2909/2938] "กัญชาหาดใหญ่ By SMOKY สนามบิน ท่าเคียน ควนลัง cannabis airport": 5 review(s) [ChIJ2e28guQpTTAR2l0MWtcLl1s]
+  ✓ [2910/2938] "GANJAA CANNABIS SHOP": 4 review(s) [ChIJQ20bPN-7TDARR-Dqe17NVcY]
+  ✓ [2911/2938] "Broccoli.hdy (canna cafe hatyai)": 5 review(s) [ChIJcVzbOFspTTARoEj-4K3jEaI]
+  ✓ [2912/2938] "กัญชาหาดใหญ่ by MOON LIGHT cannabis hatyai": 5 review(s) [ChIJu9rgDKEpTTARbBYF_m7vS_U]
+  ✓ [2913/2938] "Weed 420 hatyai": 5 review(s) [ChIJA7sGTWopTTARx3ydRkKwm3g]
+  ✓ [2914/2938] "ดอกไม้วิเศษ Magie Flower Weed": 5 review(s) [ChIJGVv3RBcpTTARYNsROfbIF4w]
+  ✓ [2915/2938] "Weed View Hatyai": 5 review(s) [ChIJA7sGTWopTTARx3ydRkKwm3g]
+  ✓ [2916/2938] "Weed Cannabis 大麻 Hatyai CHUM MOKE WEED 133 | Dispensary | Marijuana | SHOP&CAFE": 5 review(s) [ChIJQUnXaZcpTTARfNJtd3qfsK8]
+  ✓ [2917/2938] "ST Herb Hemp Hat Yai": 5 review(s) [ChIJrwLQmSopTTAR6KqfAJAz600]
+  ✓ [2918/2938] "ร้านขายกัญชา": 5 review(s) [ChIJAbj0rL8pTTARbSuv0zULHyc]
+  ✓ [2919/2938] "Wolf tea หาดใหญ่": 5 review(s) [ChIJA7sGTWopTTARx3ydRkKwm3g]
+  ✓ [2920/2938] "วัยรุ่นสี่แยก ใบกระท่อม": 5 review(s) [ChIJ94WIQgApTTAR9C25Uz3FMas]
+  ✓ [2921/2938] "Lab House - Cannabis Shop": 5 review(s) [ChIJQYelOJQpTTARqUxKtsrhwfY]
+  ✓ [2922/2938] "บริษัท ยูนิฟาย คอนสตรัคชั่น จำกัด": 5 review(s) [ChIJ1RwsVaUpTTAR9WySE4O1QsA]
+  ✓ [2923/2938] "Big C Extra Hatyai 2": 5 review(s) [ChIJA7sGTWopTTARx3ydRkKwm3g]
+  ✓ [2924/2938] "One Shop": 5 review(s) [ChIJAbj0rL8pTTARbSuv0zULHyc]
+  ✓ [2925/2938] "โรงชา99": 5 review(s) [ChIJQUnXaZcpTTARfNJtd3qfsK8]
+  ✓ [2926/2938] "Odean Supermarket": 5 review(s) [ChIJrwLQmSopTTAR6KqfAJAz600]
+  ✓ [2927/2938] "DT cake รับทำเค้กวันเกิดหาดใหญ่": 5 review(s) [ChIJvyOqmGkpTTAR7jZV5kPnK5o]
+  ✓ [2928/2938] "Hood": 5 review(s) [ChIJLxBBmfYpTTARTOstnKX-f6c]
+  ✓ [2929/2938] "Anchors Barber Shop": 5 review(s) [ChIJzdVDz0opTTARQPWw9o9SBno]
+  ✓ [2930/2938] "Hero TATTOO": 5 review(s) [ChIJAbj0rL8pTTARbSuv0zULHyc]
+  ✓ [2931/2938] "HAZY&HAZE (craft beer,cocktail)": 5 review(s) [ChIJCTLiYwApTTARQXiAK6QJOzE]
+  ✓ [2932/2938] "บจก.เอกศิลป์เครื่องเขียน": 5 review(s) [ChIJT_pdopIpTTAR4cOrfwXNlbk]
+  ✓ [2933/2938] "Happy Sleep": 5 review(s) [ChIJY7NJWKApTTARrMyMPEEicfQ]
+  ✓ [2934/2938] "Get High 108": 2 review(s) [ChIJ423nglspTTAR8CdzL0-htqk]
+  ✓ [2935/2938] "JUSTPER เบอร์เกอร์หาดใหญ่ เบอร์เกอร์ใกล้ฉัน": 5 review(s) [ChIJN4iLbNopTTAR8BrdS-eF-II]
+  ✓ [2936/2938] "Bangkok Garden Cannabis Ganja Shop @soi8": 4 review(s) [ChIJQ20bPN-7TDARR-Dqe17NVcY]
+  ✓ [2937/2938] "Cannabis Ganja By ม.ม้า ออแกนิค 420 ฉลุง": 1 review(s) [ChIJO4p3UonzTDARxKXIzLcOMjw]
+  ✓ [2938/2938] "ม.ม้า O.G 420 Ganja Cannabis": 5 review(s) [ChIJkZ0FSNuNTDARtt9GF2-HAMU]
+
+==================================================
+✅ DONE: 2830 shops with reviews, 108 without
+==================================================
+
