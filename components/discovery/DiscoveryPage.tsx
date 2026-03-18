@@ -6,9 +6,13 @@ import { fetchNearbyShops, searchShops } from '@/lib/supabase/queries'
 import type { Shop } from '@/types'
 import ShopListCard from './ShopListCard'
 import AreaFilter, { type Area } from './AreaFilter'
+import MapErrorBoundary from './MapErrorBoundary'
 import dynamic from 'next/dynamic'
 
-const MapPanel = dynamic(() => import('./MapPanel'), { ssr: false })
+const MapPanel = dynamic(() => import('./MapPanel'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-gray-100 flex items-center justify-center"><div className="w-6 h-6 border-2 border-green-500 border-t-transparent rounded-full animate-spin" /></div>,
+})
 
 const BANGKOK = { lat: 13.7563, lng: 100.5018 }
 
@@ -227,17 +231,19 @@ export default function DiscoveryPage() {
             mobileView === 'list' ? 'hidden' : 'flex'
           } md:flex flex-col w-full md:w-[42%] relative`}
         >
-          <MapPanel
-            shops={shops}
-            center={mapCenter}
-            selectedId={selected?.id}
-            onMarkerClick={handleSelectShop}
-            onCenterChange={(lat, lng) => {
-              setMapCenter({ lat, lng })
-              clearTimeout(debounceRef.current)
-              debounceRef.current = setTimeout(() => load(lat, lng), 800)
-            }}
-          />
+          <MapErrorBoundary>
+            <MapPanel
+              shops={shops}
+              center={mapCenter}
+              selectedId={selected?.id}
+              onMarkerClick={handleSelectShop}
+              onCenterChange={(lat, lng) => {
+                setMapCenter({ lat, lng })
+                clearTimeout(debounceRef.current)
+                debounceRef.current = setTimeout(() => load(lat, lng), 800)
+              }}
+            />
+          </MapErrorBoundary>
 
           {/* Selected shop mini card on map */}
           {selected && mobileView === 'map' && (
