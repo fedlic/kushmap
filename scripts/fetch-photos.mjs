@@ -71,17 +71,28 @@ async function fetchPhotoForShop(shop) {
   }))
 }
 
+async function fetchAllShops() {
+  const all = []
+  const PAGE = 1000
+  let from = 0
+  while (true) {
+    const { data, error } = await supabase
+      .from('shops')
+      .select('id, name, city, lat, lng')
+      .order('created_at', { ascending: true })
+      .range(from, from + PAGE - 1)
+    if (error) throw new Error(error.message)
+    if (!data?.length) break
+    all.push(...data)
+    if (data.length < PAGE) break
+    from += PAGE
+  }
+  return all
+}
+
 async function main() {
   // Get shops that don't have images yet
-  const { data: allShops, error: shopsErr } = await supabase
-    .from('shops')
-    .select('id, name, city, lat, lng')
-    .order('created_at', { ascending: true })
-
-  if (shopsErr) {
-    log(`FATAL: could not fetch shops: ${shopsErr.message}`)
-    process.exit(1)
-  }
+  const allShops = await fetchAllShops().catch(err => { log(`FATAL: ${err.message}`); process.exit(1) })
 
   // Get shop IDs that already have images
   const { data: existingImages } = await supabase

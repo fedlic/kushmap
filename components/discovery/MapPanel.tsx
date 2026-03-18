@@ -1,10 +1,9 @@
 'use client'
 
 import { useRef } from 'react'
-import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api'
+import { GoogleMap, useJsApiLoader, OverlayViewF, OVERLAY_MOUSE_TARGET } from '@react-google-maps/api'
 import type { Shop } from '@/types'
-
-const MARKER_PATH = 'M12 0C5.373 0 0 5.373 0 12c0 9 12 18 12 18s12-9 12-18C24 5.373 18.627 0 12 0z'
+import { Leaf } from 'lucide-react'
 
 const MAP_OPTIONS: google.maps.MapOptions = {
   disableDefaultUI: true,
@@ -18,6 +17,83 @@ interface MapPanelProps {
   selectedId?: string
   onMarkerClick: (shop: Shop) => void
   onCenterChange: (lat: number, lng: number) => void
+}
+
+function PhotoMarker({
+  shop,
+  isSelected,
+  onClick,
+}: {
+  shop: Shop
+  isSelected: boolean
+  onClick: () => void
+}) {
+  const photo = shop.shop_images?.find((i) => i.is_primary) ?? shop.shop_images?.[0]
+  const borderColor = isSelected
+    ? 'border-orange-500'
+    : shop.is_premium
+    ? 'border-amber-400'
+    : 'border-green-600'
+  const ringColor = isSelected
+    ? 'shadow-orange-300'
+    : shop.is_premium
+    ? 'shadow-amber-200'
+    : 'shadow-green-200'
+  const size = isSelected ? 'w-14 h-14' : 'w-11 h-11'
+  const zIndex = isSelected ? 30 : shop.is_premium ? 10 : 1
+
+  return (
+    <div
+      onClick={onClick}
+      style={{ zIndex }}
+      className="relative cursor-pointer select-none flex flex-col items-center"
+    >
+      <div
+        className={`
+          ${size} rounded-full border-[3px] ${borderColor}
+          overflow-hidden bg-white
+          shadow-lg ${ringColor}
+          transition-all duration-150
+          ${isSelected ? 'scale-110' : 'hover:scale-105'}
+        `}
+        style={{
+          transform: `translateX(-50%) translateY(-100%)`,
+          marginBottom: 0,
+        }}
+      >
+        {photo?.url ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={photo.url}
+            alt={shop.name}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <div
+            className={`w-full h-full flex items-center justify-center ${
+              shop.is_premium
+                ? 'bg-gradient-to-br from-amber-400 to-orange-500'
+                : 'bg-gradient-to-br from-green-500 to-green-700'
+            }`}
+          >
+            <Leaf className="w-4 h-4 text-white" />
+          </div>
+        )}
+      </div>
+      {/* Pointer triangle */}
+      <div
+        style={{ transform: 'translateX(-50%) translateY(-100%)' }}
+        className={`w-0 h-0 border-l-4 border-r-4 border-t-8 border-l-transparent border-r-transparent ${
+          isSelected
+            ? 'border-t-orange-500'
+            : shop.is_premium
+            ? 'border-t-amber-400'
+            : 'border-t-green-600'
+        }`}
+      />
+    </div>
+  )
 }
 
 export default function MapPanel({
@@ -36,7 +112,7 @@ export default function MapPanel({
   if (!isLoaded) {
     return (
       <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-        <div className="w-6 h-6 border-3 border-green-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-6 h-6 border-2 border-green-500 border-t-transparent rounded-full animate-spin" />
       </div>
     )
   }
@@ -56,22 +132,17 @@ export default function MapPanel({
       {shops.map((shop) => {
         const isSelected = shop.id === selectedId
         return (
-          <MarkerF
+          <OverlayViewF
             key={shop.id}
             position={{ lat: shop.lat, lng: shop.lng }}
-            title={shop.name}
-            onClick={() => onMarkerClick(shop)}
-            icon={{
-              path: MARKER_PATH,
-              fillColor: isSelected ? '#f97316' : shop.is_premium ? '#f59e0b' : '#16a34a',
-              fillOpacity: 1,
-              strokeColor: '#ffffff',
-              strokeWeight: 2,
-              scale: isSelected ? 1.8 : shop.is_premium ? 1.6 : 1.4,
-              anchor: new google.maps.Point(12, 30),
-            }}
-            zIndex={isSelected ? 20 : shop.is_premium ? 10 : 1}
-          />
+            mapPaneName={OVERLAY_MOUSE_TARGET}
+          >
+            <PhotoMarker
+              shop={shop}
+              isSelected={isSelected}
+              onClick={() => onMarkerClick(shop)}
+            />
+          </OverlayViewF>
         )
       })}
     </GoogleMap>
