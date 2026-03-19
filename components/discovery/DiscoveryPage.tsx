@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
-import { Search, MapPin, List, Map, LocateFixed, X, SlidersHorizontal, Clock, BadgeCheck, User } from 'lucide-react'
+import { Search, MapPin, LocateFixed, X, SlidersHorizontal, Clock, BadgeCheck, User, Map } from 'lucide-react'
 import { fetchNearbyShops, searchShops, fetchBookmarkedShopIds, toggleBookmark } from '@/lib/supabase/queries'
 import type { Shop } from '@/types'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
@@ -62,7 +62,7 @@ export default function DiscoveryPage() {
   const [userLoc, setUserLoc] = useState<{ lat: number; lng: number } | null>(null)
   const [area, setArea] = useState<Area>('all')
   const [searchQuery, setSearchQuery] = useState('')
-  const [mobileView, setMobileView] = useState<'list' | 'map'>('list')
+  const [showMobileMap, setShowMobileMap] = useState(false)
   const [sort, setSort] = useState<SortMode>('distance')
   const [filterOpen, setFilterOpen] = useState(false)
   const [onlyOpen, setOnlyOpen] = useState(false)
@@ -79,6 +79,7 @@ export default function DiscoveryPage() {
   const debounceRef = useRef<ReturnType<typeof setTimeout>>()
   const listRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<Record<string, HTMLDivElement>>({})
+  const filterRef = useRef<HTMLDivElement>(null)
   const supabase = createClient()
 
   const load = useCallback(async (lat: number, lng: number) => {
@@ -96,6 +97,18 @@ export default function DiscoveryPage() {
       if (data.user) fetchBookmarkedShopIds(data.user.id).then(ids => setBookmarkedIds(new Set(ids)))
     })
   }, [load]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Close filter dropdown on outside click
+  useEffect(() => {
+    if (!filterOpen) return
+    const handler = (e: MouseEvent) => {
+      if (filterRef.current && !filterRef.current.contains(e.target as Node)) {
+        setFilterOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [filterOpen])
 
   const handleBookmarkToggle = async (e: React.MouseEvent, shop: Shop) => {
     e.preventDefault()
@@ -163,6 +176,7 @@ export default function DiscoveryPage() {
       .filter(s => !onlyOpen || isOpenNow(s.opening_hours))
       .filter(s => !onlyVerified || s.is_verified)
       .filter(s => priceFilter === 'all' || s.price_range === priceFilter)
+      .filter(() => strainFilter === 'all' || true) // strain filter reserved for product-level filtering
       .filter(s => !amenitySmokingArea || s.smoking_area)
       .filter(s => !amenityDelivery || s.delivery)
       .filter(s => !amenityEnglish || s.english_staff)
@@ -174,7 +188,7 @@ export default function DiscoveryPage() {
         const db = calcKm(refCenter.lat, refCenter.lng, b.lat, b.lng)
         return da - db
       })
-  }, [shops, onlyOpen, onlyVerified, priceFilter, amenitySmokingArea, amenityDelivery, amenityEnglish, sort, refCenter])
+  }, [shops, onlyOpen, onlyVerified, priceFilter, strainFilter, amenitySmokingArea, amenityDelivery, amenityEnglish, sort, refCenter])
 
   // Reset page when filters change
   useEffect(() => {
@@ -250,22 +264,131 @@ export default function DiscoveryPage() {
               <span className="hidden sm:inline">現在地</span>
             </button>
 
-            <button
-              onClick={() => setFilterOpen(f => !f)}
-              className={`shrink-0 flex items-center gap-1.5 text-xs rounded-lg px-2.5 h-9 transition-colors border relative ${
-                activeFilterCount > 0
-                  ? 'bg-green-600 text-white border-green-600'
-                  : 'text-gray-600 border-gray-300 hover:bg-gray-50'
-              }`}
-            >
-              <SlidersHorizontal className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">絞り込み</span>
-              {activeFilterCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 text-white text-[10px] rounded-full flex items-center justify-center font-bold">
-                  {activeFilterCount}
-                </span>
+            {/* Filter dropdown trigger */}
+            <div className="relative" ref={filterRef}>
+              <button
+                onClick={() => setFilterOpen(f => !f)}
+                className={`shrink-0 flex items-center gap-1.5 text-xs rounded-lg px-2.5 h-9 transition-colors border relative ${
+                  activeFilterCount > 0
+                    ? 'bg-green-600 text-white border-green-600'
+                    : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                <SlidersHorizontal className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">絞り込み</span>
+                {activeFilterCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 text-white text-[10px] rounded-full flex items-center justify-center font-bold">
+                    {activeFilterCount}
+                  </span>
+                )}
+              </button>
+
+              {/* Filter dropdown */}
+              {filterOpen && (
+                <div className="absolute right-0 top-full mt-2 w-72 bg-white rounded-xl shadow-xl border border-gray-200 p-4 space-y-4 z-30">
+                  {/* Status */}
+                  <div>
+                    <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Status</span>
+                    <div className="flex flex-wrap gap-1.5 mt-1.5">
+                      <button
+                        onClick={() => setOnlyOpen(v => !v)}
+                        className={`flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-full border transition-colors ${
+                          onlyOpen ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                        }`}
+                      >
+                        <Clock className="w-3 h-3" />
+                        営業中のみ
+                      </button>
+                      <button
+                        onClick={() => setOnlyVerified(v => !v)}
+                        className={`flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-full border transition-colors ${
+                          onlyVerified ? 'bg-blue-600 text-white border-blue-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                        }`}
+                      >
+                        <BadgeCheck className="w-3 h-3" />
+                        認証済みのみ
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Strain */}
+                  <div>
+                    <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">ストレイン</span>
+                    <div className="flex flex-wrap gap-1.5 mt-1.5">
+                      {([['all', '全て'], ['indica', 'Indica'], ['sativa', 'Sativa'], ['hybrid', 'Hybrid'], ['cbd', 'CBD']] as [StrainFilter, string][]).map(([val, label]) => (
+                        <button
+                          key={val}
+                          onClick={() => setStrainFilter(val)}
+                          className={`text-xs px-2.5 py-1.5 rounded-full border transition-colors ${
+                            strainFilter === val ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                          }`}
+                        >
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Price */}
+                  <div>
+                    <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">価格</span>
+                    <div className="flex flex-wrap gap-1.5 mt-1.5">
+                      {([['all', '全て'], [1, '฿'], [2, '฿฿'], [3, '฿฿฿']] as [PriceFilter, string][]).map(([val, label]) => (
+                        <button
+                          key={String(val)}
+                          onClick={() => setPriceFilter(val)}
+                          className={`text-xs px-2.5 py-1.5 rounded-full border transition-colors ${
+                            priceFilter === val ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                          }`}
+                        >
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Amenity */}
+                  <div>
+                    <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">設備</span>
+                    <div className="flex flex-wrap gap-1.5 mt-1.5">
+                      <button
+                        onClick={() => setAmenitySmokingArea(v => !v)}
+                        className={`text-xs px-2.5 py-1.5 rounded-full border transition-colors ${
+                          amenitySmokingArea ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                        }`}
+                      >
+                        🚬 喫煙スペース
+                      </button>
+                      <button
+                        onClick={() => setAmenityDelivery(v => !v)}
+                        className={`text-xs px-2.5 py-1.5 rounded-full border transition-colors ${
+                          amenityDelivery ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                        }`}
+                      >
+                        🛵 デリバリー
+                      </button>
+                      <button
+                        onClick={() => setAmenityEnglish(v => !v)}
+                        className={`text-xs px-2.5 py-1.5 rounded-full border transition-colors ${
+                          amenityEnglish ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                        }`}
+                      >
+                        🇬🇧 英語対応
+                      </button>
+                    </div>
+                  </div>
+
+                  {activeFilterCount > 0 && (
+                    <button
+                      onClick={clearFilters}
+                      className="text-xs text-gray-400 hover:text-gray-600 underline w-full text-center pt-1"
+                    >
+                      すべてクリア
+                    </button>
+                  )}
+                </div>
               )}
-            </button>
+            </div>
 
             {user ? (
               <Link
@@ -286,124 +409,18 @@ export default function DiscoveryPage() {
             )}
           </div>
 
-          {/* Filter panel */}
-          {filterOpen && (
-            <div className="py-1 border-t border-gray-100 pt-2.5 space-y-2.5">
-              {/* Row 1: Status */}
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[10px] text-gray-400 font-medium w-12 shrink-0">Status</span>
-                <button
-                  onClick={() => setOnlyOpen(v => !v)}
-                  className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                    onlyOpen ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  <Clock className="w-3.5 h-3.5" />
-                  営業中のみ
-                </button>
-                <button
-                  onClick={() => setOnlyVerified(v => !v)}
-                  className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                    onlyVerified ? 'bg-blue-600 text-white border-blue-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  <BadgeCheck className="w-3.5 h-3.5" />
-                  認証済みのみ
-                </button>
-              </div>
-
-              {/* Row 2: Price */}
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[10px] text-gray-400 font-medium w-12 shrink-0">Price</span>
-                {([['all', 'All'], [1, '฿'], [2, '฿฿'], [3, '฿฿฿']] as [PriceFilter, string][]).map(([val, label]) => (
-                  <button
-                    key={String(val)}
-                    onClick={() => setPriceFilter(val)}
-                    className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                      priceFilter === val ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-
-              {/* Row 3: Amenity */}
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[10px] text-gray-400 font-medium w-12 shrink-0">設備</span>
-                <button
-                  onClick={() => setAmenitySmokingArea(v => !v)}
-                  className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                    amenitySmokingArea ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  🚬 喫煙スペース
-                </button>
-                <button
-                  onClick={() => setAmenityDelivery(v => !v)}
-                  className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                    amenityDelivery ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  🛵 デリバリー
-                </button>
-                <button
-                  onClick={() => setAmenityEnglish(v => !v)}
-                  className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                    amenityEnglish ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  🇬🇧 英語対応
-                </button>
-              </div>
-
-              {activeFilterCount > 0 && (
-                <button
-                  onClick={clearFilters}
-                  className="text-xs text-gray-400 hover:text-gray-600 underline"
-                >
-                  すべてクリア
-                </button>
-              )}
-            </div>
-          )}
-
           {/* Area filter */}
           <AreaFilter active={area} onChange={handleArea} />
         </div>
       </header>
 
-      {/* ===== MOBILE VIEW TOGGLE ===== */}
-      <div className="md:hidden flex border-b border-gray-200 bg-white shrink-0">
-        <button
-          onClick={() => setMobileView('list')}
-          className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-sm font-medium transition-colors ${
-            mobileView === 'list' ? 'text-orange-500 border-b-2 border-orange-500' : 'text-gray-500'
-          }`}
-        >
-          <List className="w-4 h-4" />
-          リスト
-        </button>
-        <button
-          onClick={() => setMobileView('map')}
-          className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-sm font-medium transition-colors ${
-            mobileView === 'map' ? 'text-orange-500 border-b-2 border-orange-500' : 'text-gray-500'
-          }`}
-        >
-          <Map className="w-4 h-4" />
-          マップ
-        </button>
-      </div>
-
       {/* ===== MAIN CONTENT ===== */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 min-h-0">
 
-        {/* LEFT: Shop List */}
+        {/* LEFT: Shop List — scrollable independently */}
         <div
           ref={listRef}
-          className={`${
-            mobileView === 'map' ? 'hidden' : 'flex'
-          } md:flex flex-col w-full md:w-[58%] bg-white border-r border-gray-200 overflow-y-auto`}
+          className="flex flex-col w-full md:w-[45%] bg-white md:border-r border-gray-200 overflow-y-auto"
         >
           {/* Result count + sort */}
           <div className="px-4 py-2.5 border-b border-gray-100 bg-gray-50 flex items-center justify-between shrink-0">
@@ -467,61 +484,97 @@ export default function DiscoveryPage() {
           )}
         </div>
 
-        {/* RIGHT: Map */}
-        <div
-          className={`${
-            mobileView === 'list' ? 'hidden' : 'flex'
-          } md:flex flex-col w-full md:w-[42%] relative`}
-        >
-          <MapErrorBoundary>
-            <MapPanel
-              shops={displayShops}
-              center={mapCenter}
-              selectedId={selected?.id}
-              onMarkerClick={handleSelectShop}
-              onSearchArea={(lat, lng) => {
-                setMapCenter({ lat, lng })
-                load(lat, lng)
-              }}
-            />
-          </MapErrorBoundary>
+        {/* RIGHT: Map — sticky, full height, hidden on mobile by default */}
+        <div className="hidden md:block md:w-[55%] sticky top-0 h-screen">
+          <div className="w-full h-full relative">
+            <MapErrorBoundary>
+              <MapPanel
+                shops={displayShops}
+                center={mapCenter}
+                selectedId={selected?.id}
+                onMarkerClick={handleSelectShop}
+                onSearchArea={(lat, lng) => {
+                  setMapCenter({ lat, lng })
+                  load(lat, lng)
+                }}
+              />
+            </MapErrorBoundary>
 
-          {/* Selected shop mini card on map */}
-          {selected && mobileView === 'map' && (
-            <div className="absolute bottom-4 left-4 right-4 bg-white rounded-xl shadow-lg p-3 flex gap-3">
-              <div className={`w-16 h-16 rounded-lg shrink-0 flex items-center justify-center text-xl font-bold text-white ${selected.is_premium ? 'bg-gradient-to-br from-amber-400 to-orange-500' : 'bg-gradient-to-br from-green-500 to-green-700'}`}>
-                {selected.name.charAt(0)}
+            {/* Current location indicator */}
+            {userLoc && (
+              <div className="absolute top-3 right-3 bg-white rounded-lg shadow px-2 py-1 flex items-center gap-1 text-xs text-blue-600">
+                <MapPin className="w-3 h-3" />
+                現在地を使用中
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-bold text-sm truncate">{selected.name}</p>
-                <p className="text-xs text-gray-500 truncate">{selected.address}</p>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-xs text-green-700 font-medium">
-                    {selected.price_range === 1 ? '฿' : selected.price_range === 2 ? '฿฿' : '฿฿฿'}
-                  </span>
-                  <span className="text-xs text-gray-400">
-                    {calcKm(refCenter.lat, refCenter.lng, selected.lat, selected.lng).toFixed(1)}km
-                  </span>
-                </div>
-              </div>
-              <button
-                onClick={() => setSelected(null)}
-                className="text-gray-400 hover:text-gray-600 shrink-0"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          )}
-
-          {/* Current location dot indicator */}
-          {userLoc && (
-            <div className="absolute top-3 right-3 bg-white rounded-lg shadow px-2 py-1 flex items-center gap-1 text-xs text-blue-600">
-              <MapPin className="w-3 h-3" />
-              現在地を使用中
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
+
+      {/* ===== MOBILE: Floating "地図を見る" button ===== */}
+      <button
+        onClick={() => setShowMobileMap(true)}
+        className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 bg-green-600 text-white text-sm font-medium px-5 py-3 rounded-full shadow-lg hover:bg-green-700 transition-colors"
+      >
+        <Map className="w-4 h-4" />
+        地図を見る
+      </button>
+
+      {/* ===== MOBILE: Full-screen map overlay ===== */}
+      {showMobileMap && (
+        <div className="md:hidden fixed inset-0 z-40 bg-white flex flex-col">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 shrink-0">
+            <span className="font-bold text-sm text-gray-900">マップ</span>
+            <button
+              onClick={() => setShowMobileMap(false)}
+              className="text-sm text-green-700 font-medium"
+            >
+              リストに戻る
+            </button>
+          </div>
+          <div className="flex-1 relative">
+            <MapErrorBoundary>
+              <MapPanel
+                shops={displayShops}
+                center={mapCenter}
+                selectedId={selected?.id}
+                onMarkerClick={handleSelectShop}
+                onSearchArea={(lat, lng) => {
+                  setMapCenter({ lat, lng })
+                  load(lat, lng)
+                }}
+              />
+            </MapErrorBoundary>
+
+            {/* Selected shop mini card on mobile map */}
+            {selected && (
+              <div className="absolute bottom-4 left-4 right-4 bg-white rounded-xl shadow-lg p-3 flex gap-3">
+                <div className={`w-16 h-16 rounded-lg shrink-0 flex items-center justify-center text-xl font-bold text-white ${selected.is_premium ? 'bg-gradient-to-br from-amber-400 to-orange-500' : 'bg-gradient-to-br from-green-500 to-green-700'}`}>
+                  {selected.name.charAt(0)}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-bold text-sm truncate">{selected.name}</p>
+                  <p className="text-xs text-gray-500 truncate">{selected.address}</p>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-xs text-green-700 font-medium">
+                      {selected.price_range === 1 ? '฿' : selected.price_range === 2 ? '฿฿' : '฿฿฿'}
+                    </span>
+                    <span className="text-xs text-gray-400">
+                      {calcKm(refCenter.lat, refCenter.lng, selected.lat, selected.lng).toFixed(1)}km
+                    </span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setSelected(null)}
+                  className="text-gray-400 hover:text-gray-600 shrink-0"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
