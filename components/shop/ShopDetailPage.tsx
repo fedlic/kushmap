@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import Script from 'next/script'
 import { ArrowLeft, Phone, Globe, Instagram, MapPin, Star, Clock, Heart } from 'lucide-react'
 import type { Shop, Product, Review, GoogleReview, ReviewLang } from '@/types'
 import { fetchShopProducts, fetchShopReviews, submitReview, fetchGoogleReviews, toggleBookmark } from '@/lib/supabase/queries'
@@ -16,6 +17,15 @@ const DAY_LABELS: Record<string, string> = {
   sun: '日', mon: '月', tue: '火', wed: '水', thu: '木', fri: '金', sat: '土',
 }
 
+type ProductCategory = 'all' | 'flower' | 'oil' | 'edible' | 'joint' | 'cbd'
+const PRODUCT_CATEGORIES: { id: ProductCategory; label: string }[] = [
+  { id: 'all', label: '全て' },
+  { id: 'flower', label: 'Flower' },
+  { id: 'oil', label: 'Oil' },
+  { id: 'edible', label: 'Edible' },
+  { id: 'joint', label: 'Joint' },
+  { id: 'cbd', label: 'CBD' },
+]
 
 function StarDisplay({ rating, size = 'sm' }: { rating: number; size?: 'sm' | 'lg' }) {
   const cls = size === 'lg' ? 'w-5 h-5' : 'w-3.5 h-3.5'
@@ -117,11 +127,49 @@ function StrainBadge({ type }: { type?: string }) {
     sativa: 'bg-yellow-50 text-yellow-700 border-yellow-200',
     indica: 'bg-purple-50 text-purple-700 border-purple-200',
     hybrid: 'bg-green-50 text-green-700 border-green-200',
+    cbd: 'bg-blue-50 text-blue-700 border-blue-200',
   }
   return (
     <Badge className={`text-[10px] px-1.5 py-0 h-4 ${map[type] ?? ''}`}>
       {type.charAt(0).toUpperCase() + type.slice(1)}
     </Badge>
+  )
+}
+
+function AmenitiesSection({ shop }: { shop: Shop }) {
+  const amenities = [
+    { key: 'smoking_area', icon: '🚬', label: '喫煙スペース', value: shop.smoking_area },
+    { key: 'english_staff', icon: '🇬🇧', label: '英語対応スタッフ', value: shop.english_staff },
+    { key: 'delivery', icon: '🛵', label: 'デリバリー可', value: shop.delivery },
+    { key: 'card_payment', icon: '💳', label: 'カード払いOK', value: shop.card_payment },
+    { key: 'wifi', icon: '📶', label: 'Wi-Fi あり', value: shop.wifi },
+  ]
+
+  const hasAny = amenities.some(a => a.value)
+  if (!hasAny) return null
+
+  return (
+    <div className="bg-white rounded-2xl p-5 shadow-sm">
+      <h2 className="font-bold text-gray-900 mb-3">店舗設備</h2>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+        {amenities.map((a) => (
+          <div
+            key={a.key}
+            className={`flex items-center gap-2 text-sm px-3 py-2 rounded-lg ${
+              a.value ? 'bg-green-50 text-green-700' : 'bg-gray-50 text-gray-400'
+            }`}
+          >
+            <span>{a.icon}</span>
+            <span>{a.label}</span>
+            {a.value ? (
+              <span className="ml-auto text-green-600 text-xs font-medium">あり</span>
+            ) : (
+              <span className="ml-auto text-gray-300 text-xs">なし</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -139,6 +187,7 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
   const [submitError, setSubmitError] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [photoIdx, setPhotoIdx] = useState(0)
+  const [productCategory, setProductCategory] = useState<ProductCategory>('all')
 
   const supabase = createClient()
   const photos = shop.shop_images?.map((i) => i.url) ?? []
@@ -181,9 +230,49 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
 
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${shop.lat},${shop.lng}`
 
+  const filteredProducts = useMemo(() => {
+    if (productCategory === 'all') return products
+    return products.filter(p => p.category === productCategory)
+  }, [products, productCategory])
+
+  // JSON-LD structured data
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Store',
+    name: shop.name,
+    description: shop.description ?? `Cannabis dispensary in ${shop.city}, Thailand`,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: shop.address,
+      addressLocality: shop.city,
+      addressCountry: 'TH',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: shop.lat,
+      longitude: shop.lng,
+    },
+    ...(shop.phone ? { telephone: shop.phone } : {}),
+    ...(shop.website ? { url: shop.website } : {}),
+    ...(avgRating > 0 ? {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: avgRating.toFixed(1),
+        reviewCount: reviews.length,
+      },
+    } : {}),
+    priceRange: shop.price_range === 1 ? '$' : shop.price_range === 2 ? '$$' : '$$$',
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <AuthModal open={showAuth} onClose={() => setShowAuth(false)} onSuccess={() => setShowAuth(false)} />
+
+      <Script
+        id="shop-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* Back nav */}
       <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
@@ -207,7 +296,10 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
                 src={`/api/photo?url=${encodeURIComponent(photos[photoIdx])}`}
                 alt={shop.name}
                 fill
+                priority
                 className="object-cover"
+                placeholder="blur"
+                blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgZmlsbD0iI2U1ZTdlYiIvPjwvc3ZnPg=="
                 unoptimized
               />
               {photos.length > 1 && (
@@ -344,6 +436,9 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
           </div>
         </div>
 
+        {/* Amenities */}
+        <AmenitiesSection shop={shop} />
+
         {/* Opening hours */}
         {shop.opening_hours && Object.keys(shop.opening_hours).length > 0 && (
           <div className="bg-white rounded-2xl p-5 shadow-sm">
@@ -359,17 +454,46 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
         {products.length > 0 && (
           <div className="bg-white rounded-2xl p-5 shadow-sm">
             <h2 className="font-bold text-gray-900 mb-3">メニュー</h2>
+
+            {/* Category tabs */}
+            <div className="flex gap-1.5 overflow-x-auto scrollbar-hide mb-4">
+              {PRODUCT_CATEGORIES.map((cat) => {
+                const count = cat.id === 'all' ? products.length : products.filter(p => p.category === cat.id).length
+                if (cat.id !== 'all' && count === 0) return null
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setProductCategory(cat.id)}
+                    className={`shrink-0 px-3 py-1 rounded-full text-xs font-medium border transition-colors whitespace-nowrap ${
+                      productCategory === cat.id
+                        ? 'bg-green-600 text-white border-green-600'
+                        : 'bg-white text-gray-600 border-gray-300 hover:border-green-400'
+                    }`}
+                  >
+                    {cat.label} ({count})
+                  </button>
+                )
+              })}
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {products.map((p) => (
-                <div key={p.id} className="flex items-center justify-between border border-gray-100 rounded-xl p-3">
+              {filteredProducts.map((p) => (
+                <div key={p.id} className={`flex items-center justify-between border rounded-xl p-3 ${p.in_stock ? 'border-gray-100' : 'border-gray-100 opacity-50'}`}>
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-medium text-gray-900">{p.name}</span>
                       <StrainBadge type={p.strain_type} />
                     </div>
-                    {p.thc_percent != null && (
-                      <span className="text-xs text-gray-500">THC {p.thc_percent}%</span>
-                    )}
+                    <div className="flex items-center gap-2">
+                      {p.thc_percent != null && (
+                        <span className="text-xs text-gray-500">THC {p.thc_percent}%</span>
+                      )}
+                      {!p.in_stock && (
+                        <Badge className="bg-red-50 text-red-600 border-red-200 text-[10px] px-1.5 py-0 h-4">
+                          売切れ
+                        </Badge>
+                      )}
+                    </div>
                   </div>
                   {p.price_thb != null && (
                     <span className="text-sm font-bold text-green-700">฿{p.price_thb.toLocaleString()}</span>

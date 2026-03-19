@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { Search, MapPin, List, Map, LocateFixed, X, SlidersHorizontal, Clock, BadgeCheck, User } from 'lucide-react'
 import { fetchNearbyShops, searchShops, fetchBookmarkedShopIds, toggleBookmark } from '@/lib/supabase/queries'
 import type { Shop } from '@/types'
@@ -19,10 +19,13 @@ const MapPanel = dynamic(() => import('./MapPanel'), {
 })
 
 const BANGKOK = { lat: 13.7563, lng: 100.5018 }
+const PAGE_SIZE = 20
 
 const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
 
 type SortMode = 'distance' | 'newest'
+type StrainFilter = 'all' | 'indica' | 'sativa' | 'hybrid' | 'cbd'
+type PriceFilter = 'all' | 1 | 2 | 3
 
 function calcKm(lat1: number, lng1: number, lat2: number, lng2: number) {
   const R = 6371
@@ -64,9 +67,15 @@ export default function DiscoveryPage() {
   const [filterOpen, setFilterOpen] = useState(false)
   const [onlyOpen, setOnlyOpen] = useState(false)
   const [onlyVerified, setOnlyVerified] = useState(false)
+  const [strainFilter, setStrainFilter] = useState<StrainFilter>('all')
+  const [priceFilter, setPriceFilter] = useState<PriceFilter>('all')
+  const [amenitySmokingArea, setAmenitySmokingArea] = useState(false)
+  const [amenityDelivery, setAmenityDelivery] = useState(false)
+  const [amenityEnglish, setAmenityEnglish] = useState(false)
   const [user, setUser] = useState<SupabaseUser | null>(null)
   const [showAuth, setShowAuth] = useState(false)
   const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set())
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
   const debounceRef = useRef<ReturnType<typeof setTimeout>>()
   const listRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<Record<string, HTMLDivElement>>({})
@@ -76,6 +85,7 @@ export default function DiscoveryPage() {
     setLoading(true)
     const data = await fetchNearbyShops(lat, lng, 15)
     setShops(data)
+    setVisibleCount(PAGE_SIZE)
     setLoading(false)
   }, [])
 
@@ -111,6 +121,7 @@ export default function DiscoveryPage() {
       setLoading(true)
       const data = await searchShops(q)
       setShops(data)
+      setVisibleCount(PAGE_SIZE)
       setLoading(false)
     }, 400)
   }, [mapCenter, load])
@@ -147,20 +158,50 @@ export default function DiscoveryPage() {
   const refCenter = userLoc ?? mapCenter
 
   // Apply filters + sort client-side
-  const displayShops = shops
-    .filter(s => !onlyOpen || isOpenNow(s.opening_hours))
-    .filter(s => !onlyVerified || s.is_verified)
-    .sort((a, b) => {
-      if (sort === 'newest') {
-        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-      }
-      // distance (default)
-      const da = calcKm(refCenter.lat, refCenter.lng, a.lat, a.lng)
-      const db = calcKm(refCenter.lat, refCenter.lng, b.lat, b.lng)
-      return da - db
-    })
+  const displayShops = useMemo(() => {
+    return shops
+      .filter(s => !onlyOpen || isOpenNow(s.opening_hours))
+      .filter(s => !onlyVerified || s.is_verified)
+      .filter(s => priceFilter === 'all' || s.price_range === priceFilter)
+      .filter(s => !amenitySmokingArea || s.smoking_area)
+      .filter(s => !amenityDelivery || s.delivery)
+      .filter(s => !amenityEnglish || s.english_staff)
+      .sort((a, b) => {
+        if (sort === 'newest') {
+          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        }
+        const da = calcKm(refCenter.lat, refCenter.lng, a.lat, a.lng)
+        const db = calcKm(refCenter.lat, refCenter.lng, b.lat, b.lng)
+        return da - db
+      })
+  }, [shops, onlyOpen, onlyVerified, priceFilter, amenitySmokingArea, amenityDelivery, amenityEnglish, sort, refCenter])
 
-  const activeFilterCount = (onlyOpen ? 1 : 0) + (onlyVerified ? 1 : 0)
+  // Reset page when filters change
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE)
+  }, [onlyOpen, onlyVerified, strainFilter, priceFilter, amenitySmokingArea, amenityDelivery, amenityEnglish])
+
+  const paginatedShops = displayShops.slice(0, visibleCount)
+  const hasMore = visibleCount < displayShops.length
+
+  const activeFilterCount =
+    (onlyOpen ? 1 : 0) +
+    (onlyVerified ? 1 : 0) +
+    (strainFilter !== 'all' ? 1 : 0) +
+    (priceFilter !== 'all' ? 1 : 0) +
+    (amenitySmokingArea ? 1 : 0) +
+    (amenityDelivery ? 1 : 0) +
+    (amenityEnglish ? 1 : 0)
+
+  const clearFilters = () => {
+    setOnlyOpen(false)
+    setOnlyVerified(false)
+    setStrainFilter('all')
+    setPriceFilter('all')
+    setAmenitySmokingArea(false)
+    setAmenityDelivery(false)
+    setAmenityEnglish(false)
+  }
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">
@@ -247,31 +288,81 @@ export default function DiscoveryPage() {
 
           {/* Filter panel */}
           {filterOpen && (
-            <div className="flex flex-wrap items-center gap-2 py-1 border-t border-gray-100 pt-2.5">
-              <button
-                onClick={() => setOnlyOpen(v => !v)}
-                className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                  onlyOpen ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
-                }`}
-              >
-                <Clock className="w-3.5 h-3.5" />
-                今日営業中
-              </button>
-              <button
-                onClick={() => setOnlyVerified(v => !v)}
-                className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                  onlyVerified ? 'bg-blue-600 text-white border-blue-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
-                }`}
-              >
-                <BadgeCheck className="w-3.5 h-3.5" />
-                認証済みのみ
-              </button>
+            <div className="py-1 border-t border-gray-100 pt-2.5 space-y-2.5">
+              {/* Row 1: Status */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[10px] text-gray-400 font-medium w-12 shrink-0">Status</span>
+                <button
+                  onClick={() => setOnlyOpen(v => !v)}
+                  className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                    onlyOpen ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  <Clock className="w-3.5 h-3.5" />
+                  営業中のみ
+                </button>
+                <button
+                  onClick={() => setOnlyVerified(v => !v)}
+                  className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                    onlyVerified ? 'bg-blue-600 text-white border-blue-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  <BadgeCheck className="w-3.5 h-3.5" />
+                  認証済みのみ
+                </button>
+              </div>
+
+              {/* Row 2: Price */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[10px] text-gray-400 font-medium w-12 shrink-0">Price</span>
+                {([['all', 'All'], [1, '฿'], [2, '฿฿'], [3, '฿฿฿']] as [PriceFilter, string][]).map(([val, label]) => (
+                  <button
+                    key={String(val)}
+                    onClick={() => setPriceFilter(val)}
+                    className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                      priceFilter === val ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Row 3: Amenity */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[10px] text-gray-400 font-medium w-12 shrink-0">設備</span>
+                <button
+                  onClick={() => setAmenitySmokingArea(v => !v)}
+                  className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                    amenitySmokingArea ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  🚬 喫煙スペース
+                </button>
+                <button
+                  onClick={() => setAmenityDelivery(v => !v)}
+                  className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                    amenityDelivery ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  🛵 デリバリー
+                </button>
+                <button
+                  onClick={() => setAmenityEnglish(v => !v)}
+                  className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                    amenityEnglish ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  🇬🇧 英語対応
+                </button>
+              </div>
+
               {activeFilterCount > 0 && (
                 <button
-                  onClick={() => { setOnlyOpen(false); setOnlyVerified(false) }}
-                  className="text-xs text-gray-400 hover:text-gray-600 underline ml-1"
+                  onClick={clearFilters}
+                  className="text-xs text-gray-400 hover:text-gray-600 underline"
                 >
-                  クリア
+                  すべてクリア
                 </button>
               )}
             </div>
@@ -345,7 +436,7 @@ export default function DiscoveryPage() {
             </div>
           ) : (
             <div className="divide-y divide-gray-50">
-              {displayShops.map((shop) => (
+              {paginatedShops.map((shop) => (
                 <div
                   key={shop.id}
                   ref={(el) => {
@@ -362,6 +453,16 @@ export default function DiscoveryPage() {
                   />
                 </div>
               ))}
+              {hasMore && (
+                <div className="p-4 text-center">
+                  <button
+                    onClick={() => setVisibleCount(c => c + PAGE_SIZE)}
+                    className="px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors"
+                  >
+                    もっと見る（残り{displayShops.length - visibleCount}件）
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>

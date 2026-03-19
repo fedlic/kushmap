@@ -21,7 +21,7 @@ export async function claimShop(shopId: string, userId: string): Promise<{ error
 
 export async function updateShop(
   shopId: string,
-  updates: Partial<Pick<Shop, 'name' | 'description' | 'phone' | 'website' | 'instagram' | 'opening_hours' | 'price_range'>>
+  updates: Partial<Pick<Shop, 'name' | 'description' | 'phone' | 'website' | 'instagram' | 'opening_hours' | 'price_range' | 'smoking_area' | 'english_staff' | 'delivery' | 'card_payment' | 'wifi'>>
 ): Promise<{ error?: string }> {
   const supabase = createClient()
   const { error } = await supabase.from('shops').update(updates).eq('id', shopId)

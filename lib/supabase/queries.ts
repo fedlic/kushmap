@@ -111,7 +111,6 @@ export async function fetchShopProducts(shopId: string): Promise<Product[]> {
     .from('products')
     .select('*')
     .eq('shop_id', shopId)
-    .eq('in_stock', true)
     .order('created_at', { ascending: false })
   if (error) {
     console.error('fetchShopProducts error:', error.message)

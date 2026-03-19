@@ -16,6 +16,11 @@ export interface Shop {
   is_premium: boolean
   created_at: string
   shop_images?: { url: string; is_primary: boolean }[]
+  smoking_area?: boolean
+  english_staff?: boolean
+  delivery?: boolean
+  card_payment?: boolean
+  wifi?: boolean
 }
 
 export interface ShopImage {
@@ -30,7 +35,8 @@ export interface Product {
   id: string
   shop_id: string
   name: string
-  strain_type?: 'indica' | 'sativa' | 'hybrid'
+  category?: 'flower' | 'oil' | 'edible' | 'joint' | 'cbd'
+  strain_type?: 'indica' | 'sativa' | 'hybrid' | 'cbd'
   thc_percent?: number
   price_thb?: number
   in_stock: boolean

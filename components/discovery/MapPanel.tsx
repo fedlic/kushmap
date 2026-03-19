@@ -1,7 +1,7 @@
 'use client'
 
-import { useRef, useCallback, useState, memo } from 'react'
-import { GoogleMap, useJsApiLoader, OverlayViewF, OVERLAY_MOUSE_TARGET } from '@react-google-maps/api'
+import { useRef, useCallback, useState, memo, useMemo } from 'react'
+import { GoogleMap, useJsApiLoader, OverlayViewF, OVERLAY_MOUSE_TARGET, MarkerClustererF, MarkerF } from '@react-google-maps/api'
 import type { Shop } from '@/types'
 import { Leaf, Search } from 'lucide-react'
 
@@ -12,6 +12,7 @@ const MAP_OPTIONS: google.maps.MapOptions = {
 }
 
 const MAX_MARKERS = 150
+const CLUSTER_ZOOM_THRESHOLD = 14
 
 interface MapPanelProps {
   shops: Shop[]
@@ -66,10 +67,34 @@ const PhotoMarker = memo(function PhotoMarker({
   )
 })
 
+const CLUSTER_OPTIONS = {
+  maxZoom: CLUSTER_ZOOM_THRESHOLD,
+  minimumClusterSize: 5,
+  styles: [
+    {
+      url: 'data:image/svg+xml;base64,' + btoa('<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52"><circle cx="26" cy="26" r="24" fill="#16a34a" stroke="white" stroke-width="3" opacity="0.9"/></svg>'),
+      height: 52,
+      width: 52,
+      textColor: '#ffffff',
+      textSize: 14,
+      fontWeight: 'bold',
+    },
+    {
+      url: 'data:image/svg+xml;base64,' + btoa('<svg xmlns="http://www.w3.org/2000/svg" width="62" height="62"><circle cx="31" cy="31" r="29" fill="#15803d" stroke="white" stroke-width="3" opacity="0.9"/></svg>'),
+      height: 62,
+      width: 62,
+      textColor: '#ffffff',
+      textSize: 15,
+      fontWeight: 'bold',
+    },
+  ],
+}
+
 export default function MapPanel({ shops, center, selectedId, onMarkerClick, onSearchArea }: MapPanelProps) {
   const mapRef = useRef<google.maps.Map | null>(null)
   const [showSearchBtn, setShowSearchBtn] = useState(false)
   const [searchCenter, setSearchCenter] = useState(center)
+  const [zoom, setZoom] = useState(13)
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
@@ -80,7 +105,7 @@ export default function MapPanel({ shops, center, selectedId, onMarkerClick, onS
   }, [])
 
   // Limit markers to viewport + max cap
-  const visibleShops = (() => {
+  const visibleShops = useMemo(() => {
     if (!mapRef.current) return shops.slice(0, MAX_MARKERS)
     const bounds = mapRef.current.getBounds()
     if (!bounds) return shops.slice(0, MAX_MARKERS)
@@ -90,13 +115,27 @@ export default function MapPanel({ shops, center, selectedId, onMarkerClick, onS
     const result = inView.slice(0, MAX_MARKERS)
     if (selected && !result.find(s => s.id === selectedId)) result.push(selected)
     return result
-  })()
+  }, [shops, selectedId, zoom]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleIdle = useCallback(() => {
-    const c = mapRef.current?.getCenter()
+    const map = mapRef.current
+    if (!map) return
+    const c = map.getCenter()
     if (c) setSearchCenter({ lat: c.lat(), lng: c.lng() })
+    setZoom(map.getZoom() ?? 13)
     setShowSearchBtn(true)
   }, [])
+
+  const useCluster = zoom < CLUSTER_ZOOM_THRESHOLD
+
+  // Cluster markers (google.maps.Marker based) for zoomed out
+  const clusterMarkers = useMemo(() => {
+    if (!useCluster || !isLoaded) return []
+    return visibleShops.map(shop => ({
+      shop,
+      position: { lat: shop.lat, lng: shop.lng },
+    }))
+  }, [visibleShops, useCluster, isLoaded])
 
   if (!isLoaded) {
     return (
@@ -116,19 +155,41 @@ export default function MapPanel({ shops, center, selectedId, onMarkerClick, onS
         onLoad={handleMapLoad}
         onIdle={handleIdle}
       >
-        {visibleShops.map((shop) => (
-          <OverlayViewF
-            key={shop.id}
-            position={{ lat: shop.lat, lng: shop.lng }}
-            mapPaneName={OVERLAY_MOUSE_TARGET}
-          >
-            <PhotoMarker
-              shop={shop}
-              isSelected={shop.id === selectedId}
-              onClick={() => onMarkerClick(shop)}
-            />
-          </OverlayViewF>
-        ))}
+        {useCluster ? (
+          <MarkerClustererF options={CLUSTER_OPTIONS}>
+            {(clusterer) => (
+              <>
+                {clusterMarkers.map(({ shop }) => (
+                  <MarkerF
+                    key={shop.id}
+                    position={{ lat: shop.lat, lng: shop.lng }}
+                    clusterer={clusterer}
+                    onClick={() => onMarkerClick(shop)}
+                    icon={{
+                      url: 'data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="10" fill="${shop.id === selectedId ? '#f97316' : shop.is_premium ? '#f59e0b' : '#16a34a'}" stroke="white" stroke-width="2"/></svg>`),
+                      scaledSize: new google.maps.Size(24, 24),
+                      anchor: new google.maps.Point(12, 12),
+                    }}
+                  />
+                ))}
+              </>
+            )}
+          </MarkerClustererF>
+        ) : (
+          visibleShops.map((shop) => (
+            <OverlayViewF
+              key={shop.id}
+              position={{ lat: shop.lat, lng: shop.lng }}
+              mapPaneName={OVERLAY_MOUSE_TARGET}
+            >
+              <PhotoMarker
+                shop={shop}
+                isSelected={shop.id === selectedId}
+                onClick={() => onMarkerClick(shop)}
+              />
+            </OverlayViewF>
+          ))
+        )}
       </GoogleMap>
 
       {/* Search this area button */}

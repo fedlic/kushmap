@@ -58,12 +58,15 @@ function ShopPhoto({ shop }: { shop: Shop }) {
   const primary = shop.shop_images?.find((i) => i.is_primary) ?? shop.shop_images?.[0]
   if (primary?.url) {
     return (
-      <div className="shrink-0 w-20 h-20 rounded-lg overflow-hidden relative">
+      <div className="shrink-0 w-20 h-20 rounded-lg overflow-hidden relative bg-gray-100">
         <Image
           src={proxyUrl(primary.url)}
           alt={shop.name}
           fill
           className="object-cover"
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZTVlN2ViIi8+PC9zdmc+"
           unoptimized
         />
       </div>
@@ -89,7 +92,12 @@ export default function ShopListCard({ shop, distance, isSelected, onClick, isBo
 
       <div className="flex-1 min-w-0 space-y-1">
         <div className="flex items-start gap-1.5 flex-wrap pr-8">
-          <h3 className="font-bold text-gray-900 text-sm leading-tight">{shop.name}</h3>
+          <h3
+            className="font-bold text-gray-900 text-sm leading-tight"
+            title={shop.name}
+          >
+            {shop.name.length > 25 ? shop.name.slice(0, 25) + '...' : shop.name}
+          </h3>
           {shop.is_verified && (
             <Badge className="bg-blue-50 text-blue-700 border-blue-200 text-[10px] px-1.5 py-0 h-4 shrink-0">
               認証済み
