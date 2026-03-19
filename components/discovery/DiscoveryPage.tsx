@@ -229,7 +229,7 @@ export default function DiscoveryPage() {
       }} />
 
       <header className="bg-white border-b border-gray-200 shadow-sm z-20 shrink-0">
-        <div className="max-w-screen-2xl mx-auto px-4 py-3 space-y-2.5">
+        <div className="max-w-screen-2xl mx-auto px-3 py-2 space-y-1.5">
           {/* Logo + Search row */}
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5 shrink-0">
@@ -420,20 +420,20 @@ export default function DiscoveryPage() {
         {/* LEFT: Shop List — scrollable independently */}
         <div
           ref={listRef}
-          className="flex flex-col w-full md:w-[45%] bg-white md:border-r border-gray-200 overflow-y-auto"
+          className="flex flex-col w-full md:w-[35%] bg-white md:border-r border-gray-200 overflow-y-auto"
         >
           {/* Result count + sort */}
-          <div className="px-4 py-2.5 border-b border-gray-100 bg-gray-50 flex items-center justify-between shrink-0">
-            <span className="text-xs text-gray-500 font-medium">
-              {loading ? '読み込み中...' : `${displayShops.length}件のショップ`}
+          <div className="px-3 py-1.5 border-b border-gray-100 bg-gray-50 flex items-center justify-between shrink-0">
+            <span className="text-[11px] text-gray-500 font-medium">
+              {loading ? '...' : `${displayShops.length}件`}
               {activeFilterCount > 0 && !loading && (
-                <span className="text-green-600 ml-1">（絞り込み中）</span>
+                <span className="text-green-600 ml-1">絞込中</span>
               )}
             </span>
             <select
               value={sort}
               onChange={e => setSort(e.target.value as SortMode)}
-              className="text-xs border border-gray-200 rounded px-2 py-1 bg-white text-gray-600 cursor-pointer"
+              className="text-[11px] border border-gray-200 rounded px-1.5 py-0.5 bg-white text-gray-600 cursor-pointer"
             >
               <option value="distance">距離順</option>
               <option value="newest">新着順</option>
@@ -452,7 +452,7 @@ export default function DiscoveryPage() {
               {activeFilterCount > 0 ? '条件に合うショップがありません' : 'このエリアにショップはありません'}
             </div>
           ) : (
-            <div className="divide-y divide-gray-50">
+            <div className="divide-y divide-gray-100">
               {paginatedShops.map((shop) => (
                 <div
                   key={shop.id}
@@ -485,7 +485,7 @@ export default function DiscoveryPage() {
         </div>
 
         {/* RIGHT: Map — sticky, full height, hidden on mobile by default */}
-        <div className="hidden md:block md:w-[55%] sticky top-0 h-screen">
+        <div className="hidden md:block md:w-[65%] sticky top-0 h-screen">
           <div className="w-full h-full relative">
             <MapErrorBoundary>
               <MapPanel
