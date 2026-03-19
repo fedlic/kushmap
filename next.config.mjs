@@ -1,20 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'places.googleapis.com',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.googleapis.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
-      },
-    ],
+    unoptimized: true,
   },
 }
 

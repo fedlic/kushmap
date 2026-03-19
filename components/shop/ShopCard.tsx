@@ -15,7 +15,7 @@ export default function ShopCard({ shop }: ShopCardProps) {
         <div className="flex items-start justify-between gap-2 mb-1">
           <h3 className="font-semibold text-base leading-tight">{shop.name}</h3>
           <Badge variant="outline" className="shrink-0">
-            {shop.price_range === 1 ? '฿' : shop.price_range === 2 ? '฿฿' : '฿฿฿'}
+            {shop.price_range === 1 ? '$' : shop.price_range === 2 ? '$$' : '$$$'}
           </Badge>
         </div>
         <div className="flex items-center gap-1 text-sm text-muted-foreground mb-2">

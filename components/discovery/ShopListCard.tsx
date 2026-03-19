@@ -16,12 +16,12 @@ interface ShopListCardProps {
 }
 
 function PriceLabel({ n }: { n?: 1 | 2 | 3 }) {
-  const label = n === 1 ? '฿' : n === 2 ? '฿฿' : n === 3 ? '฿฿฿' : '—'
-  const dim = n === 1 ? '฿฿' : n === 2 ? '฿' : ''
+  if (!n) return <span className="text-xs font-medium text-gray-400">—</span>
   return (
-    <span className="text-xs font-medium">
-      <span className="text-green-700">{label}</span>
-      {dim && <span className="text-gray-300">{dim}</span>}
+    <span className="text-xs font-medium tracking-tight">
+      {[1, 2, 3].map(i => (
+        <span key={i} className={i <= n ? 'text-green-700' : 'text-gray-300'}>$</span>
+      ))}
     </span>
   )
 }
@@ -32,7 +32,7 @@ function distanceLabel(km?: number) {
 }
 
 function proxyUrl(url: string) {
-  return `/api/photo?url=${encodeURIComponent(url)}`
+  return `https://kushmap.vercel.app/api/photo?url=${encodeURIComponent(url)}`
 }
 
 function ShopPhoto({ shop }: { shop: Shop }) {
@@ -63,7 +63,7 @@ function ShopPhoto({ shop }: { shop: Shop }) {
 export default function ShopListCard({ shop, distance, isSelected, onClick, isBookmarked, onBookmarkToggle }: ShopListCardProps) {
   return (
     <Link
-      href={`/shops/${shop.id}`}
+      href={`/shop?id=${shop.id}`}
       onClick={onClick}
       className={`flex items-center gap-2 px-2 py-1.5 cursor-pointer transition-colors hover:bg-orange-50 relative ${
         isSelected ? 'bg-orange-50 border-l-3 border-l-orange-400' : ''

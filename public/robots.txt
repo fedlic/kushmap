@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /owner/
+Disallow: /auth/
+
+Sitemap: https://kushmap.vercel.app/sitemap.xml

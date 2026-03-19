@@ -4,3 +4,7 @@ node_modules/
 .DS_Store
 scripts/import-log.txt
 .vercel
+out/
+ios/App/Pods/
+ios/App/App/public/
+ios/App/output/

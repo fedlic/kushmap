@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
-import { Search, MapPin, LocateFixed, X, SlidersHorizontal, Clock, BadgeCheck, User, Map } from 'lucide-react'
+import { Search, MapPin, LocateFixed, X, SlidersHorizontal, Clock, BadgeCheck, User, Map, Leaf, Cigarette, Truck, Globe } from 'lucide-react'
 import { fetchNearbyShops, searchShops, fetchBookmarkedShopIds, toggleBookmark } from '@/lib/supabase/queries'
 import type { Shop } from '@/types'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
@@ -233,7 +233,7 @@ export default function DiscoveryPage() {
           {/* Logo + Search row */}
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5 shrink-0">
-              <span className="text-xl">🌿</span>
+              <Leaf className="w-5 h-5 text-green-600" />
               <span className="font-black text-lg text-green-700 tracking-tight">KUSHMAP</span>
             </div>
 
@@ -333,7 +333,7 @@ export default function DiscoveryPage() {
                   <div>
                     <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">価格</span>
                     <div className="flex flex-wrap gap-1.5 mt-1.5">
-                      {([['all', '全て'], [1, '฿'], [2, '฿฿'], [3, '฿฿฿']] as [PriceFilter, string][]).map(([val, label]) => (
+                      {([['all', '全て'], [1, '$'], [2, '$$'], [3, '$$$']] as [PriceFilter, string][]).map(([val, label]) => (
                         <button
                           key={String(val)}
                           onClick={() => setPriceFilter(val)}
@@ -357,7 +357,7 @@ export default function DiscoveryPage() {
                           amenitySmokingArea ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
                         }`}
                       >
-                        🚬 喫煙スペース
+                        <Cigarette className="w-3 h-3 inline" /> 喫煙スペース
                       </button>
                       <button
                         onClick={() => setAmenityDelivery(v => !v)}
@@ -365,7 +365,7 @@ export default function DiscoveryPage() {
                           amenityDelivery ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
                         }`}
                       >
-                        🛵 デリバリー
+                        <Truck className="w-3 h-3 inline" /> デリバリー
                       </button>
                       <button
                         onClick={() => setAmenityEnglish(v => !v)}
@@ -373,7 +373,7 @@ export default function DiscoveryPage() {
                           amenityEnglish ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
                         }`}
                       >
-                        🇬🇧 英語対応
+                        <Globe className="w-3 h-3 inline" /> 英語対応
                       </button>
                     </div>
                   </div>
@@ -557,7 +557,7 @@ export default function DiscoveryPage() {
                   <p className="text-xs text-gray-500 truncate">{selected.address}</p>
                   <div className="flex items-center gap-2 mt-1">
                     <span className="text-xs text-green-700 font-medium">
-                      {selected.price_range === 1 ? '฿' : selected.price_range === 2 ? '฿฿' : '฿฿฿'}
+                      {selected.price_range === 1 ? '$' : selected.price_range === 2 ? '$$' : '$$$'}
                     </span>
                     <span className="text-xs text-gray-400">
                       {calcKm(refCenter.lat, refCenter.lng, selected.lat, selected.lng).toFixed(1)}km

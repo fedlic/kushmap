@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Script from 'next/script'
-import { ArrowLeft, Phone, Globe, Instagram, MapPin, Star, Clock, Heart } from 'lucide-react'
+import { ArrowLeft, Phone, Globe, Instagram, MapPin, Star, Clock, Heart, Cigarette, Truck, CreditCard, Wifi } from 'lucide-react'
 import type { Shop, Product, Review, GoogleReview, ReviewLang } from '@/types'
 import { fetchShopProducts, fetchShopReviews, submitReview, fetchGoogleReviews, toggleBookmark } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/client'
@@ -138,11 +138,11 @@ function StrainBadge({ type }: { type?: string }) {
 
 function AmenitiesSection({ shop }: { shop: Shop }) {
   const amenities = [
-    { key: 'smoking_area', icon: '🚬', label: '喫煙スペース', value: shop.smoking_area },
-    { key: 'english_staff', icon: '🇬🇧', label: '英語対応スタッフ', value: shop.english_staff },
-    { key: 'delivery', icon: '🛵', label: 'デリバリー可', value: shop.delivery },
-    { key: 'card_payment', icon: '💳', label: 'カード払いOK', value: shop.card_payment },
-    { key: 'wifi', icon: '📶', label: 'Wi-Fi あり', value: shop.wifi },
+    { key: 'smoking_area', icon: <Cigarette className="w-4 h-4" />, label: '喫煙スペース', value: shop.smoking_area },
+    { key: 'english_staff', icon: <Globe className="w-4 h-4" />, label: '英語対応スタッフ', value: shop.english_staff },
+    { key: 'delivery', icon: <Truck className="w-4 h-4" />, label: 'デリバリー可', value: shop.delivery },
+    { key: 'card_payment', icon: <CreditCard className="w-4 h-4" />, label: 'カード払いOK', value: shop.card_payment },
+    { key: 'wifi', icon: <Wifi className="w-4 h-4" />, label: 'Wi-Fi あり', value: shop.wifi },
   ]
 
   const hasAny = amenities.some(a => a.value)
@@ -293,7 +293,7 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
           {photos.length > 0 ? (
             <>
               <Image
-                src={`/api/photo?url=${encodeURIComponent(photos[photoIdx])}`}
+                src={`https://kushmap.vercel.app/api/photo?url=${encodeURIComponent(photos[photoIdx])}`}
                 alt={shop.name}
                 fill
                 priority
@@ -358,7 +358,7 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
                 </div>
               )}
               <div className="flex items-center gap-2 text-sm text-gray-500">
-                <span>{shop.price_range === 1 ? '฿' : shop.price_range === 2 ? '฿฿' : '฿฿฿'}</span>
+                <span>{shop.price_range === 1 ? '$' : shop.price_range === 2 ? '$$' : '$$$'}</span>
                 <span>·</span>
                 <span className="flex items-center gap-1">
                   <MapPin className="w-3.5 h-3.5" />
@@ -496,7 +496,7 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
                     </div>
                   </div>
                   {p.price_thb != null && (
-                    <span className="text-sm font-bold text-green-700">฿{p.price_thb.toLocaleString()}</span>
+                    <span className="text-sm font-bold text-green-700">{p.price_thb.toLocaleString()} THB</span>
                   )}
                 </div>
               ))}

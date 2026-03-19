@@ -1,10 +1,14 @@
 # KUSHMAP 🌿
 
+[![GitHub stars](https://img.shields.io/github/stars/fedlic/kushmap?style=social)](https://github.com/fedlic/kushmap)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 タイ全土のカンナビスショップを探せるディレクトリサービス。
 A Tabelog-style cannabis dispensary directory for Thailand.
 
-**Live:** https://kushmap.vercel.app
-**GitHub:** https://github.com/fedlic/kushmap
+[Live Demo](https://kushmap.vercel.app) | [GitHub](https://github.com/fedlic/kushmap) | [Contributing](CONTRIBUTING.md)
+
+This project is open source under the [MIT License](LICENSE).
 
 ---
 
@@ -229,6 +233,17 @@ kushmap/
 
 ---
 
+## Contributing
+
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for how to:
+
+- Add new shops
+- Help with translations (Thai, Chinese, etc.)
+- Fix bugs and submit PRs
+- Set up local development
+
 ## ライセンス / License
 
-Private — All rights reserved.
+MIT License - see [LICENSE](LICENSE) for details.
+
+Copyright (c) 2025 FEDLIC TOKYO

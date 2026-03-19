@@ -15,7 +15,7 @@ interface ShopPanelProps {
 }
 
 function priceLabel(n?: 1 | 2 | 3) {
-  return n === 1 ? '฿' : n === 2 ? '฿฿' : n === 3 ? '฿฿฿' : '—'
+  return n === 1 ? '$' : n === 2 ? '$$' : n === 3 ? '$$$' : '—'
 }
 
 function PanelContent({ shop, distance }: Omit<ShopPanelProps, 'isMobile' | 'onClose'>) {
@@ -101,7 +101,7 @@ function PanelContent({ shop, distance }: Omit<ShopPanelProps, 'isMobile' | 'onC
       <div className="p-4 border-t shrink-0">
         <Button
           className="w-full bg-green-600 hover:bg-green-700"
-          onClick={() => router.push(`/shops/${shop.id}`)}
+          onClick={() => router.push(`/shop?id=${shop.id}`)}
         >
           <ExternalLink className="w-4 h-4 mr-2" />
           詳細を見る

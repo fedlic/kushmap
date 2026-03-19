@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Leaf } from 'lucide-react'
 
 export default function AgeGate() {
   const [show, setShow] = useState(false)
@@ -24,7 +25,7 @@ export default function AgeGate() {
   return (
     <div className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl max-w-sm w-full p-8 text-center shadow-2xl">
-        <div className="text-4xl mb-3">🌿</div>
+        <Leaf className="w-10 h-10 text-green-600 mx-auto mb-3" />
         <h2 className="text-2xl font-black text-green-700 tracking-tight mb-1">KUSHMAP</h2>
         <p className="text-xs text-gray-400 mb-6">Thailand Cannabis Dispensary Directory</p>
 

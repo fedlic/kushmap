@@ -6,10 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cap:sync": "npx cap sync ios",
+    "cap:open": "npx cap open ios",
+    "cap:build": "next build && npx cap sync ios"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
+    "@capacitor/cli": "^8.2.0",
+    "@capacitor/core": "^8.2.0",
+    "@capacitor/ios": "^8.2.0",
+    "@capacitor/status-bar": "^8.0.1",
     "@hookform/resolvers": "^5.2.2",
     "@react-google-maps/api": "^2.20.8",
     "@supabase/ssr": "^0.9.0",

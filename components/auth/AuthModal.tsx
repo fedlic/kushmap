@@ -69,7 +69,7 @@ export default function AuthModal({ open, onClose, onSuccess }: AuthModalProps) 
         </button>
 
         <div className="text-center mb-6">
-          <span className="text-2xl">🌿</span>
+          <span className="text-green-600 text-2xl font-bold">K</span>
           <h2 className="text-lg font-bold mt-1">
             {mode === 'login' ? 'ログイン' : '新規登録'}
           </h2>

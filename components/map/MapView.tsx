@@ -168,7 +168,7 @@ export default function MapView() {
       <div className="absolute top-0 left-0 right-0 z-10 p-3 space-y-2 pointer-events-none">
         {/* KUSHMAP logo */}
         <div className="flex items-center gap-2 mb-1">
-          <span className="text-white font-bold text-lg drop-shadow-lg tracking-wide">🌿 KUSHMAP</span>
+          <span className="text-white font-bold text-lg drop-shadow-lg tracking-wide">KUSHMAP</span>
           <span className="text-xs text-white/60 bg-black/30 px-2 py-0.5 rounded-full">
             {shops.length}件
           </span>

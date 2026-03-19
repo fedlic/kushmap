@@ -35,6 +35,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#1a1a2e" />
+        <link rel="icon" href="/icon-192x192.svg" />
+        <link rel="apple-touch-icon" href="/icon-192x192.svg" />
+      </head>
       <body className="antialiased">
         <AgeGate />
         {children}

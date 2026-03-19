@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="80" fill="#1a1a2e"/>
+  <text x="256" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="72" fill="#22c55e">KUSH</text>
+  <text x="256" y="290" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="72" fill="#4ade80">MAP</text>
+  <path d="M256 330 C256 330, 220 370, 220 390 C220 415, 256 440, 256 440 C256 440, 292 415, 292 390 C292 370, 256 330, 256 330Z" fill="#22c55e" opacity="0.8"/>
+</svg>

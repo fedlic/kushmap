@@ -11,7 +11,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
 function proxyUrl(url: string) {
-  return `/api/photo?url=${encodeURIComponent(url)}`
+  return `https://kushmap.vercel.app/api/photo?url=${encodeURIComponent(url)}`
 }
 
 function StarDisplay({ rating }: { rating: number }) {
@@ -144,7 +144,7 @@ export default function ProfilePage({ user }: { user: User }) {
               {bookmarks.map(shop => (
                 <Link
                   key={shop.id}
-                  href={`/shops/${shop.id}`}
+                  href={`/shop?id=${shop.id}`}
                   className="flex items-center gap-3 p-4 hover:bg-gray-50 transition-colors"
                 >
                   <ShopThumb shop={shop} />
@@ -152,7 +152,7 @@ export default function ProfilePage({ user }: { user: User }) {
                     <p className="font-semibold text-sm text-gray-900 truncate">{shop.name}</p>
                     <p className="text-xs text-gray-400 mt-0.5">{shop.city}</p>
                     <p className="text-xs text-green-700 mt-0.5">
-                      {shop.price_range === 1 ? '฿' : shop.price_range === 2 ? '฿฿' : '฿฿฿'}
+                      {shop.price_range === 1 ? '$' : shop.price_range === 2 ? '$$' : '$$$'}
                     </p>
                   </div>
                   <ArrowLeft className="w-4 h-4 text-gray-300 rotate-180 shrink-0" />
@@ -172,7 +172,7 @@ export default function ProfilePage({ user }: { user: User }) {
               {reviews.map(r => (
                 <Link
                   key={r.id}
-                  href={r.shops ? `/shops/${r.shops.id}` : '#'}
+                  href={r.shops ? `/shop?id=${r.shops.id}` : '#'}
                   className="block p-4 hover:bg-gray-50 transition-colors"
                 >
                   <div className="flex items-center justify-between mb-1.5">

@@ -237,7 +237,7 @@ function ProductManager({ shopId }: { shopId: string }) {
                 {!p.in_stock && <span className="text-[10px] text-red-500">売切れ</span>}
               </div>
               <div className="flex items-center gap-2 shrink-0">
-                {p.price_thb != null && <span className="text-xs font-medium text-green-700">฿{p.price_thb}</span>}
+                {p.price_thb != null && <span className="text-xs font-medium text-green-700">{p.price_thb} THB</span>}
                 <button onClick={() => handleEdit(p)} className="text-gray-400 hover:text-gray-600 p-1">
                   <Edit2 className="w-3 h-3" />
                 </button>
@@ -311,7 +311,7 @@ function ShopEditor({ shop, onSaved }: { shop: Shop; onSaved: () => void }) {
         <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
           {photo?.url ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={`/api/photo?url=${encodeURIComponent(photo.url)}`} alt={shop.name} className="w-full h-full object-cover" />
+            <img src={`https://kushmap.vercel.app/api/photo?url=${encodeURIComponent(photo.url)}`} alt={shop.name} className="w-full h-full object-cover" />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center text-white font-bold text-xl">
               {shop.name.charAt(0)}
@@ -334,7 +334,7 @@ function ShopEditor({ shop, onSaved }: { shop: Shop; onSaved: () => void }) {
         </div>
         <div className="flex gap-2 shrink-0">
           <Link
-            href={`/shops/${shop.id}`}
+            href={`/shop?id=${shop.id}`}
             target="_blank"
             className="text-xs border border-gray-300 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-colors"
           >
@@ -369,9 +369,9 @@ function ShopEditor({ shop, onSaved }: { shop: Shop; onSaved: () => void }) {
                 onChange={e => setForm(f => ({ ...f, price_range: Number(e.target.value) as 1|2|3 }))}
                 className="w-full h-9 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
               >
-                <option value={1}>฿ リーズナブル</option>
-                <option value={2}>฿฿ 普通</option>
-                <option value={3}>฿฿฿ 高級</option>
+                <option value={1}>$ リーズナブル</option>
+                <option value={2}>$$ 普通</option>
+                <option value={3}>$$$ 高級</option>
               </select>
             </div>
             <div className="sm:col-span-2">
@@ -416,11 +416,11 @@ function ShopEditor({ shop, onSaved }: { shop: Shop; onSaved: () => void }) {
           <div>
             <label className="text-xs font-medium text-gray-600 block mb-2">店舗設備</label>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              <AmenityToggle icon="🚬" label="喫煙スペース" checked={amenities.smoking_area} onChange={v => setAmenities(a => ({ ...a, smoking_area: v }))} />
-              <AmenityToggle icon="🇬🇧" label="英語対応" checked={amenities.english_staff} onChange={v => setAmenities(a => ({ ...a, english_staff: v }))} />
-              <AmenityToggle icon="🛵" label="デリバリー" checked={amenities.delivery} onChange={v => setAmenities(a => ({ ...a, delivery: v }))} />
-              <AmenityToggle icon="💳" label="カード払い" checked={amenities.card_payment} onChange={v => setAmenities(a => ({ ...a, card_payment: v }))} />
-              <AmenityToggle icon="📶" label="Wi-Fi" checked={amenities.wifi} onChange={v => setAmenities(a => ({ ...a, wifi: v }))} />
+              <AmenityToggle icon="S" label="喫煙スペース" checked={amenities.smoking_area} onChange={v => setAmenities(a => ({ ...a, smoking_area: v }))} />
+              <AmenityToggle icon="EN" label="英語対応" checked={amenities.english_staff} onChange={v => setAmenities(a => ({ ...a, english_staff: v }))} />
+              <AmenityToggle icon="D" label="デリバリー" checked={amenities.delivery} onChange={v => setAmenities(a => ({ ...a, delivery: v }))} />
+              <AmenityToggle icon="CC" label="カード払い" checked={amenities.card_payment} onChange={v => setAmenities(a => ({ ...a, card_payment: v }))} />
+              <AmenityToggle icon="Wi" label="Wi-Fi" checked={amenities.wifi} onChange={v => setAmenities(a => ({ ...a, wifi: v }))} />
             </div>
           </div>
 
