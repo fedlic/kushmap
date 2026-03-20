@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 import AgeGate from "@/components/AgeGate";
 
@@ -37,18 +36,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8620642498629308"
+          crossOrigin="anonymous"
+        />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#1a1a2e" />
         <link rel="icon" href="/icon-192x192.svg" />
         <link rel="apple-touch-icon" href="/icon-192x192.svg" />
       </head>
       <body className="antialiased">
-        <Script
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8620642498629308"
-          strategy="beforeInteractive"
-          async
-          crossOrigin="anonymous"
-        />
         <AgeGate />
         {children}
       </body>
