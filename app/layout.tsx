@@ -45,7 +45,7 @@ export default function RootLayout({
       <body className="antialiased">
         <Script
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8620642498629308"
-          strategy="afterInteractive"
+          strategy="beforeInteractive"
           async
           crossOrigin="anonymous"
         />
