@@ -9,6 +9,7 @@ import type { Shop, Product, Review, GoogleReview, ReviewLang } from '@/types'
 import { fetchShopProducts, fetchShopReviews, submitReview, fetchGoogleReviews, toggleBookmark } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/client'
 import { Badge } from '@/components/ui/badge'
+import AdUnit from '@/components/AdUnit'
 import AuthModal from '@/components/auth/AuthModal'
 import type { User } from '@supabase/supabase-js'
 
@@ -549,6 +550,9 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
             </div>
           </div>
         )}
+
+        {/* Ad */}
+        <AdUnit slot="DETAIL_AD_SLOT" format="rectangle" className="rounded-2xl overflow-hidden" />
 
         {/* Reviews section */}
         <div className="bg-white rounded-2xl p-5 shadow-sm">

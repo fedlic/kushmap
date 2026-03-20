@@ -12,6 +12,7 @@ import MapErrorBoundary from './MapErrorBoundary'
 import AuthModal from '@/components/auth/AuthModal'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import AdUnit from '@/components/AdUnit'
 
 const MapPanel = dynamic(() => import('./MapPanel'), {
   ssr: false,
@@ -453,21 +454,25 @@ export default function DiscoveryPage() {
             </div>
           ) : (
             <div className="divide-y divide-gray-100">
-              {paginatedShops.map((shop) => (
-                <div
-                  key={shop.id}
-                  ref={(el) => {
-                    if (el) cardRefs.current[shop.id] = el
-                  }}
-                >
-                  <ShopListCard
-                    shop={shop}
-                    distance={calcKm(refCenter.lat, refCenter.lng, shop.lat, shop.lng)}
-                    isSelected={selected?.id === shop.id}
-                    onClick={() => handleSelectShop(shop)}
-                    isBookmarked={bookmarkedIds.has(shop.id)}
-                    onBookmarkToggle={(e) => handleBookmarkToggle(e, shop)}
-                  />
+              {paginatedShops.map((shop, i) => (
+                <div key={shop.id}>
+                  <div
+                    ref={(el) => {
+                      if (el) cardRefs.current[shop.id] = el
+                    }}
+                  >
+                    <ShopListCard
+                      shop={shop}
+                      distance={calcKm(refCenter.lat, refCenter.lng, shop.lat, shop.lng)}
+                      isSelected={selected?.id === shop.id}
+                      onClick={() => handleSelectShop(shop)}
+                      isBookmarked={bookmarkedIds.has(shop.id)}
+                      onBookmarkToggle={(e) => handleBookmarkToggle(e, shop)}
+                    />
+                  </div>
+                  {(i + 1) % 5 === 0 && i < paginatedShops.length - 1 && (
+                    <AdUnit slot="LIST_AD_SLOT" format="horizontal" className="py-2 px-3 border-b border-gray-100" />
+                  )}
                 </div>
               ))}
               {hasMore && (
