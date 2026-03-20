@@ -1,5 +1,4 @@
-const PHOTO_API_BASE = 'https://kushmap.vercel.app/api/photo'
-
 export function photoProxyUrl(url: string): string {
-  return `${PHOTO_API_BASE}?url=${encodeURIComponent(url)}`
+  // Google Places photos can be loaded directly via img tags
+  return url
 }

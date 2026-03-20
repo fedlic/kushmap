@@ -18,7 +18,7 @@ function priceLabel(n?: 1 | 2 | 3) {
   return n === 1 ? '$' : n === 2 ? '$$' : n === 3 ? '$$$' : '—'
 }
 
-function PanelContent({ shop, distance }: Omit<ShopPanelProps, 'isMobile' | 'onClose'>) {
+function PanelContent({ shop, distance, onClose }: Omit<ShopPanelProps, 'isMobile'>) {
   const router = useRouter()
   if (!shop) return null
 
@@ -100,8 +100,11 @@ function PanelContent({ shop, distance }: Omit<ShopPanelProps, 'isMobile' | 'onC
       {/* CTA */}
       <div className="p-4 border-t shrink-0">
         <Button
-          className="w-full bg-green-600 hover:bg-green-700"
-          onClick={() => router.push(`/shop?id=${shop.id}`)}
+          className="w-full bg-green-600 hover:bg-green-700 text-white"
+          onClick={() => {
+            onClose()
+            router.push(`/shop?id=${shop.id}`)
+          }}
         >
           <ExternalLink className="w-4 h-4 mr-2" />
           詳細を見る
@@ -116,7 +119,7 @@ export default function ShopPanel({ shop, distance, onClose, isMobile }: ShopPan
     return (
       <Sheet open={!!shop} onOpenChange={(open) => { if (!open) onClose() }}>
         <SheetContent side="bottom" className="p-0 rounded-t-2xl h-[85vh] max-h-[85vh]">
-          <PanelContent shop={shop} distance={distance} />
+          <PanelContent shop={shop} distance={distance} onClose={onClose} />
         </SheetContent>
       </Sheet>
     )
@@ -126,7 +129,7 @@ export default function ShopPanel({ shop, distance, onClose, isMobile }: ShopPan
 
   return (
     <div className="absolute left-4 top-4 bottom-4 w-80 bg-white rounded-2xl shadow-xl overflow-hidden z-10 flex flex-col">
-      <PanelContent shop={shop} distance={distance} />
+      <PanelContent shop={shop} distance={distance} onClose={onClose} />
     </div>
   )
 }

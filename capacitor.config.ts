@@ -5,8 +5,6 @@ const config: CapacitorConfig = {
   appName: 'KUSHMAP',
   webDir: 'out',
   server: {
-    iosScheme: 'https',
-    hostname: 'kushmap.app',
     allowNavigation: [
       'rslfdzotloaupwohqmop.supabase.co',
       '*.supabase.co',

@@ -32,7 +32,7 @@ function distanceLabel(km?: number) {
 }
 
 function proxyUrl(url: string) {
-  return `https://kushmap.vercel.app/api/photo?url=${encodeURIComponent(url)}`
+  return url
 }
 
 function ShopPhoto({ shop }: { shop: Shop }) {

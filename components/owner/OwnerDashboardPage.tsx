@@ -311,7 +311,7 @@ function ShopEditor({ shop, onSaved }: { shop: Shop; onSaved: () => void }) {
         <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
           {photo?.url ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={`https://kushmap.vercel.app/api/photo?url=${encodeURIComponent(photo.url)}`} alt={shop.name} className="w-full h-full object-cover" />
+            <img src={photo.url} alt={shop.name} className="w-full h-full object-cover" />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center text-white font-bold text-xl">
               {shop.name.charAt(0)}

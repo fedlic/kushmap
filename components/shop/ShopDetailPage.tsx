@@ -294,7 +294,7 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
           {photos.length > 0 ? (
             <>
               <Image
-                src={`https://kushmap.vercel.app/api/photo?url=${encodeURIComponent(photos[photoIdx])}`}
+                src={photos[photoIdx]}
                 alt={shop.name}
                 fill
                 priority

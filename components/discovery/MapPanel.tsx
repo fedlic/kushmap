@@ -48,7 +48,7 @@ const PhotoMarker = memo(function PhotoMarker({
         {photo?.url ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={`https://kushmap.vercel.app/api/photo?url=${encodeURIComponent(photo.url)}`}
+            src={photo.url}
             alt={shop.name}
             className="w-full h-full object-cover"
             loading="lazy"

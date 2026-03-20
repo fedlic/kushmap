@@ -11,7 +11,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
 function proxyUrl(url: string) {
-  return `https://kushmap.vercel.app/api/photo?url=${encodeURIComponent(url)}`
+  return url
 }
 
 function StarDisplay({ rating }: { rating: number }) {
