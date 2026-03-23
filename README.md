@@ -233,6 +233,34 @@ kushmap/
 
 ---
 
+## Changelog
+
+### v1.3.0 (2025-03-24)
+- Near Me: GPS-based nearby shop recommendations with distance sorting
+- Mobile map mini card now navigates to shop detail on tap
+- iOS native app support via Capacitor (WKWebView compatible)
+
+### v1.2.0
+- Google AdSense integration (shop list + detail page)
+- Admin dashboard with lazy-loaded tabs (shops, reviews, overview)
+- Bundle optimization and performance improvements
+
+### v1.1.0
+- Pagination, image optimization, marker clustering
+- Multi-filter system (open now, verified, price, strain, amenities)
+- Age gate verification
+- SEO enhancements and product/menu display
+- User profiles, bookmarks, and owner dashboard
+- Google reviews import with EN/JA/TH language toggle
+
+### v1.0.0
+- Initial release: map + list view, area filtering, shop detail pages
+- 1,165 shops across 15 cities in Thailand
+- Supabase Auth (email + Google), reviews, owner registration
+- Open source under MIT License
+
+---
+
 ## Contributing
 
 We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for how to:
