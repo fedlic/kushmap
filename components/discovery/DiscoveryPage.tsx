@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
-import { Search, MapPin, LocateFixed, X, SlidersHorizontal, Clock, BadgeCheck, User, Map, Leaf, Cigarette, Truck, Globe } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { Search, MapPin, Navigation, X, SlidersHorizontal, Clock, BadgeCheck, User, Map, Leaf, Cigarette, Truck, Globe, ChevronRight, Loader2 } from 'lucide-react'
 import { fetchNearbyShops, searchShops, fetchBookmarkedShopIds, toggleBookmark } from '@/lib/supabase/queries'
 import type { Shop } from '@/types'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
@@ -56,11 +57,14 @@ function isOpenNow(hours?: Record<string, string>): boolean {
 }
 
 export default function DiscoveryPage() {
+  const router = useRouter()
   const [shops, setShops] = useState<Shop[]>([])
   const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState<Shop | null>(null)
   const [mapCenter, setMapCenter] = useState(BANGKOK)
   const [userLoc, setUserLoc] = useState<{ lat: number; lng: number } | null>(null)
+  const [nearMeActive, setNearMeActive] = useState(false)
+  const [nearMeLoading, setNearMeLoading] = useState(false)
   const [area, setArea] = useState<Area>('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [showMobileMap, setShowMobileMap] = useState(false)
@@ -151,13 +155,32 @@ export default function DiscoveryPage() {
     }
   }
 
-  const handleLocate = () => {
-    navigator.geolocation?.getCurrentPosition((pos) => {
-      const loc = { lat: pos.coords.latitude, lng: pos.coords.longitude }
-      setUserLoc(loc)
-      setMapCenter(loc)
-      load(loc.lat, loc.lng)
-    })
+  const handleNearMe = () => {
+    if (nearMeActive) {
+      setNearMeActive(false)
+      setUserLoc(null)
+      setSort('distance')
+      load(BANGKOK.lat, BANGKOK.lng)
+      setMapCenter(BANGKOK)
+      return
+    }
+    setNearMeLoading(true)
+    navigator.geolocation?.getCurrentPosition(
+      (pos) => {
+        const loc = { lat: pos.coords.latitude, lng: pos.coords.longitude }
+        setUserLoc(loc)
+        setMapCenter(loc)
+        setSort('distance')
+        setNearMeActive(true)
+        setNearMeLoading(false)
+        load(loc.lat, loc.lng)
+      },
+      () => {
+        setNearMeLoading(false)
+        alert('Could not get your location. Please enable location services and try again.')
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
+    )
   }
 
   const handleSelectShop = (shop: Shop) => {
@@ -244,7 +267,7 @@ export default function DiscoveryPage() {
               <input
                 value={searchQuery}
                 onChange={(e) => handleSearch(e.target.value)}
-                placeholder="ショップ名・エリアで検索..."
+                placeholder="Search shops or areas..."
                 className="w-full h-9 pl-9 pr-8 rounded-lg border border-gray-300 text-sm bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
               />
               {searchQuery && (
@@ -258,11 +281,20 @@ export default function DiscoveryPage() {
             </div>
 
             <button
-              onClick={handleLocate}
-              className="shrink-0 flex items-center gap-1.5 text-xs text-green-700 border border-green-300 rounded-lg px-2.5 h-9 hover:bg-green-50 transition-colors font-medium"
+              onClick={handleNearMe}
+              disabled={nearMeLoading}
+              className={`shrink-0 flex items-center gap-1.5 text-xs rounded-lg px-2.5 h-9 transition-colors font-medium border ${
+                nearMeActive
+                  ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700'
+                  : 'text-green-700 border-green-300 hover:bg-green-50'
+              }`}
             >
-              <LocateFixed className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">現在地</span>
+              {nearMeLoading ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <Navigation className="w-3.5 h-3.5" />
+              )}
+              <span className="hidden sm:inline">Near Me</span>
             </button>
 
             {/* Filter dropdown trigger */}
@@ -276,7 +308,7 @@ export default function DiscoveryPage() {
                 }`}
               >
                 <SlidersHorizontal className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">絞り込み</span>
+                <span className="hidden sm:inline">Filter</span>
                 {activeFilterCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 text-white text-[10px] rounded-full flex items-center justify-center font-bold">
                     {activeFilterCount}
@@ -298,7 +330,7 @@ export default function DiscoveryPage() {
                         }`}
                       >
                         <Clock className="w-3 h-3" />
-                        営業中のみ
+                        Open Now
                       </button>
                       <button
                         onClick={() => setOnlyVerified(v => !v)}
@@ -307,16 +339,16 @@ export default function DiscoveryPage() {
                         }`}
                       >
                         <BadgeCheck className="w-3 h-3" />
-                        認証済みのみ
+                        Verified Only
                       </button>
                     </div>
                   </div>
 
                   {/* Strain */}
                   <div>
-                    <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">ストレイン</span>
+                    <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Strain</span>
                     <div className="flex flex-wrap gap-1.5 mt-1.5">
-                      {([['all', '全て'], ['indica', 'Indica'], ['sativa', 'Sativa'], ['hybrid', 'Hybrid'], ['cbd', 'CBD']] as [StrainFilter, string][]).map(([val, label]) => (
+                      {([['all', 'All'], ['indica', 'Indica'], ['sativa', 'Sativa'], ['hybrid', 'Hybrid'], ['cbd', 'CBD']] as [StrainFilter, string][]).map(([val, label]) => (
                         <button
                           key={val}
                           onClick={() => setStrainFilter(val)}
@@ -332,9 +364,9 @@ export default function DiscoveryPage() {
 
                   {/* Price */}
                   <div>
-                    <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">価格</span>
+                    <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Price</span>
                     <div className="flex flex-wrap gap-1.5 mt-1.5">
-                      {([['all', '全て'], [1, '$'], [2, '$$'], [3, '$$$']] as [PriceFilter, string][]).map(([val, label]) => (
+                      {([['all', 'All'], [1, '$'], [2, '$$'], [3, '$$$']] as [PriceFilter, string][]).map(([val, label]) => (
                         <button
                           key={String(val)}
                           onClick={() => setPriceFilter(val)}
@@ -350,7 +382,7 @@ export default function DiscoveryPage() {
 
                   {/* Amenity */}
                   <div>
-                    <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">設備</span>
+                    <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Facilities</span>
                     <div className="flex flex-wrap gap-1.5 mt-1.5">
                       <button
                         onClick={() => setAmenitySmokingArea(v => !v)}
@@ -358,7 +390,7 @@ export default function DiscoveryPage() {
                           amenitySmokingArea ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
                         }`}
                       >
-                        <Cigarette className="w-3 h-3 inline" /> 喫煙スペース
+                        <Cigarette className="w-3 h-3 inline" /> Smoking Area
                       </button>
                       <button
                         onClick={() => setAmenityDelivery(v => !v)}
@@ -366,7 +398,7 @@ export default function DiscoveryPage() {
                           amenityDelivery ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
                         }`}
                       >
-                        <Truck className="w-3 h-3 inline" /> デリバリー
+                        <Truck className="w-3 h-3 inline" /> Delivery
                       </button>
                       <button
                         onClick={() => setAmenityEnglish(v => !v)}
@@ -374,7 +406,7 @@ export default function DiscoveryPage() {
                           amenityEnglish ? 'bg-green-600 text-white border-green-600' : 'text-gray-600 border-gray-300 hover:bg-gray-50'
                         }`}
                       >
-                        <Globe className="w-3 h-3 inline" /> 英語対応
+                        <Globe className="w-3 h-3 inline" /> English Staff
                       </button>
                     </div>
                   </div>
@@ -384,7 +416,7 @@ export default function DiscoveryPage() {
                       onClick={clearFilters}
                       className="text-xs text-gray-400 hover:text-gray-600 underline w-full text-center pt-1"
                     >
-                      すべてクリア
+                      Clear All
                     </button>
                   )}
                 </div>
@@ -395,7 +427,7 @@ export default function DiscoveryPage() {
               <Link
                 href="/profile"
                 className="shrink-0 w-9 h-9 rounded-full bg-green-600 flex items-center justify-center text-white text-sm font-bold hover:bg-green-700 transition-colors"
-                title={user.email ?? 'プロフィール'}
+                title={user.email ?? 'Profile'}
               >
                 {user.email?.charAt(0).toUpperCase() ?? <User className="w-4 h-4" />}
               </Link>
@@ -405,7 +437,7 @@ export default function DiscoveryPage() {
                 className="shrink-0 flex items-center gap-1.5 text-xs text-gray-600 border border-gray-300 rounded-lg px-2.5 h-9 hover:bg-gray-50 transition-colors"
               >
                 <User className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">ログイン</span>
+                <span className="hidden sm:inline">Login</span>
               </button>
             )}
           </div>
@@ -423,12 +455,28 @@ export default function DiscoveryPage() {
           ref={listRef}
           className="flex flex-col w-full md:w-[35%] bg-white md:border-r border-gray-200 overflow-y-auto"
         >
+          {/* Near Me banner */}
+          {nearMeActive && (
+            <div className="px-3 py-2 bg-blue-50 border-b border-blue-100 flex items-center justify-between shrink-0">
+              <div className="flex items-center gap-1.5 text-xs text-blue-700 font-medium">
+                <Navigation className="w-3.5 h-3.5" />
+                Showing nearest shops to you
+              </div>
+              <button
+                onClick={() => { setNearMeActive(false); setUserLoc(null); load(BANGKOK.lat, BANGKOK.lng); setMapCenter(BANGKOK) }}
+                className="text-xs text-blue-600 hover:text-blue-800 font-medium underline"
+              >
+                Clear
+              </button>
+            </div>
+          )}
+
           {/* Result count + sort */}
           <div className="px-3 py-1.5 border-b border-gray-100 bg-gray-50 flex items-center justify-between shrink-0">
             <span className="text-[11px] text-gray-500 font-medium">
-              {loading ? '...' : `${displayShops.length}件`}
+              {loading ? '...' : `${displayShops.length} shops`}
               {activeFilterCount > 0 && !loading && (
-                <span className="text-green-600 ml-1">絞込中</span>
+                <span className="text-green-600 ml-1">Filtered</span>
               )}
             </span>
             <select
@@ -436,8 +484,8 @@ export default function DiscoveryPage() {
               onChange={e => setSort(e.target.value as SortMode)}
               className="text-[11px] border border-gray-200 rounded px-1.5 py-0.5 bg-white text-gray-600 cursor-pointer"
             >
-              <option value="distance">距離順</option>
-              <option value="newest">新着順</option>
+              <option value="distance">By Distance</option>
+              <option value="newest">Newest</option>
             </select>
           </div>
 
@@ -445,12 +493,12 @@ export default function DiscoveryPage() {
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center space-y-2">
                 <div className="w-6 h-6 border-2 border-green-500 border-t-transparent rounded-full animate-spin mx-auto" />
-                <p className="text-sm text-gray-400">ショップを検索中...</p>
+                <p className="text-sm text-gray-400">Searching shops...</p>
               </div>
             </div>
           ) : displayShops.length === 0 ? (
             <div className="flex-1 flex items-center justify-center text-gray-400 text-sm">
-              {activeFilterCount > 0 ? '条件に合うショップがありません' : 'このエリアにショップはありません'}
+              {activeFilterCount > 0 ? 'No shops match your filters' : 'No shops in this area'}
             </div>
           ) : (
             <div className="divide-y divide-gray-100">
@@ -481,7 +529,7 @@ export default function DiscoveryPage() {
                     onClick={() => setVisibleCount(c => c + PAGE_SIZE)}
                     className="px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors"
                   >
-                    もっと見る（残り{displayShops.length - visibleCount}件）
+                    Show more ({displayShops.length - visibleCount} remaining)
                   </button>
                 </div>
               )}
@@ -509,32 +557,50 @@ export default function DiscoveryPage() {
             {userLoc && (
               <div className="absolute top-3 right-3 bg-white rounded-lg shadow px-2 py-1 flex items-center gap-1 text-xs text-blue-600">
                 <MapPin className="w-3 h-3" />
-                現在地を使用中
+                Using current location
               </div>
             )}
           </div>
         </div>
       </div>
 
-      {/* ===== MOBILE: Floating "地図を見る" button ===== */}
-      <button
-        onClick={() => setShowMobileMap(true)}
-        className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 bg-green-600 text-white text-sm font-medium px-5 py-3 rounded-full shadow-lg hover:bg-green-700 transition-colors"
-      >
-        <Map className="w-4 h-4" />
-        地図を見る
-      </button>
+      {/* ===== MOBILE: Floating buttons ===== */}
+      <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2">
+        <button
+          onClick={handleNearMe}
+          disabled={nearMeLoading}
+          className={`flex items-center gap-1.5 text-sm font-medium px-4 py-3 rounded-full shadow-lg transition-colors ${
+            nearMeActive
+              ? 'bg-blue-600 text-white hover:bg-blue-700'
+              : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
+          }`}
+        >
+          {nearMeLoading ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : (
+            <Navigation className="w-4 h-4" />
+          )}
+          Near Me
+        </button>
+        <button
+          onClick={() => setShowMobileMap(true)}
+          className="flex items-center gap-2 bg-green-600 text-white text-sm font-medium px-5 py-3 rounded-full shadow-lg hover:bg-green-700 transition-colors"
+        >
+          <Map className="w-4 h-4" />
+          View Map
+        </button>
+      </div>
 
       {/* ===== MOBILE: Full-screen map overlay ===== */}
       {showMobileMap && (
         <div className="md:hidden fixed inset-0 z-40 bg-white flex flex-col">
           <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 shrink-0">
-            <span className="font-bold text-sm text-gray-900">マップ</span>
+            <span className="font-bold text-sm text-gray-900">Map</span>
             <button
               onClick={() => setShowMobileMap(false)}
               className="text-sm text-green-700 font-medium"
             >
-              リストに戻る
+              Back to List
             </button>
           </div>
           <div className="flex-1 relative">
@@ -553,7 +619,13 @@ export default function DiscoveryPage() {
 
             {/* Selected shop mini card on mobile map */}
             {selected && (
-              <div className="absolute bottom-4 left-4 right-4 bg-white rounded-xl shadow-lg p-3 flex gap-3">
+              <div
+                onClick={() => {
+                  setShowMobileMap(false)
+                  router.push(`/shop?id=${selected.id}`)
+                }}
+                className="absolute bottom-4 left-4 right-4 bg-white rounded-xl shadow-lg p-3 flex gap-3 items-center cursor-pointer active:scale-[0.98] transition-transform"
+              >
                 <div className={`w-16 h-16 rounded-lg shrink-0 flex items-center justify-center text-xl font-bold text-white ${selected.is_premium ? 'bg-gradient-to-br from-amber-400 to-orange-500' : 'bg-gradient-to-br from-green-500 to-green-700'}`}>
                   {selected.name.charAt(0)}
                 </div>
@@ -569,8 +641,9 @@ export default function DiscoveryPage() {
                     </span>
                   </div>
                 </div>
+                <ChevronRight className="w-5 h-5 text-gray-400 shrink-0" />
                 <button
-                  onClick={() => setSelected(null)}
+                  onClick={(e) => { e.stopPropagation(); setSelected(null) }}
                   className="text-gray-400 hover:text-gray-600 shrink-0"
                 >
                   <X className="w-4 h-4" />
