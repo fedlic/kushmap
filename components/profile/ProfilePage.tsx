@@ -75,14 +75,14 @@ export default function ProfilePage({ user }: { user: User }) {
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-gray-900">
             <ArrowLeft className="w-4 h-4" />
-            トップへ
+            Home
           </Link>
           <button
             onClick={handleSignOut}
             className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-red-500 transition-colors"
           >
             <LogOut className="w-3.5 h-3.5" />
-            ログアウト
+            Log Out
           </button>
         </div>
       </div>
@@ -99,8 +99,8 @@ export default function ProfilePage({ user }: { user: User }) {
             )}
             <p className="text-sm text-gray-500 truncate">{user.email}</p>
             <div className="flex gap-4 mt-2 text-xs text-gray-400">
-              <span><span className="font-bold text-gray-700">{bookmarks.length}</span> ブックマーク</span>
-              <span><span className="font-bold text-gray-700">{reviews.length}</span> レビュー</span>
+              <span><span className="font-bold text-gray-700">{bookmarks.length}</span> Bookmarks</span>
+              <span><span className="font-bold text-gray-700">{reviews.length}</span> Reviews</span>
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ export default function ProfilePage({ user }: { user: User }) {
             }`}
           >
             <Heart className="w-4 h-4" />
-            ブックマーク ({bookmarks.length})
+            Bookmarks ({bookmarks.length})
           </button>
           <button
             onClick={() => setTab('reviews')}
@@ -123,7 +123,7 @@ export default function ProfilePage({ user }: { user: User }) {
             }`}
           >
             <Star className="w-4 h-4" />
-            レビュー ({reviews.length})
+            Reviews ({reviews.length})
           </button>
         </div>
 
@@ -136,8 +136,8 @@ export default function ProfilePage({ user }: { user: User }) {
           bookmarks.length === 0 ? (
             <div className="bg-white rounded-2xl p-10 shadow-sm text-center space-y-3">
               <Heart className="w-10 h-10 text-gray-200 mx-auto" />
-              <p className="text-sm text-gray-400">ブックマークしたショップがありません</p>
-              <Link href="/" className="inline-block text-xs text-green-600 hover:underline">ショップを探す</Link>
+              <p className="text-sm text-gray-400">No bookmarked shops</p>
+              <Link href="/" className="inline-block text-xs text-green-600 hover:underline">Find Shops</Link>
             </div>
           ) : (
             <div className="bg-white rounded-2xl shadow-sm divide-y divide-gray-100 overflow-hidden">
@@ -164,8 +164,8 @@ export default function ProfilePage({ user }: { user: User }) {
           reviews.length === 0 ? (
             <div className="bg-white rounded-2xl p-10 shadow-sm text-center space-y-3">
               <Star className="w-10 h-10 text-gray-200 mx-auto" />
-              <p className="text-sm text-gray-400">まだレビューを投稿していません</p>
-              <Link href="/" className="inline-block text-xs text-green-600 hover:underline">ショップを探す</Link>
+              <p className="text-sm text-gray-400">No reviews yet</p>
+              <Link href="/" className="inline-block text-xs text-green-600 hover:underline">Find Shops</Link>
             </div>
           ) : (
             <div className="bg-white rounded-2xl shadow-sm divide-y divide-gray-100 overflow-hidden">
@@ -176,8 +176,8 @@ export default function ProfilePage({ user }: { user: User }) {
                   className="block p-4 hover:bg-gray-50 transition-colors"
                 >
                   <div className="flex items-center justify-between mb-1.5">
-                    <p className="font-semibold text-sm text-gray-900">{r.shops?.name ?? '不明なショップ'}</p>
-                    <span className="text-xs text-gray-400">{new Date(r.created_at).toLocaleDateString('ja-JP')}</span>
+                    <p className="font-semibold text-sm text-gray-900">{r.shops?.name ?? 'Unknown Shop'}</p>
+                    <span className="text-xs text-gray-400">{new Date(r.created_at).toLocaleDateString('en-US')}</span>
                   </div>
                   <StarDisplay rating={r.rating} />
                   {r.body && <p className="text-sm text-gray-600 mt-1.5 leading-relaxed">{r.body}</p>}

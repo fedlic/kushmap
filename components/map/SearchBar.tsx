@@ -31,7 +31,7 @@ export default function SearchBar({ onSearch, onLocate }: SearchBarProps) {
           ref={ref}
           value={value}
           onChange={(e) => handleChange(e.target.value)}
-          placeholder="ショップを検索..."
+          placeholder="Search shops..."
           className="w-full h-10 pl-9 pr-8 rounded-full border border-gray-200 bg-white text-sm shadow-sm outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
         />
         {value && (
@@ -46,7 +46,7 @@ export default function SearchBar({ onSearch, onLocate }: SearchBarProps) {
       <button
         onClick={onLocate}
         className="shrink-0 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center hover:bg-gray-50 transition-colors"
-        title="現在地"
+        title="My Location"
       >
         <LocateFixed className="w-4 h-4 text-green-600" />
       </button>

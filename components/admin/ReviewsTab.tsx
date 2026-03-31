@@ -54,17 +54,17 @@ export default function ReviewsTab() {
           {(['all', 'flagged'] as const).map(f => (
             <button key={f} onClick={() => { setFilter(f); setPage(0) }}
               className={`px-3 py-1.5 text-xs rounded-lg ${filter === f ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
-              {f === 'all' ? '全て' : 'フラグ付き'}
+              {f === 'all' ? 'All' : 'Flagged'}
             </button>
           ))}
         </div>
-        <p className="text-xs text-gray-500">{total.toLocaleString()}件</p>
+        <p className="text-xs text-gray-500">{total.toLocaleString()} results</p>
       </div>
 
       {loading ? (
         <div className="flex justify-center py-8"><div className="w-6 h-6 border-2 border-green-500 border-t-transparent rounded-full animate-spin" /></div>
       ) : reviews.length === 0 ? (
-        <p className="text-sm text-gray-400 text-center py-8">該当なし</p>
+        <p className="text-sm text-gray-400 text-center py-8">No results</p>
       ) : (
         <div className="space-y-1.5">
           {reviews.map(r => (
@@ -73,27 +73,27 @@ export default function ReviewsTab() {
                 <div className="flex items-center gap-2 mb-0.5">
                   <span className="text-sm font-medium text-gray-900 truncate">{r.shop_name}</span>
                   <span className="text-xs text-gray-400">{r.shop_city}</span>
-                  {r.is_flagged && <span className="text-[10px] px-1.5 bg-red-100 text-red-700 rounded">フラグ</span>}
+                  {r.is_flagged && <span className="text-[10px] px-1.5 bg-red-100 text-red-700 rounded">Flagged</span>}
                 </div>
                 <div className="flex items-center gap-2">
                   <Stars rating={r.rating} />
-                  <span className="text-xs text-gray-400">{new Date(r.created_at).toLocaleDateString('ja-JP')}</span>
+                  <span className="text-xs text-gray-400">{new Date(r.created_at).toLocaleDateString('en-US')}</span>
                   <span className="text-[10px] text-gray-300">({r.user_id.slice(0, 8)})</span>
                 </div>
                 {r.body && <p className="text-xs text-gray-600 mt-1 line-clamp-2">{r.body}</p>}
               </div>
               <div className="flex items-center gap-1 shrink-0">
                 <button onClick={() => handleFlag(r)}
-                  className={`p-2 rounded-lg hover:bg-gray-50 ${r.is_flagged ? 'text-red-500' : 'text-gray-400 hover:text-red-500'}`} title="フラグ">
+                  className={`p-2 rounded-lg hover:bg-gray-50 ${r.is_flagged ? 'text-red-500' : 'text-gray-400 hover:text-red-500'}`} title="Flag">
                   <Flag className="w-4 h-4" />
                 </button>
                 {deleting === r.id ? (
                   <>
-                    <button onClick={() => handleDelete(r.id)} className="text-[10px] px-2 py-1 bg-red-600 text-white rounded">削除</button>
-                    <button onClick={() => setDeleting(null)} className="text-[10px] px-2 py-1 text-gray-500">戻す</button>
+                    <button onClick={() => handleDelete(r.id)} className="text-[10px] px-2 py-1 bg-red-600 text-white rounded">Delete</button>
+                    <button onClick={() => setDeleting(null)} className="text-[10px] px-2 py-1 text-gray-500">Cancel</button>
                   </>
                 ) : (
-                  <button onClick={() => setDeleting(r.id)} className="p-2 text-gray-400 hover:text-red-500" title="削除">
+                  <button onClick={() => setDeleting(r.id)} className="p-2 text-gray-400 hover:text-red-500" title="Delete">
                     <Trash2 className="w-4 h-4" />
                   </button>
                 )}

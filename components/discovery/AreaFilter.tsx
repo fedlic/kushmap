@@ -3,7 +3,7 @@
 export type Area = 'all' | 'sukhumvit' | 'silom' | 'khao_san' | 'chiang_mai' | 'phuket'
 
 const AREAS: { id: Area; label: string; lat?: number; lng?: number }[] = [
-  { id: 'all', label: 'すべて' },
+  { id: 'all', label: 'All' },
   { id: 'sukhumvit', label: 'Sukhumvit', lat: 13.7440, lng: 100.5570 },
   { id: 'silom', label: 'Silom', lat: 13.7274, lng: 100.5347 },
   { id: 'khao_san', label: 'Khao San', lat: 13.7589, lng: 100.4977 },

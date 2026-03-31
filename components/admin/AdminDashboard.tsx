@@ -17,9 +17,9 @@ const ReviewsTab = dynamic(() => import('./ReviewsTab'))
 type Tab = 'overview' | 'shops' | 'reviews'
 
 const TABS: { key: Tab; label: string; Icon: typeof BarChart3 }[] = [
-  { key: 'overview', label: '概要', Icon: BarChart3 },
-  { key: 'shops', label: 'ショップ', Icon: Store },
-  { key: 'reviews', label: 'レビュー', Icon: MessageSquare },
+  { key: 'overview', label: 'Overview', Icon: BarChart3 },
+  { key: 'shops', label: 'Shops', Icon: Store },
+  { key: 'reviews', label: 'Reviews', Icon: MessageSquare },
 ]
 
 export default function AdminDashboard() {
@@ -59,9 +59,9 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="bg-white rounded-2xl shadow-sm p-8 max-w-sm mx-4 text-center space-y-3">
-          <p className="text-red-600 font-bold">アクセス拒否</p>
-          <p className="text-sm text-gray-500">管理者権限がありません</p>
-          <Link href="/" className="inline-block text-sm text-green-600 hover:text-green-700">トップへ戻る</Link>
+          <p className="text-red-600 font-bold">Access Denied</p>
+          <p className="text-sm text-gray-500">You do not have admin access</p>
+          <Link href="/" className="inline-block text-sm text-green-600 hover:text-green-700">Home</Link>
         </div>
       </div>
     )
@@ -73,10 +73,10 @@ export default function AdminDashboard() {
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-gray-900">
-              <ArrowLeft className="w-4 h-4" />トップへ
+              <ArrowLeft className="w-4 h-4" />Home
             </Link>
             <span className="text-gray-300">|</span>
-            <span className="font-bold text-gray-900">管理者ダッシュボード</span>
+            <span className="font-bold text-gray-900">Admin Dashboard</span>
           </div>
           <span className="text-xs text-gray-400">{user.email}</span>
         </div>

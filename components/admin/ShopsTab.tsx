@@ -8,7 +8,7 @@ import type { AdminShop } from '@/lib/supabase/admin-queries'
 import Pagination from './Pagination'
 
 type Filter = 'all' | 'hidden' | 'visible'
-const FILTER_LABELS: Record<Filter, string> = { all: '全て', visible: '表示中', hidden: '非表示' }
+const FILTER_LABELS: Record<Filter, string> = { all: 'All', visible: 'Visible', hidden: 'Hidden' }
 
 export default function ShopsTab() {
   const [shops, setShops] = useState<AdminShop[]>([])
@@ -51,10 +51,10 @@ export default function ShopsTab() {
         <form onSubmit={handleSearch} className="flex-1 flex gap-2">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input value={input} onChange={e => setInput(e.target.value)} placeholder="ショップ名で検索..."
+            <input value={input} onChange={e => setInput(e.target.value)} placeholder="Search shops..."
               className="w-full h-9 pl-9 pr-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
           </div>
-          <button type="submit" className="h-9 px-4 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700">検索</button>
+          <button type="submit" className="h-9 px-4 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700">Search</button>
         </form>
         <div className="flex gap-1">
           {(['all', 'visible', 'hidden'] as Filter[]).map(f => (
@@ -66,12 +66,12 @@ export default function ShopsTab() {
         </div>
       </div>
 
-      <p className="text-xs text-gray-500">{total.toLocaleString()}件</p>
+      <p className="text-xs text-gray-500">{total.toLocaleString()} results</p>
 
       {loading ? (
         <div className="flex justify-center py-8"><div className="w-6 h-6 border-2 border-green-500 border-t-transparent rounded-full animate-spin" /></div>
       ) : shops.length === 0 ? (
-        <p className="text-sm text-gray-400 text-center py-8">該当なし</p>
+        <p className="text-sm text-gray-400 text-center py-8">No results</p>
       ) : (
         <div className="space-y-1.5">
           {shops.map(shop => (
@@ -79,26 +79,26 @@ export default function ShopsTab() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
                   <span className="font-medium text-sm text-gray-900 truncate">{shop.name}</span>
-                  {shop.is_verified && <span className="text-[10px] px-1.5 bg-blue-100 text-blue-700 rounded">認証済</span>}
+                  {shop.is_verified && <span className="text-[10px] px-1.5 bg-blue-100 text-blue-700 rounded">Verified</span>}
                   {shop.is_premium && <span className="text-[10px] px-1.5 bg-yellow-100 text-yellow-700 rounded">Premium</span>}
-                  {shop.is_hidden && <span className="text-[10px] px-1.5 bg-gray-200 text-gray-600 rounded">非表示</span>}
+                  {shop.is_hidden && <span className="text-[10px] px-1.5 bg-gray-200 text-gray-600 rounded">Hidden</span>}
                 </div>
-                <p className="text-xs text-gray-400 mt-0.5">{shop.city} · {new Date(shop.created_at).toLocaleDateString('ja-JP')}</p>
+                <p className="text-xs text-gray-400 mt-0.5">{shop.city} · {new Date(shop.created_at).toLocaleDateString('en-US')}</p>
               </div>
               <div className="flex items-center gap-1 shrink-0">
-                <Link href={`/shop?id=${shop.id}`} target="_blank" className="p-2 text-gray-400 hover:text-gray-600" title="表示">
+                <Link href={`/shop?id=${shop.id}`} target="_blank" className="p-2 text-gray-400 hover:text-gray-600" title="Show">
                   <Store className="w-4 h-4" />
                 </Link>
-                <button onClick={() => handleToggle(shop)} className="p-2 text-gray-400 hover:text-gray-600" title={shop.is_hidden ? '表示' : '非表示'}>
+                <button onClick={() => handleToggle(shop)} className="p-2 text-gray-400 hover:text-gray-600" title={shop.is_hidden ? 'Show' : 'Hide'}>
                   {shop.is_hidden ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
                 </button>
                 {deleting === shop.id ? (
                   <>
-                    <button onClick={() => handleDelete(shop.id)} className="text-[10px] px-2 py-1 bg-red-600 text-white rounded">削除</button>
-                    <button onClick={() => setDeleting(null)} className="text-[10px] px-2 py-1 text-gray-500">戻す</button>
+                    <button onClick={() => handleDelete(shop.id)} className="text-[10px] px-2 py-1 bg-red-600 text-white rounded">Delete</button>
+                    <button onClick={() => setDeleting(null)} className="text-[10px] px-2 py-1 text-gray-500">Cancel</button>
                   </>
                 ) : (
-                  <button onClick={() => setDeleting(shop.id)} className="p-2 text-gray-400 hover:text-red-500" title="削除">
+                  <button onClick={() => setDeleting(shop.id)} className="p-2 text-gray-400 hover:text-red-500" title="Delete">
                     <Trash2 className="w-4 h-4" />
                   </button>
                 )}

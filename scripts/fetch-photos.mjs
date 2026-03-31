@@ -1,13 +1,19 @@
 /**
- * Fetch Google Places photos for all shops and store in shop_images table.
+ * Re-fetch shop photos via Google Places API and store in Supabase Storage.
  * Run: node scripts/fetch-photos.mjs
  *
- * Uses Places API (New) text search with photo field mask.
- * Stores photo URLs as: https://places.googleapis.com/v1/{photo_name}/media?key=...&maxWidthPx=800
+ * 1. Get unique shop_ids from shop_images (2,865 shops)
+ * 2. Extract Google Place ID from existing URLs
+ * 3. Fetch fresh photo references via Places API (New) - Place Details
+ * 4. Download actual image bytes
+ * 5. Upload to Supabase Storage "shop-photos" bucket
+ * 6. Update shop_images.url to permanent Supabase Storage URL
+ * 7. Skip shops already migrated (url contains supabase.co/storage/v1)
  */
 
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync, appendFileSync, writeFileSync } from 'fs'
+import pLimit from 'p-limit'
 
 const envText = readFileSync('/Users/pon/kushmap/.env.local', 'utf8')
 const env = Object.fromEntries(
@@ -19,68 +25,40 @@ const env = Object.fromEntries(
 const MAPS_KEY = env['NEXT_PUBLIC_GOOGLE_MAPS_API_KEY']
 const SUPABASE_URL = env['NEXT_PUBLIC_SUPABASE_URL']
 const SUPABASE_KEY = env['SUPABASE_SERVICE_ROLE_KEY']
+const BUCKET = 'shop-photos'
+const MAX_PHOTOS_PER_SHOP = 5
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
 
-const LOG_FILE = '/Users/pon/kushmap/scripts/photo-log.txt'
-writeFileSync(LOG_FILE, `=== KUSHMAP Photo Import - ${new Date().toISOString()} ===\n`)
+const LOG_FILE = '/Users/pon/kushmap/scripts/photo-migrate-log.txt'
+writeFileSync(LOG_FILE, `=== KUSHMAP Photo Migration - ${new Date().toISOString()} ===\n`)
 
 function log(msg) {
   console.log(msg)
   appendFileSync(LOG_FILE, msg + '\n')
 }
 
-async function sleep(ms) {
-  return new Promise(r => setTimeout(r, ms))
+async function ensureBucket() {
+  const { data: buckets } = await supabase.storage.listBuckets()
+  if (!buckets?.find(b => b.name === BUCKET)) {
+    const { error } = await supabase.storage.createBucket(BUCKET, { public: true })
+    if (error) throw new Error(`Failed to create bucket: ${error.message}`)
+    log(`Created bucket "${BUCKET}"`)
+  } else {
+    log(`Bucket "${BUCKET}" already exists`)
+  }
 }
 
-async function fetchPhotoForShop(shop) {
-  const query = `${shop.name} ${shop.city} Thailand cannabis`
-  const body = {
-    textQuery: query,
-    locationBias: {
-      circle: { center: { latitude: shop.lat, longitude: shop.lng }, radius: 500.0 }
-    },
-    maxResultCount: 1,
-    languageCode: 'en',
-  }
-
-  const res = await fetch('https://places.googleapis.com/v1/places:searchText', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Goog-Api-Key': MAPS_KEY,
-      'X-Goog-FieldMask': 'places.id,places.photos',
-      'Referer': 'https://kushmap.vercel.app/',
-    },
-    body: JSON.stringify(body),
-  })
-
-  const data = await res.json()
-  if (data.error) {
-    log(`  ⚠ API error for "${shop.name}": ${data.error.message}`)
-    return null
-  }
-
-  const place = data.places?.[0]
-  if (!place?.photos?.length) return null
-
-  // Return up to 3 photos
-  return place.photos.slice(0, 3).map((photo, idx) => ({
-    url: `https://places.googleapis.com/v1/${photo.name}/media?key=${MAPS_KEY}&maxWidthPx=800`,
-    is_primary: idx === 0,
-  }))
-}
-
-async function fetchAllShops() {
+// Fetch all shop_images rows, grouped by shop_id
+async function fetchAllImages() {
   const all = []
   const PAGE = 1000
   let from = 0
   while (true) {
     const { data, error } = await supabase
-      .from('shops')
-      .select('id, name, city, lat, lng')
-      .order('created_at', { ascending: true })
+      .from('shop_images')
+      .select('id, shop_id, url, is_primary')
+      .order('shop_id', { ascending: true })
       .range(from, from + PAGE - 1)
     if (error) throw new Error(error.message)
     if (!data?.length) break
@@ -91,57 +69,196 @@ async function fetchAllShops() {
   return all
 }
 
-async function main() {
-  // Get shops that don't have images yet
-  const allShops = await fetchAllShops().catch(err => { log(`FATAL: ${err.message}`); process.exit(1) })
+function isAlreadyMigrated(url) {
+  return url && url.includes('supabase.co/storage/v1')
+}
 
-  // Get shop IDs that already have images
-  const { data: existingImages } = await supabase
-    .from('shop_images')
-    .select('shop_id')
+// Extract Google Place ID from existing photo URL
+function extractPlaceId(url) {
+  const m = url?.match(/places\/([^/]+)\/photos/)
+  return m ? m[1] : null
+}
 
-  const doneIds = new Set((existingImages ?? []).map(i => i.shop_id))
-  const shops = allShops.filter(s => !doneIds.has(s.id))
+const REFERER = 'https://kushmap.vercel.app/'
 
-  log(`Total shops: ${allShops.length}, Already have photos: ${doneIds.size}, To process: ${shops.length}\n`)
+// Fetch fresh photo references from Places API (New)
+async function fetchPhotoRefs(placeId) {
+  const url = `https://places.googleapis.com/v1/places/${placeId}?languageCode=en`
+  const res = await fetch(url, {
+    headers: {
+      'X-Goog-Api-Key': MAPS_KEY,
+      'X-Goog-FieldMask': 'photos',
+      'Referer': REFERER,
+    },
+  })
+  if (!res.ok) {
+    throw new Error(`Places API ${res.status}`)
+  }
+  const data = await res.json()
+  return (data.photos || []).slice(0, MAX_PHOTOS_PER_SHOP)
+}
 
-  let success = 0
-  let failed = 0
+// Download photo bytes from Places API photo media endpoint
+async function downloadPhoto(photoName) {
+  const url = `https://places.googleapis.com/v1/${photoName}/media?key=${MAPS_KEY}&maxWidthPx=800&skipHttpRedirect=true`
+  const res = await fetch(url, { headers: { 'Referer': REFERER } })
+  if (!res.ok) {
+    throw new Error(`Photo download ${res.status}`)
+  }
+  const data = await res.json()
+  // skipHttpRedirect=true returns JSON with photoUri
+  const photoUri = data.photoUri
+  if (!photoUri) throw new Error('No photoUri in response')
 
-  for (let i = 0; i < shops.length; i++) {
-    const shop = shops[i]
-    try {
-      const photos = await fetchPhotoForShop(shop)
-      if (photos?.length) {
-        const rows = photos.map(p => ({ shop_id: shop.id, url: p.url, is_primary: p.is_primary }))
-        const { error } = await supabase.from('shop_images').insert(rows)
-        if (error) {
-          log(`  ✗ [${i + 1}/${shops.length}] "${shop.name}": insert error - ${error.message}`)
-          failed++
-        } else {
-          log(`  ✓ [${i + 1}/${shops.length}] "${shop.name}": ${photos.length} photo(s)`)
-          success++
+  const imgRes = await fetch(photoUri)
+  if (!imgRes.ok) throw new Error(`Image fetch ${imgRes.status}`)
+
+  const contentType = imgRes.headers.get('content-type') || 'image/jpeg'
+  const buffer = Buffer.from(await imgRes.arrayBuffer())
+  return { buffer, contentType }
+}
+
+// Upload to Supabase Storage and return public URL
+async function uploadToStorage(shopId, index, buffer, contentType) {
+  const ext = contentType.includes('png') ? 'png' : contentType.includes('webp') ? 'webp' : 'jpg'
+  const path = `${shopId}/${index}.${ext}`
+
+  const { error } = await supabase.storage
+    .from(BUCKET)
+    .upload(path, buffer, { contentType, upsert: true })
+  if (error) throw new Error(`Upload: ${error.message}`)
+
+  const { data } = supabase.storage.from(BUCKET).getPublicUrl(path)
+  return data.publicUrl
+}
+
+async function processShop(shopId, rows, placeId, idx, total) {
+  try {
+    // Fetch fresh photo references
+    const photoRefs = await fetchPhotoRefs(placeId)
+    if (!photoRefs.length) {
+      log(`  - [${idx}/${total}] ${shopId}: no photos from Places API`)
+      return { success: 0, errors: 0 }
+    }
+
+    // Delete old rows and insert fresh ones
+    const { error: delErr } = await supabase
+      .from('shop_images')
+      .delete()
+      .eq('shop_id', shopId)
+    if (delErr) {
+      log(`  ✗ [${idx}/${total}] ${shopId}: delete old rows failed - ${delErr.message}`)
+      return { success: 0, errors: 1 }
+    }
+
+    let ok = 0
+    let err = 0
+
+    for (let i = 0; i < photoRefs.length; i++) {
+      try {
+        const { buffer, contentType } = await downloadPhoto(photoRefs[i].name)
+        if (buffer.length < 200) {
+          err++
+          continue
         }
-      } else {
-        log(`  - [${i + 1}/${shops.length}] "${shop.name}": no photos found`)
-        failed++
+
+        const publicUrl = await uploadToStorage(shopId, i, buffer, contentType)
+
+        const { error: insErr } = await supabase
+          .from('shop_images')
+          .insert({
+            shop_id: shopId,
+            url: publicUrl,
+            is_primary: i === 0,
+          })
+        if (insErr) {
+          log(`  ✗ [${idx}/${total}] ${shopId} photo ${i}: insert failed - ${insErr.message}`)
+          err++
+        } else {
+          ok++
+        }
+      } catch (e) {
+        log(`  ✗ [${idx}/${total}] ${shopId} photo ${i}: ${e.message}`)
+        err++
       }
-    } catch (err) {
-      log(`  ✗ [${i + 1}/${shops.length}] "${shop.name}": ${err.message}`)
-      failed++
     }
 
-    // Rate limiting: ~200ms between requests
-    await sleep(200)
+    return { success: ok, errors: err }
+  } catch (e) {
+    log(`  ✗ [${idx}/${total}] ${shopId}: ${e.message}`)
+    return { success: 0, errors: 1 }
+  }
+}
 
-    // Progress checkpoint every 50 shops
-    if ((i + 1) % 50 === 0) {
-      log(`\n--- Progress: ${i + 1}/${shops.length} (${success} success, ${failed} failed) ---\n`)
+async function main() {
+  await ensureBucket()
+
+  log('Fetching all shop_images rows...')
+  const allImages = await fetchAllImages()
+  log(`Total rows: ${allImages.length}`)
+
+  // Group by shop_id
+  const shopMap = new Map()
+  for (const img of allImages) {
+    if (!shopMap.has(img.shop_id)) {
+      shopMap.set(img.shop_id, [])
     }
+    shopMap.get(img.shop_id).push(img)
+  }
+  log(`Unique shops: ${shopMap.size}`)
+
+  // Filter out already migrated shops (all URLs for that shop are supabase)
+  const toProcess = []
+  let alreadyDone = 0
+  for (const [shopId, rows] of shopMap) {
+    const allMigrated = rows.every(r => isAlreadyMigrated(r.url))
+    if (allMigrated) {
+      alreadyDone++
+      continue
+    }
+    // Extract place ID from any row
+    const placeId = rows.map(r => extractPlaceId(r.url)).find(Boolean)
+    if (!placeId) {
+      log(`  - ${shopId}: no Place ID found in URLs, skipping`)
+      continue
+    }
+    toProcess.push({ shopId, rows, placeId })
   }
 
+  log(`Already migrated: ${alreadyDone}, To process: ${toProcess.length}\n`)
+
+  if (toProcess.length === 0) {
+    log('Nothing to do.')
+    return
+  }
+
+  const limit = pLimit(3)
+  let totalSuccess = 0
+  let totalErrors = 0
+  let processed = 0
+
+  const tasks = toProcess.map((item, i) =>
+    limit(async () => {
+      const { success, errors } = await processShop(
+        item.shopId, item.rows, item.placeId, i + 1, toProcess.length
+      )
+      totalSuccess += success
+      totalErrors += errors
+      processed++
+
+      if (processed % 100 === 0) {
+        log(`\n--- Progress: ${processed}/${toProcess.length} shops | ${totalSuccess} photos ok, ${totalErrors} errors ---\n`)
+      }
+    })
+  )
+
+  await Promise.all(tasks)
+
   log(`\n${'='.repeat(50)}`)
-  log(`✅ DONE: ${success} shops with photos, ${failed} without`)
+  log(`DONE: ${processed} shops processed`)
+  log(`  ${totalSuccess} photos uploaded to Supabase Storage`)
+  log(`  ${totalErrors} errors`)
+  log(`  ${alreadyDone} shops were already migrated`)
   log(`${'='.repeat(50)}\n`)
 }
 

@@ -81,7 +81,7 @@ export default function ShopListCard({ shop, distance, isSelected, onClick, isBo
           </h3>
           {shop.is_verified && (
             <Badge className="bg-blue-50 text-blue-700 border-blue-200 text-[9px] px-1 py-0 h-3.5 shrink-0">
-              認証済み
+              Verified
             </Badge>
           )}
           {shop.is_premium && (
@@ -120,7 +120,7 @@ export default function ShopListCard({ shop, distance, isSelected, onClick, isBo
         <button
           onClick={onBookmarkToggle}
           className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-gray-100 transition-colors"
-          aria-label={isBookmarked ? 'ブックマーク解除' : 'ブックマーク'}
+          aria-label={isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
         >
           <Heart
             className={`w-7 h-7 transition-colors ${isBookmarked ? 'fill-red-500 text-red-500' : 'text-gray-300'}`}

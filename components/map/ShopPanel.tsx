@@ -33,7 +33,7 @@ function PanelContent({ shop, distance, onClose }: Omit<ShopPanelProps, 'isMobil
         )}
         {shop.is_verified && (
           <Badge className="absolute top-3 right-3 bg-green-700 text-white border-0">
-            認証済み
+            Verified
           </Badge>
         )}
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/50 to-transparent" />
@@ -83,7 +83,7 @@ function PanelContent({ shop, distance, onClose }: Omit<ShopPanelProps, 'isMobil
           {shop.phone && (
             <a href={`tel:${shop.phone}`}>
               <Button variant="outline" size="sm">
-                <Phone className="w-3 h-3 mr-1" /> 電話
+                <Phone className="w-3 h-3 mr-1" /> Phone
               </Button>
             </a>
           )}
@@ -107,7 +107,7 @@ function PanelContent({ shop, distance, onClose }: Omit<ShopPanelProps, 'isMobil
           }}
         >
           <ExternalLink className="w-4 h-4 mr-2" />
-          詳細を見る
+          View Details
         </Button>
       </div>
     </div>

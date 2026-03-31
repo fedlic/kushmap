@@ -5,11 +5,11 @@ import { fetchAdminStats } from '@/lib/supabase/admin-queries'
 import type { AdminStats } from '@/lib/supabase/admin-queries'
 
 const STAT_CARDS = [
-  { key: 'totalShops', label: 'ショップ数', color: 'text-green-700 bg-green-50' },
-  { key: 'totalReviews', label: 'レビュー数', color: 'text-blue-700 bg-blue-50' },
-  { key: 'totalBookmarks', label: 'ブックマーク数', color: 'text-purple-700 bg-purple-50' },
-  { key: 'hiddenShops', label: '非表示', color: 'text-gray-700 bg-gray-100' },
-  { key: 'flaggedReviews', label: 'フラグ付き', color: 'text-red-700 bg-red-50' },
+  { key: 'totalShops', label: 'Shops', color: 'text-green-700 bg-green-50' },
+  { key: 'totalReviews', label: 'Reviews', color: 'text-blue-700 bg-blue-50' },
+  { key: 'totalBookmarks', label: 'Bookmarks', color: 'text-purple-700 bg-purple-50' },
+  { key: 'hiddenShops', label: 'Hidden', color: 'text-gray-700 bg-gray-100' },
+  { key: 'flaggedReviews', label: 'Flagged', color: 'text-red-700 bg-red-50' },
 ] as const
 
 export default function OverviewTab() {
@@ -34,7 +34,7 @@ export default function OverviewTab() {
 
       {stats.topCities.length > 0 && (
         <div className="bg-white rounded-xl border border-gray-200 p-4">
-          <h3 className="text-sm font-semibold text-gray-700 mb-3">都市別 Top 10</h3>
+          <h3 className="text-sm font-semibold text-gray-700 mb-3">Top 10 Cities</h3>
           <div className="space-y-1.5">
             {stats.topCities.map(({ city, count }) => (
               <div key={city} className="flex items-center gap-3">

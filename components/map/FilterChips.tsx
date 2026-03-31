@@ -3,12 +3,12 @@
 import type { FilterType } from '@/types'
 
 const FILTERS: { id: FilterType; label: string }[] = [
-  { id: 'all', label: '全て' },
+  { id: 'all', label: 'All' },
   { id: 'sativa', label: 'Sativa' },
   { id: 'indica', label: 'Indica' },
   { id: 'hybrid', label: 'Hybrid' },
-  { id: 'open', label: '営業中' },
-  { id: 'top_rated', label: '高評価' },
+  { id: 'open', label: 'Open Now' },
+  { id: 'top_rated', label: 'Top Rated' },
 ]
 
 interface FilterChipsProps {

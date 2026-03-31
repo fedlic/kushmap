@@ -30,9 +30,8 @@ export default function AgeGate() {
         <p className="text-xs text-gray-400 mb-6">Thailand Cannabis Dispensary Directory</p>
 
         <div className="bg-gray-50 rounded-xl p-4 mb-6">
-          <p className="text-sm font-semibold text-gray-800 mb-1">年齢確認</p>
-          <p className="text-sm text-gray-600">あなたは18歳以上ですか？</p>
-          <p className="text-xs text-gray-400 mt-1">Are you 18 years or older?</p>
+          <p className="text-sm font-semibold text-gray-800 mb-1">Age Verification</p>
+          <p className="text-sm text-gray-600">Are you 18 or older?</p>
         </div>
 
         <div className="flex gap-3">
@@ -40,18 +39,18 @@ export default function AgeGate() {
             onClick={handleNo}
             className="flex-1 py-3 rounded-xl border border-gray-300 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
           >
-            いいえ / No
+            No
           </button>
           <button
             onClick={handleYes}
             className="flex-1 py-3 rounded-xl bg-green-600 text-white text-sm font-bold hover:bg-green-700 transition-colors"
           >
-            はい / Yes
+            Yes
           </button>
         </div>
 
         <p className="text-[10px] text-gray-400 mt-4">
-          このサイトは成人向けのコンテンツを含みます
+          This site contains adult content
         </p>
       </div>
     </div>

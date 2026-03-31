@@ -10,6 +10,7 @@ const config: CapacitorConfig = {
       '*.supabase.co',
       'maps.googleapis.com',
       '*.googleapis.com',
+      '*.gstatic.com',
     ],
   },
   ios: {
