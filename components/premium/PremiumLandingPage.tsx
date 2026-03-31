@@ -111,8 +111,12 @@ export default function PremiumLandingPage() {
           </a>
           <p className="text-gray-500 text-sm">
             Or email us at{' '}
-            <a href="mailto:hello@kushmap.app" className="text-green-400 hover:underline">
-              hello@kushmap.app
+            <a href="mailto:fedlic@gmail.com" className="text-green-400 hover:underline">
+              fedlic@gmail.com
+            </a>
+            {' / '}
+            <a href="mailto:info@fedlic.tokyo" className="text-green-400 hover:underline">
+              info@fedlic.tokyo
             </a>
           </p>
         </div>
