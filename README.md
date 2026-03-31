@@ -36,6 +36,7 @@ This project is open source under the [MIT License](LICENSE).
 | Database | Supabase (PostgreSQL + PostGIS) |
 | Auth | Supabase Auth |
 | Maps | Google Maps JavaScript API + Places API (New) |
+| Analytics | Google Analytics 4 + Vercel Web Analytics |
 | Deployment | Vercel |
 
 ---
@@ -246,7 +247,9 @@ kushmap/
 ### v1.4.0 (2026-03-31)
 - Premium Listing: FEATURED badge, priority search placement, separated featured section
 - Premium landing page at `/premium` (1,000 THB/mo, LINE/email contact)
+- Premium management tab in admin dashboard (activate, extend, remove)
 - Admin scripts for premium management (`set-premium.mjs`, `list-premium.mjs`)
+- Google Analytics 4 + Vercel Web Analytics integration
 - UI fully localized to English (all Japanese labels replaced)
 - Shop photos migrated to Supabase Storage (permanent URLs)
 
