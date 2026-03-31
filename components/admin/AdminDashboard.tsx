@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, BarChart3, Store, MessageSquare } from 'lucide-react'
+import { ArrowLeft, BarChart3, Store, MessageSquare, Star } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { checkIsAdmin } from '@/lib/supabase/admin-queries'
 import type { User } from '@supabase/supabase-js'
@@ -13,13 +13,15 @@ import AuthModal from '@/components/auth/AuthModal'
 const OverviewTab = dynamic(() => import('./OverviewTab'))
 const ShopsTab = dynamic(() => import('./ShopsTab'))
 const ReviewsTab = dynamic(() => import('./ReviewsTab'))
+const PremiumTab = dynamic(() => import('./PremiumTab'))
 
-type Tab = 'overview' | 'shops' | 'reviews'
+type Tab = 'overview' | 'shops' | 'reviews' | 'premium'
 
 const TABS: { key: Tab; label: string; Icon: typeof BarChart3 }[] = [
   { key: 'overview', label: 'Overview', Icon: BarChart3 },
   { key: 'shops', label: 'Shops', Icon: Store },
   { key: 'reviews', label: 'Reviews', Icon: MessageSquare },
+  { key: 'premium', label: 'Premium', Icon: Star },
 ]
 
 export default function AdminDashboard() {
@@ -97,6 +99,7 @@ export default function AdminDashboard() {
         {tab === 'overview' && <OverviewTab />}
         {tab === 'shops' && <ShopsTab />}
         {tab === 'reviews' && <ReviewsTab />}
+        {tab === 'premium' && <PremiumTab />}
       </div>
     </div>
   )

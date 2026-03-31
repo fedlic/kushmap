@@ -137,4 +137,65 @@ export async function toggleReviewFlag(reviewId: string, flagged: boolean) {
   return { error: error?.message }
 }
 
+export interface PremiumShop {
+  id: string
+  name: string
+  city: string
+  is_premium: boolean
+  premium_expires_at: string | null
+  premium_contact: string | null
+}
+
+export async function fetchPremiumShops(): Promise<PremiumShop[]> {
+  const supabase = createClient()
+  const { data } = await supabase
+    .from('shops')
+    .select('id, name, city, is_premium, premium_expires_at, premium_contact')
+    .eq('is_premium', true)
+    .order('premium_expires_at', { ascending: true })
+  return (data ?? []) as PremiumShop[]
+}
+
+export async function searchShopsForPremium(query: string): Promise<PremiumShop[]> {
+  const supabase = createClient()
+  const { data } = await supabase
+    .from('shops')
+    .select('id, name, city, is_premium, premium_expires_at, premium_contact')
+    .ilike('name', `%${query}%`)
+    .limit(10)
+  return (data ?? []) as PremiumShop[]
+}
+
+export async function setPremiumStatus(
+  shopId: string,
+  isPremium: boolean,
+  months?: number,
+  contact?: string
+): Promise<{ error?: string }> {
+  const supabase = createClient()
+  if (isPremium) {
+    const expiresAt = new Date()
+    expiresAt.setMonth(expiresAt.getMonth() + (months || 1))
+    const { error } = await supabase
+      .from('shops')
+      .update({
+        is_premium: true,
+        premium_expires_at: expiresAt.toISOString(),
+        premium_contact: contact || null,
+      })
+      .eq('id', shopId)
+    return { error: error?.message }
+  } else {
+    const { error } = await supabase
+      .from('shops')
+      .update({
+        is_premium: false,
+        premium_expires_at: null,
+        premium_contact: null,
+      })
+      .eq('id', shopId)
+    return { error: error?.message }
+  }
+}
+
 export { PAGE_SIZE }
