@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import AgeGate from "@/components/AgeGate";
 
@@ -47,6 +48,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192x192.svg" />
       </head>
       <body className="antialiased">
+        <Analytics />
         <AgeGate />
         {children}
       </body>
