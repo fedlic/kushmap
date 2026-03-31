@@ -348,7 +348,7 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
                   <Badge className="bg-blue-50 text-blue-700 border-blue-200 text-xs">Verified</Badge>
                 )}
                 {shop.is_premium && (
-                  <Badge className="bg-amber-50 text-amber-700 border-amber-200 text-xs">★ Premium</Badge>
+                  <Badge className="bg-yellow-400 text-black border-yellow-500 text-sm font-bold px-2 py-0.5">FEATURED</Badge>
                 )}
               </div>
               {reviews.length > 0 && (

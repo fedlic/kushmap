@@ -71,6 +71,9 @@ export async function fetchNearbyShops(
 
   const shops = (data ?? []) as Shop[]
   return shops.sort((a, b) => {
+    const aPremium = a.is_premium && (!a.premium_expires_at || new Date(a.premium_expires_at) > new Date())
+    const bPremium = b.is_premium && (!b.premium_expires_at || new Date(b.premium_expires_at) > new Date())
+    if (aPremium !== bPremium) return aPremium ? -1 : 1
     const da = Math.hypot(a.lat - lat, a.lng - lng)
     const db = Math.hypot(b.lat - lat, b.lng - lng)
     return da - db
@@ -83,6 +86,7 @@ export async function searchShops(query: string): Promise<Shop[]> {
     .from('shops')
     .select(SHOP_SELECT)
     .ilike('name', `%${query}%`)
+    .order('is_premium', { ascending: false })
     .limit(20)
   if (error) {
     console.error('searchShops error:', error.message)

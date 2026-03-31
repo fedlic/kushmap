@@ -61,13 +61,15 @@ function ShopPhoto({ shop }: { shop: Shop }) {
 }
 
 export default function ShopListCard({ shop, distance, isSelected, onClick, isBookmarked, onBookmarkToggle }: ShopListCardProps) {
+  const isPremiumActive = shop.is_premium && (!shop.premium_expires_at || new Date(shop.premium_expires_at) > new Date())
+
   return (
     <Link
       href={`/shop?id=${shop.id}`}
       onClick={onClick}
       className={`flex items-center gap-2 px-2 py-1.5 cursor-pointer transition-colors hover:bg-orange-50 relative ${
         isSelected ? 'bg-orange-50 border-l-3 border-l-orange-400' : ''
-      }`}
+      } ${isPremiumActive ? 'bg-amber-50/50 border-l-4 border-l-amber-400' : ''}`}
     >
       <ShopPhoto shop={shop} />
 
@@ -84,9 +86,9 @@ export default function ShopListCard({ shop, distance, isSelected, onClick, isBo
               Verified
             </Badge>
           )}
-          {shop.is_premium && (
-            <Badge className="bg-amber-50 text-amber-700 border-amber-200 text-[9px] px-1 py-0 h-3.5 shrink-0">
-              ★ Premium
+          {isPremiumActive && (
+            <Badge className="bg-yellow-400 text-black border-yellow-500 text-[9px] px-1.5 py-0 h-4 shrink-0 font-bold">
+              FEATURED
             </Badge>
           )}
         </div>

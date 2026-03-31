@@ -14,6 +14,8 @@ export interface Shop {
   price_range?: 1 | 2 | 3
   is_verified: boolean
   is_premium: boolean
+  premium_expires_at?: string
+  premium_contact?: string
   is_hidden?: boolean
   created_at: string
   shop_images?: { url: string; is_primary: boolean }[]

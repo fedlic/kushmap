@@ -205,6 +205,9 @@ export default function DiscoveryPage() {
       .filter(s => !amenityDelivery || s.delivery)
       .filter(s => !amenityEnglish || s.english_staff)
       .sort((a, b) => {
+        const aPremium = a.is_premium && (!a.premium_expires_at || new Date(a.premium_expires_at) > new Date())
+        const bPremium = b.is_premium && (!b.premium_expires_at || new Date(b.premium_expires_at) > new Date())
+        if (aPremium !== bPremium) return aPremium ? -1 : 1
         if (sort === 'newest') {
           return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
         }
@@ -219,8 +222,14 @@ export default function DiscoveryPage() {
     setVisibleCount(PAGE_SIZE)
   }, [onlyOpen, onlyVerified, strainFilter, priceFilter, amenitySmokingArea, amenityDelivery, amenityEnglish])
 
-  const paginatedShops = displayShops.slice(0, visibleCount)
-  const hasMore = visibleCount < displayShops.length
+  const premiumShops = useMemo(() => displayShops.filter(s =>
+    s.is_premium && (!s.premium_expires_at || new Date(s.premium_expires_at) > new Date())
+  ), [displayShops])
+  const regularShops = useMemo(() => displayShops.filter(s =>
+    !(s.is_premium && (!s.premium_expires_at || new Date(s.premium_expires_at) > new Date()))
+  ), [displayShops])
+  const paginatedRegular = regularShops.slice(0, visibleCount)
+  const hasMore = visibleCount < regularShops.length
 
   const activeFilterCount =
     (onlyOpen ? 1 : 0) +
@@ -502,7 +511,39 @@ export default function DiscoveryPage() {
             </div>
           ) : (
             <div className="divide-y divide-gray-100">
-              {paginatedShops.map((shop, i) => (
+              {/* FEATURED section */}
+              {premiumShops.length > 0 && (
+                <>
+                  <div className="px-3 py-1.5 bg-amber-50 border-b border-amber-200 flex items-center gap-1.5">
+                    <span className="text-amber-600 text-xs font-bold">FEATURED SHOPS</span>
+                  </div>
+                  {premiumShops.map((shop) => (
+                    <div
+                      key={shop.id}
+                      ref={(el) => {
+                        if (el) cardRefs.current[shop.id] = el
+                      }}
+                    >
+                      <ShopListCard
+                        shop={shop}
+                        distance={calcKm(refCenter.lat, refCenter.lng, shop.lat, shop.lng)}
+                        isSelected={selected?.id === shop.id}
+                        onClick={() => handleSelectShop(shop)}
+                        isBookmarked={bookmarkedIds.has(shop.id)}
+                        onBookmarkToggle={(e) => handleBookmarkToggle(e, shop)}
+                      />
+                    </div>
+                  ))}
+                </>
+              )}
+
+              {/* All shops */}
+              {premiumShops.length > 0 && regularShops.length > 0 && (
+                <div className="px-3 py-1.5 bg-gray-50 border-b border-gray-200">
+                  <span className="text-gray-500 text-xs font-bold">ALL SHOPS</span>
+                </div>
+              )}
+              {paginatedRegular.map((shop, i) => (
                 <div key={shop.id}>
                   <div
                     ref={(el) => {
@@ -518,7 +559,7 @@ export default function DiscoveryPage() {
                       onBookmarkToggle={(e) => handleBookmarkToggle(e, shop)}
                     />
                   </div>
-                  {(i + 1) % 5 === 0 && i < paginatedShops.length - 1 && (
+                  {(i + 1) % 5 === 0 && i < paginatedRegular.length - 1 && (
                     <AdUnit slot="LIST_AD_SLOT" format="horizontal" className="py-2 px-3 border-b border-gray-100" />
                   )}
                 </div>
@@ -529,7 +570,7 @@ export default function DiscoveryPage() {
                     onClick={() => setVisibleCount(c => c + PAGE_SIZE)}
                     className="px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors"
                   >
-                    Show more ({displayShops.length - visibleCount} remaining)
+                    Show more ({regularShops.length - visibleCount} remaining)
                   </button>
                 </div>
               )}
