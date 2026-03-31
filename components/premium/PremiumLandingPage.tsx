@@ -102,7 +102,7 @@ export default function PremiumLandingPage() {
         {/* CTA */}
         <div className="text-center space-y-4">
           <a
-            href="https://line.me/ti/p/~kushmap"
+            href="https://line.me/ti/p/~@azg7040t"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white text-lg font-bold px-8 py-4 rounded-xl transition-colors shadow-lg shadow-green-500/25"
