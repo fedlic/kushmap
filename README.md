@@ -14,15 +14,16 @@ This project is open source under the [MIT License](LICENSE).
 
 ## 機能 / Features
 
-| 機能 | 説明 |
+| Feature | Description |
 |---|---|
-| 地図 + リスト表示 | 写真付きマーカー・距離順ショップ一覧 |
-| エリア絞り込み | Sukhumvit, Silom, Khao San, Chiang Mai, Phuket |
-| ショップ詳細 | 写真カルーセル・営業時間・メニュー・レビュー |
-| ユーザー認証 | メール/Googleログイン (Supabase Auth) |
-| レビュー投稿 | 星評価 + コメント |
-| オーナーダッシュボード | 店舗情報編集・受信レビュー確認 |
-| 1,165店舗 | Google Places APIで収集済み（タイ全土15都市） |
+| Map + List View | Photo markers with distance-sorted shop list |
+| Area Filter | Sukhumvit, Silom, Khao San, Chiang Mai, Phuket |
+| Shop Detail | Photo carousel, hours, menu, reviews |
+| Auth | Email / Google login (Supabase Auth) |
+| Reviews | Star rating + comments |
+| Owner Dashboard | Edit shop info, view received reviews |
+| Premium Listing | FEATURED badge, priority search placement, landing page at `/premium` |
+| 1,165+ Shops | Scraped via Google Places API across 15 cities in Thailand |
 
 ---
 
@@ -188,12 +189,13 @@ kushmap/
 ├── app/
 │   ├── page.tsx                 # トップページ（Discovery）
 │   ├── shops/[id]/page.tsx      # ショップ詳細
+│   ├── premium/page.tsx         # Premium listing LP
 │   ├── owner/
-│   │   ├── register/page.tsx    # オーナー登録
-│   │   └── dashboard/page.tsx  # オーナーダッシュボード
+│   │   ├── register/page.tsx    # Owner registration
+│   │   └── dashboard/page.tsx   # Owner dashboard
 │   ├── api/
-│   │   └── photo/route.ts      # 写真プロキシAPI
-│   └── auth/callback/route.ts  # OAuth コールバック
+│   │   └── photo/route.ts      # Photo proxy API
+│   └── auth/callback/route.ts  # OAuth callback
 ├── components/
 │   ├── discovery/              # メイン検索UI
 │   │   ├── DiscoveryPage.tsx
@@ -213,8 +215,11 @@ kushmap/
 │   ├── queries.ts              # ショップ/レビュークエリ
 │   └── owner-queries.ts        # オーナー操作クエリ
 ├── scripts/
-│   ├── scrape-shops.mjs        # ショップデータ収集
-│   └── fetch-photos.mjs        # 写真取得
+│   ├── scrape-shops.mjs        # Shop data scraper
+│   ├── fetch-photos.mjs        # Photo migration to Supabase Storage
+│   ├── set-premium.mjs         # Set shop as premium
+│   ├── list-premium.mjs        # List all premium shops
+│   └── premium-schema.sql      # Premium columns migration
 ├── supabase/migrations/
 │   └── 001_initial_schema.sql  # DBスキーマ
 └── types/index.ts              # TypeScript型定義
@@ -224,16 +229,26 @@ kushmap/
 
 ## ページ一覧 / Pages
 
-| URL | 説明 |
+| URL | Description |
 |---|---|
-| `/` | ショップ検索（地図+リスト） |
-| `/shops/[id]` | ショップ詳細・レビュー |
-| `/owner/register` | オーナー登録（ショップをクレーム） |
-| `/owner/dashboard` | オーナーダッシュボード |
+| `/` | Shop discovery (map + list) |
+| `/shop?id=...` | Shop detail page with reviews |
+| `/premium` | Premium listing landing page |
+| `/owner/register` | Owner registration (claim a shop) |
+| `/owner/dashboard` | Owner dashboard |
+| `/admin` | Admin dashboard |
+| `/profile` | User profile, bookmarks, reviews |
 
 ---
 
 ## Changelog
+
+### v1.4.0 (2026-03-31)
+- Premium Listing: FEATURED badge, priority search placement, separated featured section
+- Premium landing page at `/premium` (1,000 THB/mo, LINE/email contact)
+- Admin scripts for premium management (`set-premium.mjs`, `list-premium.mjs`)
+- UI fully localized to English (all Japanese labels replaced)
+- Shop photos migrated to Supabase Storage (permanent URLs)
 
 ### v1.3.0 (2025-03-24)
 - Near Me: GPS-based nearby shop recommendations with distance sorting
