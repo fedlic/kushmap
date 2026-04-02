@@ -53,6 +53,16 @@ export default function RootLayout({
         <Analytics />
         <AgeGate />
         {children}
+        <footer className="border-t border-gray-200 bg-white px-4 py-5">
+          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
+            <span>&copy; 2026 KUSHMAP by FEDLIC TOKYO LLC</span>
+            <nav className="flex items-center gap-4">
+              <a href="/privacy" className="hover:text-green-600 transition-colors">Privacy Policy</a>
+              <a href="/terms" className="hover:text-green-600 transition-colors">Terms of Service</a>
+              <a href="mailto:info@fedlic.tokyo" className="hover:text-green-600 transition-colors">Contact</a>
+            </nav>
+          </div>
+        </footer>
       </body>
     </html>
   );
