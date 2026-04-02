@@ -1,7 +1,8 @@
 'use client'
 
-import { useRef, useCallback, useState, memo, useMemo } from 'react'
-import { GoogleMap, useJsApiLoader, OverlayViewF, OVERLAY_MOUSE_TARGET, MarkerClustererF, MarkerF } from '@react-google-maps/api'
+import { useRef, useCallback, useState, memo, useMemo, useEffect } from 'react'
+import { GoogleMap, useJsApiLoader, OverlayViewF, OVERLAY_MOUSE_TARGET } from '@react-google-maps/api'
+import { MarkerClusterer, SuperClusterAlgorithm } from '@googlemaps/markerclusterer'
 import type { Shop } from '@/types'
 import { Leaf, Search } from 'lucide-react'
 
@@ -9,10 +10,12 @@ const MAP_OPTIONS: google.maps.MapOptions = {
   disableDefaultUI: true,
   clickableIcons: false,
   gestureHandling: 'greedy',
+  mapId: 'kushmap-discovery',
 }
 
 const MAX_MARKERS = 150
 const CLUSTER_ZOOM_THRESHOLD = 14
+const LIBRARIES: ('marker')[] = ['marker']
 
 interface MapPanelProps {
   shops: Shop[]
@@ -67,75 +70,114 @@ const PhotoMarker = memo(function PhotoMarker({
   )
 })
 
-const CLUSTER_OPTIONS = {
-  maxZoom: CLUSTER_ZOOM_THRESHOLD,
-  minimumClusterSize: 5,
-  styles: [
-    {
-      url: 'data:image/svg+xml;base64,' + btoa('<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52"><circle cx="26" cy="26" r="24" fill="#16a34a" stroke="white" stroke-width="3" opacity="0.9"/></svg>'),
-      height: 52,
-      width: 52,
-      textColor: '#ffffff',
-      textSize: 14,
-      fontWeight: 'bold',
+function createClusterRenderer() {
+  return {
+    render({ count, position }: { count: number; position: google.maps.LatLng }) {
+      const size = count > 50 ? 62 : 52
+      const r = size / 2
+      const color = count > 50 ? '#15803d' : '#16a34a'
+      const fontSize = count > 50 ? 15 : 14
+      const div = document.createElement('div')
+      div.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}"><circle cx="${r}" cy="${r}" r="${r - 2}" fill="${color}" stroke="white" stroke-width="3" opacity="0.9"/><text x="${r}" y="${r}" text-anchor="middle" dominant-baseline="central" fill="white" font-size="${fontSize}" font-weight="bold">${count}</text></svg>`
+      return new google.maps.marker.AdvancedMarkerElement({
+        position,
+        content: div,
+        zIndex: count,
+      })
     },
-    {
-      url: 'data:image/svg+xml;base64,' + btoa('<svg xmlns="http://www.w3.org/2000/svg" width="62" height="62"><circle cx="31" cy="31" r="29" fill="#15803d" stroke="white" stroke-width="3" opacity="0.9"/></svg>'),
-      height: 62,
-      width: 62,
-      textColor: '#ffffff',
-      textSize: 15,
-      fontWeight: 'bold',
-    },
-  ],
+  }
 }
 
 export default function MapPanel({ shops, center, selectedId, onMarkerClick, onSearchArea }: MapPanelProps) {
-  const mapRef = useRef<google.maps.Map | null>(null)
+  const [map, setMap] = useState<google.maps.Map | null>(null)
   const [showSearchBtn, setShowSearchBtn] = useState(false)
   const [searchCenter, setSearchCenter] = useState(center)
   const [zoom, setZoom] = useState(13)
+  const clustererRef = useRef<MarkerClusterer | null>(null)
+  const clusterMarkersRef = useRef<google.maps.marker.AdvancedMarkerElement[]>([])
+  const onMarkerClickRef = useRef(onMarkerClick)
+  onMarkerClickRef.current = onMarkerClick
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
+    libraries: LIBRARIES,
   })
-
-  const handleMapLoad = useCallback((map: google.maps.Map) => {
-    mapRef.current = map
-  }, [])
 
   // Limit markers to viewport + max cap
   const visibleShops = useMemo(() => {
-    if (!mapRef.current) return shops.slice(0, MAX_MARKERS)
-    const bounds = mapRef.current.getBounds()
+    if (!map) return shops.slice(0, MAX_MARKERS)
+    const bounds = map.getBounds()
     if (!bounds) return shops.slice(0, MAX_MARKERS)
     const inView = shops.filter(s => bounds.contains({ lat: s.lat, lng: s.lng }))
-    // Always include selected shop
     const selected = selectedId ? shops.find(s => s.id === selectedId) : null
     const result = inView.slice(0, MAX_MARKERS)
     if (selected && !result.find(s => s.id === selectedId)) result.push(selected)
     return result
-  }, [shops, selectedId, zoom]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [shops, selectedId, zoom, map]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleIdle = useCallback(() => {
-    const map = mapRef.current
     if (!map) return
     const c = map.getCenter()
     if (c) setSearchCenter({ lat: c.lat(), lng: c.lng() })
     setZoom(map.getZoom() ?? 13)
     setShowSearchBtn(true)
-  }, [])
+  }, [map])
 
   const useCluster = zoom < CLUSTER_ZOOM_THRESHOLD
 
-  // Cluster markers (google.maps.Marker based) for zoomed out
-  const clusterMarkers = useMemo(() => {
-    if (!useCluster || !isLoaded) return []
-    return visibleShops.map(shop => ({
-      shop,
-      position: { lat: shop.lat, lng: shop.lng },
-    }))
-  }, [visibleShops, useCluster, isLoaded])
+  // Manage clustered AdvancedMarkerElement markers
+  useEffect(() => {
+    if (!map || !useCluster || !isLoaded) return
+
+    // Clear previous
+    if (clustererRef.current) {
+      clustererRef.current.clearMarkers()
+      clustererRef.current = null
+    }
+    clusterMarkersRef.current.forEach(m => { m.map = null })
+    clusterMarkersRef.current = []
+
+    const markers = visibleShops.map(shop => {
+      const color = shop.id === selectedId ? '#f97316' : shop.is_premium ? '#f59e0b' : '#16a34a'
+      const div = document.createElement('div')
+      div.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="10" fill="${color}" stroke="white" stroke-width="2"/></svg>`
+
+      const marker = new google.maps.marker.AdvancedMarkerElement({
+        position: { lat: shop.lat, lng: shop.lng },
+        content: div,
+      })
+      marker.addListener('click', () => onMarkerClickRef.current(shop))
+      return marker
+    })
+
+    clusterMarkersRef.current = markers
+
+    clustererRef.current = new MarkerClusterer({
+      map,
+      markers,
+      algorithm: new SuperClusterAlgorithm({ maxZoom: CLUSTER_ZOOM_THRESHOLD }),
+      renderer: createClusterRenderer(),
+    })
+
+    return () => {
+      if (clustererRef.current) {
+        clustererRef.current.clearMarkers()
+        clustererRef.current = null
+      }
+      markers.forEach(m => { m.map = null })
+      clusterMarkersRef.current = []
+    }
+  }, [map, visibleShops, useCluster, isLoaded, selectedId])
+
+  // Clean up cluster when switching to non-cluster mode
+  useEffect(() => {
+    if (!useCluster && clustererRef.current) {
+      clustererRef.current.clearMarkers()
+      clustererRef.current = null
+      clusterMarkersRef.current.forEach(m => { m.map = null })
+      clusterMarkersRef.current = []
+    }
+  }, [useCluster])
 
   if (!isLoaded) {
     return (
@@ -152,30 +194,10 @@ export default function MapPanel({ shops, center, selectedId, onMarkerClick, onS
         center={center}
         zoom={13}
         options={MAP_OPTIONS}
-        onLoad={handleMapLoad}
+        onLoad={(m) => setMap(m)}
         onIdle={handleIdle}
       >
-        {useCluster ? (
-          <MarkerClustererF options={CLUSTER_OPTIONS}>
-            {(clusterer) => (
-              <>
-                {clusterMarkers.map(({ shop }) => (
-                  <MarkerF
-                    key={shop.id}
-                    position={{ lat: shop.lat, lng: shop.lng }}
-                    clusterer={clusterer}
-                    onClick={() => onMarkerClick(shop)}
-                    icon={{
-                      url: 'data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="10" fill="${shop.id === selectedId ? '#f97316' : shop.is_premium ? '#f59e0b' : '#16a34a'}" stroke="white" stroke-width="2"/></svg>`),
-                      scaledSize: new google.maps.Size(24, 24),
-                      anchor: new google.maps.Point(12, 12),
-                    }}
-                  />
-                ))}
-              </>
-            )}
-          </MarkerClustererF>
-        ) : (
+        {!useCluster &&
           visibleShops.map((shop) => (
             <OverlayViewF
               key={shop.id}
@@ -188,8 +210,7 @@ export default function MapPanel({ shops, center, selectedId, onMarkerClick, onS
                 onClick={() => onMarkerClick(shop)}
               />
             </OverlayViewF>
-          ))
-        )}
+          ))}
       </GoogleMap>
 
       {/* Search this area button */}

@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Shop } from '@/types'
@@ -37,25 +38,26 @@ function proxyUrl(url: string) {
 
 function ShopPhoto({ shop }: { shop: Shop }) {
   const primary = shop.shop_images?.find((i) => i.is_primary) ?? shop.shop_images?.[0]
-  if (primary?.url) {
+  const [imgError, setImgError] = useState(false)
+
+  if (primary?.url && !imgError) {
     return (
-      <div className="shrink-0 w-[72px] h-[72px] rounded-lg overflow-hidden relative bg-gray-100">
+      <div className="shrink-0 w-[72px] h-[72px] rounded-lg overflow-hidden relative bg-green-50">
         <Image
           src={proxyUrl(primary.url)}
           alt={shop.name}
           fill
           className="object-cover"
           loading="lazy"
-          placeholder="blur"
-          blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzIiIGhlaWdodD0iNzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjcyIiBoZWlnaHQ9IjcyIiBmaWxsPSIjZTVlN2ViIi8+PC9zdmc+"
           unoptimized
+          onError={() => setImgError(true)}
         />
       </div>
     )
   }
   return (
-    <div className="shrink-0 w-[72px] h-[72px] rounded-lg bg-gray-100 flex items-center justify-center">
-      <Leaf className="w-5 h-5 text-gray-300" />
+    <div className="shrink-0 w-[72px] h-[72px] rounded-lg bg-green-50 flex items-center justify-center">
+      <Leaf className="w-5 h-5 text-green-300" />
     </div>
   )
 }

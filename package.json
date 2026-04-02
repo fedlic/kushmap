@@ -16,6 +16,7 @@
     "@capacitor/core": "^8.2.0",
     "@capacitor/ios": "^8.2.0",
     "@capacitor/status-bar": "^8.0.1",
+    "@googlemaps/markerclusterer": "^2.6.2",
     "@react-google-maps/api": "^2.20.8",
     "@supabase/ssr": "^0.9.0",
     "@supabase/supabase-js": "^2.99.2",
