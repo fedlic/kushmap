@@ -560,7 +560,7 @@ export default function DiscoveryPage() {
                     />
                   </div>
                   {(i + 1) % 5 === 0 && i < paginatedRegular.length - 1 && (
-                    <AdUnit slot="LIST_AD_SLOT" format="horizontal" className="py-2 px-3 border-b border-gray-100" />
+                    <AdUnit slot="3641107589" format="horizontal" className="py-2 px-3 border-b border-gray-100" />
                   )}
                 </div>
               ))}

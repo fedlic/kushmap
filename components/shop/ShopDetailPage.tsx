@@ -552,7 +552,7 @@ export default function ShopDetailPage({ shop }: { shop: Shop }) {
         )}
 
         {/* Ad */}
-        <AdUnit slot="DETAIL_AD_SLOT" format="rectangle" className="rounded-2xl overflow-hidden" />
+        <AdUnit slot="3658351666" format="rectangle" className="rounded-2xl overflow-hidden" />
 
         {/* Reviews section */}
         <div className="bg-white rounded-2xl p-5 shadow-sm">
