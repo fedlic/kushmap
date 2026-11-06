@@ -1,9 +1,11 @@
 node_modules/
 .env.local
 .next/
+*.tsbuildinfo
 .DS_Store
 scripts/import-log.txt
 .vercel
+/supabase/.temp/
 out/
 ios/App/Pods/
 ios/App/App/public/
